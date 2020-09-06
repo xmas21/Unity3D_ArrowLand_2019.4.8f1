@@ -15,22 +15,22 @@ public class RandomSkill : MonoBehaviour
 
     [Header("捲動速度"), Range(0.001f, 0.1f)]
     public float speed = 0.1f;
-    [Header("隨機圖片執行次數"), Range(1, 30)]
+    [Header("隨機圖片輪迴次數"), Range(1, 30)]
     public int count = 3;
 
-    public AudioClip soundScroll;
+    public AudioClip soundScroll;  
     public AudioClip soundSkill;
 
     private AudioSource aud;
     private Image imgSkill;
     private Button btn;
     private Text textName;
-    private GameObject skillPanel;
+    private GameObject skillPanel;                 // 隨機技能的畫布版面
     private int index;
 
     #endregion
 
-    #region 方法
+    #region 
     private void Start()
     {
         aud = GetComponent<AudioSource>();
@@ -44,23 +44,26 @@ public class RandomSkill : MonoBehaviour
         StartCoroutine(RandomEffect());
     }
 
-    private void chooseSkill()
+    /// <summary>
+    /// 選取技能後的動作
+    /// </summary>
+    private void chooseSkill()    
     {
         skillPanel.SetActive(false);
         print(nameSkill[index]);
     }
 
-    #endregion
-
-    #region 事件
+    /// <summary>
+    /// 技能動畫
+    /// </summary>
     private IEnumerator RandomEffect()
     {
         btn.interactable = false;
 
-        // 跑隨機
+        // 開始捲動
         for (int j = 0; j < count; j++)
         {
-            for (int i = 0; i < spritesBlur.Length; i++)  // 從第一張跑到最後一張
+            for (int i = 0; i < spritesBlur.Length; i++)  
             {
                 aud.PlayOneShot(soundScroll, 0.1f);
                 imgSkill.sprite = spritesBlur[i];

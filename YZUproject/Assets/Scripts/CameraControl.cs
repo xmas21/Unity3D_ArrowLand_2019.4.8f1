@@ -14,7 +14,7 @@ public class CameraControl : MonoBehaviour
 
     #endregion
 
-    #region
+    #region 
     /// <summary>
     /// 遊戲開始執行
     /// </summary>
@@ -33,7 +33,7 @@ public class CameraControl : MonoBehaviour
 
     #endregion
 
-    #region 方法
+    #region 
 
     /// <summary>
     /// 追蹤玩家座標方法
@@ -47,7 +47,7 @@ public class CameraControl : MonoBehaviour
 
         posplayer.z =  Mathf.Clamp(posplayer.z, top, bottom);
 
-        transform.position = Vector3.Lerp(posCamera, posplayer, 0.5f);   // A 點往 B 點0.5f
+        transform.position = Vector3.Lerp(posCamera, posplayer, 0.5f);   // camera 往 player 前進 0.5f
     }
     #endregion
 }
