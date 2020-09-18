@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private Rigidbody rig;     // 鋼體
     private Animator ani;      // 動畫控制器
     private Transform target;  // 目標
+    private LevelManager levelManager;
 
     public float speed = 10;
 
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
         ani = GetComponent <Animator> ();
         joystick = GameObject.Find("固態搖桿").GetComponent<Joystick>(); // 取得指定元件 (Joystick中的固態搖桿)
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void FixedUpdate()
@@ -27,6 +29,13 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "傳送區域")
+        {
+            levelManager.StartCoroutine("NextLevel");
+        }
+    }
 
     #endregion
 

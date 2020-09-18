@@ -4,7 +4,7 @@ using System.Collections;
 
 public class RandomSkill : MonoBehaviour
 {
-    #region 欄位
+    #region 
 
     [Header("圖片區域")]
     public Sprite[] spritesBlur;
@@ -18,15 +18,16 @@ public class RandomSkill : MonoBehaviour
     [Header("隨機圖片輪迴次數"), Range(1, 30)]
     public int count = 3;
 
-    public AudioClip soundScroll;  
+    public AudioClip soundScroll;
     public AudioClip soundSkill;
 
     private AudioSource aud;
     private Image imgSkill;
     private Button btn;
     private Text textName;
-    private GameObject skillPanel;                 // 隨機技能的畫布版面
+    private GameObject skillPanel;                             // 隨機技能的畫布版面
     private int index;
+    private Animator ani;
 
     #endregion
 
@@ -42,12 +43,15 @@ public class RandomSkill : MonoBehaviour
         btn.onClick.AddListener(chooseSkill);
 
         StartCoroutine(RandomEffect());
+
+
+
     }
 
     /// <summary>
     /// 選取技能後的動作
     /// </summary>
-    private void chooseSkill()    
+    private void chooseSkill()
     {
         skillPanel.SetActive(false);
         print(nameSkill[index]);
@@ -63,7 +67,7 @@ public class RandomSkill : MonoBehaviour
         // 開始捲動
         for (int j = 0; j < count; j++)
         {
-            for (int i = 0; i < spritesBlur.Length; i++)  
+            for (int i = 0; i < spritesBlur.Length; i++)
             {
                 aud.PlayOneShot(soundScroll, 0.1f);
                 imgSkill.sprite = spritesBlur[i];
@@ -77,6 +81,7 @@ public class RandomSkill : MonoBehaviour
         imgSkill.sprite = spritesSkill[index];
         aud.PlayOneShot(soundSkill, 0.1f);
         textName.text = nameSkill[index];
+
     }
 
     #endregion
