@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 
@@ -23,7 +24,7 @@ public class LevelManager : MonoBehaviour
         imgCross = GameObject.Find("轉場效果").GetComponent<Image>();
 
         if (autoShowSkill) showSkill();
-        if (autoOpenDoor) Invoke("Opendoor", 6);
+        if (autoOpenDoor) Invoke("Opendoor", 3);
     }
 
     private void showSkill()
@@ -39,9 +40,17 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator NextLevel()
     {
-        imgCross.color += new Color(1, 1, 1, 0.01f);
-        yield return new WaitForSeconds(0.01f);
+        AsyncOperation async = SceneManager.LoadSceneAsync("關卡2");
+
+        async.allowSceneActivation = false;
+
+        for (int i = 0; i < 100; i++)
+        {
+            imgCross.color += new Color(1, 1, 1, 0.01f);
+            yield return new WaitForSeconds(0.005f);
+        }
+
+        async.allowSceneActivation = true;
+
     }
-
-
 }
