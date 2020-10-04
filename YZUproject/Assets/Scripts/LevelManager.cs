@@ -18,13 +18,13 @@ public class LevelManager : MonoBehaviour
     private Image imgCross;
 
 
-    private void Start()
+    private void Start() // 轉場
     {
         door = GameObject.Find("木頭門").GetComponent<Animator>();
         imgCross = GameObject.Find("轉場效果").GetComponent<Image>();
 
         if (autoShowSkill) showSkill();
-        if (autoOpenDoor) Invoke("Opendoor", 3);
+        if (autoOpenDoor) Invoke("Opendoor", 6);
     }
 
     private void showSkill()
@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < 100; i++)
         {
             imgCross.color += new Color(1, 1, 1, 0.01f);
-            yield return new WaitForSeconds(0.005f);
+            yield return new WaitForSeconds(0.001f);
         }
 
         async.allowSceneActivation = true;

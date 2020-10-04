@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 250
   attack: 50
-  cd: 3
-  speed: 0
+  cd: 2
+  speed: 1.5
+  StopDistanse: 1.5
+  NearAttackLength: 1
+  NearAttackPos: {x: 0, y: 1.13, z: 0.34}
+  NearAttackDelay: 0.5

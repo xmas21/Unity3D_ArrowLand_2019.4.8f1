@@ -4,7 +4,7 @@ using System.Collections;
 
 public class RandomSkill : MonoBehaviour
 {
-    #region 
+    #region 欄位
 
     [Header("圖片區域")]
     public Sprite[] spritesBlur;
@@ -83,7 +83,5 @@ public class RandomSkill : MonoBehaviour
         textName.text = nameSkill[index];
 
     }
-
     #endregion
-
 }

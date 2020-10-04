@@ -8,8 +8,11 @@ public class Player : MonoBehaviour
     private Animator ani;      // 動畫控制器
     private Transform target;  // 目標
     private LevelManager levelManager;
+    private HpMpManager hpMpManager;
 
     public float speed = 10;
+    [Header("玩家資料")]
+    public PlayerDate data;
 
     #endregion
 
@@ -17,11 +20,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        rig = GetComponent <Rigidbody> ();                               // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
-        ani = GetComponent <Animator> ();
+
+        rig = GetComponent<Rigidbody>();                               // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
+        ani = GetComponent<Animator>();
         joystick = GameObject.Find("固態搖桿").GetComponent<Joystick>(); // 取得指定元件 (Joystick中的固態搖桿)
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
         levelManager = FindObjectOfType<LevelManager>();
+        hpMpManager = GetComponentInChildren<HpMpManager>();
     }
 
     private void FixedUpdate()
@@ -52,10 +57,10 @@ public class Player : MonoBehaviour
 
         rig.AddForce(-h * speed, 0, -v * speed);  // 推力 (水平,0,垂直)
 
-        ani.SetBool("跑步觸發",v !=0 || h != 0);
+        ani.SetBool("跑步觸發", v != 0 || h != 0);
 
         Vector3 posPlayer = transform.position;   // 玩家.座標
-        Vector3 posTarget = new Vector3 (posPlayer.x - h ,0.28f, posPlayer.z - v);  //設定目標跟玩家的相對位置
+        Vector3 posTarget = new Vector3(posPlayer.x - h, 0.28f, posPlayer.z - v);  //設定目標跟玩家的相對位置
 
         target.position = posTarget;
 
@@ -64,6 +69,6 @@ public class Player : MonoBehaviour
         transform.LookAt(posTarget);              // 視野跟蹤的 API
     }
 
-   
+
     #endregion
 }
