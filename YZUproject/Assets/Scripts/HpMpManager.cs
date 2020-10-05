@@ -15,6 +15,9 @@ public class HpMpManager : MonoBehaviour
         FixAngle();
     }
 
+    /// <summary>
+    /// 固定血條螢幕角度
+    /// </summary>
     private void FixAngle()
     {
         transform.eulerAngles = new Vector3(50, -180, 0);

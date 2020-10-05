@@ -52,12 +52,10 @@ public class Enemy : MonoBehaviour
 
         if (timer >= data.cd)
         {
-            timer = 0;
-            ani.SetTrigger("攻擊觸發");
+            Attack();
         }
-
-
     }
+
 
     protected virtual void Attack()
     {

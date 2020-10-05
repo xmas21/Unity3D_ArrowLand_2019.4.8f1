@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
         levelManager = FindObjectOfType<LevelManager>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
+
     }
 
     private void FixedUpdate()
@@ -43,7 +44,6 @@ public class Player : MonoBehaviour
     }
 
     #endregion
-
 
     #region 事件 遊戲操作的事先定義
 

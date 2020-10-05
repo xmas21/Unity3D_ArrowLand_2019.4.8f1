@@ -20,7 +20,7 @@ public class EnemyNear : Enemy
     }
 
     /// <summary>
-    /// 利用射線攻擊玩家
+    /// 利用射線攻擊玩家 + 傷害延遲產生
     /// </summary>
     /// <returns></returns>
     private IEnumerator DelayAttack()
