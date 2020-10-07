@@ -18,5 +18,5 @@ MonoBehaviour:
   speed: 1
   StopDistanse: 150
   NearAttackLength: 0
-  NearAttackPos: {x: 0, y: 0, z: 0}
+  NearAttackPos: {x: 0, y: 2.25, z: 0}
   NearAttackDelay: 0
