@@ -27,13 +27,13 @@ public class EnemyNear : Enemy
     {
         yield return new WaitForSeconds(data.NearAttackDelay);
 
-        RaycastHit hits; // 區域變數 接收射線資訊
+        RaycastHit hit; // 區域變數 接收射線資訊
 
         // out 是把方法內的資料保存在區域變數內
 
-        if (Physics.Raycast(transform.position + data.NearAttackPos, transform.forward, out hits, data.NearAttackLength))
+        if (Physics.Raycast(transform.position + data.NearAttackPos, transform.forward, out hit, data.NearAttackLength))
         {
-
+            hit.collider.GetComponent<Player>().Hit(data.attack);
         }       
     }
 }

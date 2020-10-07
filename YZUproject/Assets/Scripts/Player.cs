@@ -2,7 +2,6 @@
 
 public class Player : MonoBehaviour
 {
-    #region 欄位
     private Joystick joystick; // 虛擬搖桿
     private Rigidbody rig;     // 鋼體
     private Animator ani;      // 動畫控制器
@@ -14,9 +13,7 @@ public class Player : MonoBehaviour
     [Header("玩家資料")]
     public PlayerDate data;
 
-    #endregion
 
-    #region 方法 遊戲內的操作
 
     private void Start()
     {
@@ -43,10 +40,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region 事件 遊戲操作的事先定義
-
     /// <summary>
     /// 移動
     /// </summary>
@@ -69,6 +62,20 @@ public class Player : MonoBehaviour
         transform.LookAt(posTarget);              // 視野跟蹤的 API
     }
 
+    public void Hit(float damage)
+    {
+        data.hp -= damage;
+        hpMpManager.UpdateHpBar(data.hp, data.hpMax);
 
-    #endregion
+        StartCoroutine(hpMpManager.ShowValue(damage, "-", Vector3.one, Color.white));
+
+        if (data.hp <= 0) Dead();
+    }
+
+    private void Dead()
+    {
+        ani.SetBool("死亡觸發", true);
+        enabled = false;
+    }
+
 }

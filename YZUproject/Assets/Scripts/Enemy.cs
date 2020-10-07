@@ -56,7 +56,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     protected virtual void Attack()
     {
         timer = 0;
