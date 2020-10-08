@@ -656,10 +656,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 9e2ec4e5-a97b-4ef6-9e37-502f189afc35
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: YZUproject (1)
+  organizationId: xmas21
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
 
+        data.hp = data.hpMax;
+
     }
 
     private void FixedUpdate()
@@ -76,6 +78,8 @@ public class Player : MonoBehaviour
     {
         ani.SetBool("死亡觸發", true);
         enabled = false;
+
+        StartCoroutine(levelManager.ShowRevival());
     }
 
 }

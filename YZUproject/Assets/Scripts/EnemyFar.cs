@@ -21,6 +21,12 @@ public class EnemyFar : Enemy
 
         pos += transform.forward * data.NearAttackPos.z;
 
-        Instantiate(bullet, pos, transform.rotation);
+        GameObject temp = Instantiate(bullet, pos, transform.rotation);
+
+        temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.farPower);
+
+        temp.AddComponent<Bullet>();
+        temp.GetComponent<Bullet>().damage = data.attack;
+
     }
 }

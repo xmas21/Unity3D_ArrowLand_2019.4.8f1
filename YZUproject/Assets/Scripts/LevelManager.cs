@@ -13,6 +13,10 @@ public class LevelManager : MonoBehaviour
     public bool autoShowSkill;
     [Header("是否自動開門")]
     public bool autoOpenDoor;
+    [Header("復活介面")]
+    public GameObject panelRevival;
+
+
 
     private Animator door;
     private Image imgCross;
@@ -53,4 +57,16 @@ public class LevelManager : MonoBehaviour
         async.allowSceneActivation = true;
 
     }
+
+    public IEnumerator ShowRevival()
+    {
+        panelRevival.SetActive(true);
+
+        for (int i = 5; i > 0; i--)
+        {
+            panelRevival.transform.GetChild(1).GetComponent<Text>().text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
+    }
+
 }
