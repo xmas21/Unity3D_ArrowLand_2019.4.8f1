@@ -8,4 +8,10 @@ public class PlayerDate : ScriptableObject
 
     public float hpMax;
 
+    [Header("冷卻時間"), Range(0, 2)]
+    public float cd = 0.5f;
+    [Header("武器速度"), Range(1000, 5000)]
+    public float power = 1000;
+
+
 }

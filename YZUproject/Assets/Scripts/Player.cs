@@ -8,10 +8,13 @@ public class Player : MonoBehaviour
     private Transform target;  // 目標
     private LevelManager levelManager;
     private HpMpManager hpMpManager;
+    private float timer;
 
     public float speed = 10;
     [Header("玩家資料")]
     public PlayerDate data;
+    [Header("武器")]
+    public GameObject bullet;
 
 
 
@@ -62,6 +65,8 @@ public class Player : MonoBehaviour
         posTarget.y = posPlayer.y;
 
         transform.LookAt(posTarget);              // 視野跟蹤的 API
+
+        if (v == 0 && h == 0) Attack();
     }
 
     public void Hit(float damage)
@@ -80,6 +85,36 @@ public class Player : MonoBehaviour
         enabled = false;
 
         StartCoroutine(levelManager.ShowRevival());
+    }
+
+    public void Revival()
+    {
+        enabled = true;
+        ani.SetBool("死亡觸發", false);
+        data.hp = data.hpMax;
+        hpMpManager.UpdateHpBar(data.hp, data.hpMax);
+        levelManager.CloseRevival();
+    }
+
+    private void Attack()
+    {
+        if (timer < data.cd)
+        {
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            timer = 0;
+
+            Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f;
+
+            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+
+            GameObject temp = Instantiate(bullet, pos, qua);    
+            temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
+
+        }
+
     }
 
 }

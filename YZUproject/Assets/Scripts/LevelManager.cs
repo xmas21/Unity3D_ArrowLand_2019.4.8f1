@@ -69,4 +69,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void CloseRevival()
+    {
+        StopCoroutine(ShowRevival());
+        panelRevival.SetActive(false);
+    }
+
 }
