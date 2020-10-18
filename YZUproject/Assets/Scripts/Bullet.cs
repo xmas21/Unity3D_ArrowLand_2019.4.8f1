@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            if (other.tag == "敵人")
+            if (other.GetComponent<Enemy>() && other.tag == "敵人")
             {
                 other.GetComponent<Enemy>().Hit(damage);
             }

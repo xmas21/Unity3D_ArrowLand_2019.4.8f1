@@ -108,7 +108,11 @@ public class Player : MonoBehaviour
             enemys = FindObjectsOfType<Enemy>();
             enemyDistanse = new float[enemys.Length];
 
-            if (enemys.Length == 0) return;
+            if (enemys.Length == 0)
+            {
+                levelManager.Pass();
+                return;
+            }
 
             timer = 0;
 
@@ -126,7 +130,6 @@ public class Player : MonoBehaviour
             Vector3 posEnemy = enemys[index].transform.position;
             posEnemy.y = transform.position.y;
             transform.LookAt(posEnemy);
-
 
             Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f;
 

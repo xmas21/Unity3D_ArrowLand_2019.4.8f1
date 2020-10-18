@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     {
         if (ani.GetBool("死亡觸發")) return;
 
-        
+
         agent.SetDestination(target.position);
 
         Vector3 targetPos = target.position;
@@ -84,12 +84,20 @@ public class Enemy : MonoBehaviour
     {
         ani.SetBool("死亡觸發", true);
         agent.isStopped = true;
-
         Destroy(this);
+        Destroy(gameObject, 0.6f);
+        DropProp();
     }
 
-    private void Prop()
+    private void DropProp()
     {
+        int r = (int)Random.Range(data.coinRandom.x, data.coinRandom.y);
 
+        for (int i = 0; i < r; i++)
+        {
+            Instantiate(data.coin, transform.position + transform.up * 2, Quaternion.identity);
+        }
     }
+
+
 }

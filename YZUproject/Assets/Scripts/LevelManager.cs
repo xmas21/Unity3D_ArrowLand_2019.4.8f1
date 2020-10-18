@@ -75,4 +75,19 @@ public class LevelManager : MonoBehaviour
         panelRevival.SetActive(false);
     }
 
+    /// <summary>
+    /// 過關
+    /// </summary>
+    public void Pass()
+    {
+        Opendoor();
+
+        Item[] coins = FindObjectsOfType<Item>();
+
+        for (int i = 0; i < coins.Length; i++)
+        {
+            coins[i].pass = true;
+        }
+    }
+
 }
