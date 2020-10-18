@@ -12,6 +12,9 @@ public class PlayerDate : ScriptableObject
     public float cd = 0.5f;
     [Header("武器速度"), Range(1000, 5000)]
     public float power = 1000;
+    [Header("攻擊傷害"), Range(1, 5000)]
+    public float attack = 50;
+
 
 
 }

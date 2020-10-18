@@ -38,8 +38,8 @@ ModelImporter:
       name: "\u653B\u64CA"
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 0
-      lastFrame: 44
+      firstFrame: 10
+      lastFrame: 13
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

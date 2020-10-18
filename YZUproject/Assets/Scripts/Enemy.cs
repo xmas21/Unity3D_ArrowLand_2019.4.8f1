@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private Transform target;
     private float timer;
+    private HpMpManager hpMpManager;
+    private float hp;
+
 
     private void Start()
     {
@@ -17,8 +20,10 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = data.speed;
         agent.stoppingDistance = data.StopDistanse;
+        hp = data.hp;
 
         target = GameObject.Find("玩家").transform;
+        hpMpManager = GetComponentInChildren<HpMpManager>();
     }
 
     private void Update()
@@ -28,6 +33,9 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
+        if (ani.GetBool("死亡觸發")) return;
+
+        
         agent.SetDestination(target.position);
 
         Vector3 targetPos = target.position;
@@ -62,14 +70,22 @@ public class Enemy : MonoBehaviour
         ani.SetTrigger("攻擊觸發");
     }
 
-    private void Hit(float damage)
+    public void Hit(float damage)
     {
+        hp -= damage;
+        hpMpManager.UpdateHpBar(hp, data.hpMax);
 
+        StartCoroutine(hpMpManager.ShowValue(damage, "-", Vector3.one, Color.white));
+
+        if (hp <= 0) Dead();
     }
 
     private void Dead()
     {
+        ani.SetBool("死亡觸發", true);
+        agent.isStopped = true;
 
+        Destroy(this);
     }
 
     private void Prop()

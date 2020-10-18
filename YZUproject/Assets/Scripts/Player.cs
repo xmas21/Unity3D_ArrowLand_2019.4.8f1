@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Linq;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class Player : MonoBehaviour
     private LevelManager levelManager;
     private HpMpManager hpMpManager;
     private float timer;
+    private Enemy[] enemys;
+    private float[] enemyDistanse;
 
     public float speed = 10;
     [Header("玩家資料")]
@@ -98,20 +102,41 @@ public class Player : MonoBehaviour
 
     private void Attack()
     {
-        if (timer < data.cd)
-        {
-            timer += Time.deltaTime;
-        }
+        if (timer < data.cd) timer += Time.deltaTime;
         else
         {
+            enemys = FindObjectsOfType<Enemy>();
+            enemyDistanse = new float[enemys.Length];
+
+            if (enemys.Length == 0) return;
+
             timer = 0;
+
+            ani.SetTrigger("攻擊觸發");
+
+            for (int i = 0; i < enemys.Length; i++)
+            {
+                enemyDistanse[i] = Vector3.Distance(transform.position, enemys[i].transform.position);
+            }
+
+            float min = enemyDistanse.Min();
+
+            int index = enemyDistanse.ToList().IndexOf(min);
+
+            Vector3 posEnemy = enemys[index].transform.position;
+            posEnemy.y = transform.position.y;
+            transform.LookAt(posEnemy);
+
 
             Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f;
 
             Quaternion qua = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 
-            GameObject temp = Instantiate(bullet, pos, qua);    
+            GameObject temp = Instantiate(bullet, pos, qua);
             temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
+            temp.AddComponent<Bullet>();
+            temp.GetComponent<Bullet>().damage = data.attack;
+            temp.GetComponent<Bullet>().playerBullet = true;
 
         }
 

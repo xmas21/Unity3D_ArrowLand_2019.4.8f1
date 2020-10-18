@@ -5,6 +5,8 @@ public class EnemyData : ScriptableObject
 {
     [Header("血量"),Range(30,3000)]
     public float hp;
+    [Header("血量最大值"),Range(30,3000)]
+    public float hpMax;
     [Header("攻擊力"),Range(0,1000)]
     public float attack;
     [Header("冷卻"),Range(0,5)]

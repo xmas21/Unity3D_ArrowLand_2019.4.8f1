@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812c2a7e217204e42825b4699d8efab2, type: 3}
   m_Name: "\u6BAD\u5C4D"
   m_EditorClassIdentifier: 
-  hp: 250
+  hp: -350
+  hpMax: 250
   attack: 50
   cd: 2
   speed: 1.5
@@ -20,3 +21,4 @@ MonoBehaviour:
   NearAttackLength: 1
   NearAttackPos: {x: 0, y: 0.97, z: 0.18}
   NearAttackDelay: 0.5
+  farPower: 1500
