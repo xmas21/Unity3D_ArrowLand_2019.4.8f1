@@ -32,8 +32,6 @@ public class Player : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
 
-        data.hp = data.hpMax;
-
     }
 
     private void FixedUpdate()
@@ -142,7 +140,5 @@ public class Player : MonoBehaviour
             temp.GetComponent<Bullet>().playerBullet = true;
 
         }
-
     }
-
 }

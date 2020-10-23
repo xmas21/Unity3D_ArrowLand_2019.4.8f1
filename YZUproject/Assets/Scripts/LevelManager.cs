@@ -44,7 +44,9 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator NextLevel()
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync("關卡2");
+        int index = SceneManager.GetActiveScene().buildIndex;
+
+        AsyncOperation async = SceneManager.LoadSceneAsync(index+1);
 
         async.allowSceneActivation = false;
 

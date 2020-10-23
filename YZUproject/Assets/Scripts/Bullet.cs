@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
             if (other.name == "玩家")
             {
                 other.GetComponent<Player>().Hit(damage);
+                Destroy(gameObject);
             }
         }
         else
@@ -19,6 +20,7 @@ public class Bullet : MonoBehaviour
             if (other.GetComponent<Enemy>() && other.tag == "敵人")
             {
                 other.GetComponent<Enemy>().Hit(damage);
+                Destroy(gameObject);
             }
         }
     }
