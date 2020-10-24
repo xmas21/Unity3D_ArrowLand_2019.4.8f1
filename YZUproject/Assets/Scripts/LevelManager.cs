@@ -15,11 +15,10 @@ public class LevelManager : MonoBehaviour
     public bool autoOpenDoor;
     [Header("復活介面")]
     public GameObject panelRevival;
-    [Header("金幣數量")]
-    public int coinNumber;
 
     private Animator door;
     private Image imgCross;
+    private PlayerDate playerDate;
 
 
     private void Start() // 轉場
@@ -98,6 +97,12 @@ public class LevelManager : MonoBehaviour
         {
             coins[i].pass = true;
         }
-    }
 
+        /*
+        for (int j = 0; j < coins.Length; j++)
+        {
+            playerDate.PlayerCoin++;
+        }
+        */
+    }
 }

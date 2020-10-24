@@ -14,7 +14,10 @@ public class PlayerDate : ScriptableObject
     public float power = 1000;
     [Header("攻擊傷害"), Range(1, 5000)]
     public float attack = 50;
-
+    [Header("金幣數量")]
+    public int PlayerCoin;
+    [Header("鑽石數量")]
+    public int PlayerJewel;
 
 
 }

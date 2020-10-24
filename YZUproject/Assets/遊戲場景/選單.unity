@@ -1218,6 +1218,14 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
   BuyPanelAttack: {fileID: 1699802255}
   BuyPanelHp: {fileID: 1514192435}
+  coin1: {fileID: 461251598}
+  coin2: {fileID: 1998033886}
+  coin3: {fileID: 1568419927}
+  coin4: {fileID: 725995594}
+  jewel1: {fileID: 2100736244}
+  jewel2: {fileID: 1253116669}
+  jewel3: {fileID: 1855329554}
+  jewel4: {fileID: 650559573}
 --- !u!4 &306682091
 Transform:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private float timer;
     private Enemy[] enemys;
     private float[] enemyDistanse;
+    private RandomSkill randomSkill;
 
     public float speed = 10;
     [Header("玩家資料")]
@@ -21,16 +22,15 @@ public class Player : MonoBehaviour
     public GameObject bullet;
 
 
-
     private void Start()
     {
-
         rig = GetComponent<Rigidbody>();                               // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
         ani = GetComponent<Animator>();
         joystick = GameObject.Find("固態搖桿").GetComponent<Joystick>(); // 取得指定元件 (Joystick中的固態搖桿)
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
         levelManager = FindObjectOfType<LevelManager>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
+        AttackAbility();
 
     }
 
@@ -140,5 +140,77 @@ public class Player : MonoBehaviour
             temp.GetComponent<Bullet>().playerBullet = true;
 
         }
+    }
+
+    private void AttackAbility()
+    {
+        /*
+        if (randomSkill.index == 0)
+        {
+            print("連續射擊");
+        }
+        else if (randomSkill.index == 1)
+        {
+            print("正向箭");
+        }
+        else if (randomSkill.index == 2)
+        {
+            print("背向箭");
+        }
+        else if (randomSkill.index == 3)
+        {
+            print("側向箭");
+        }
+        else if (randomSkill.index == 4)
+        {
+            print("血量增加");
+        }
+        else if (randomSkill.index == 5)
+        {
+            print("攻擊增加");
+        }
+        else if (randomSkill.index == 6)
+        {
+            print("攻速增加");
+        }
+        else if (randomSkill.index == 7)
+        {
+            print("爆擊增加");
+        }
+        */
+        /*
+        if (randomSkill.nameskill == "連續射擊")
+        {
+            print("連續射擊");
+        }
+        else if (randomSkill.nameskill == "正向箭")
+        {
+            print("正向箭");
+        }
+        else if (randomSkill.nameskill == "背向箭")
+        {
+            print("背向箭");
+        }
+        else if (randomSkill.nameskill == "側向箭")
+        {
+            print("側向箭");
+        }
+        else if (randomSkill.nameskill == "血量增加")
+        {
+            print("血量增加");
+        }
+        else if (randomSkill.nameskill == "攻擊增加")
+        {
+            print("攻擊增加");
+        }
+        else if (randomSkill.nameskill == "攻速增加")
+        {
+            print("攻速增加");
+        }
+        else if (randomSkill.nameskill == "爆擊增加")
+        {
+            print("爆擊增加");
+        }
+        */
     }
 }

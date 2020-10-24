@@ -5,13 +5,11 @@ using System.Collections;
 public class RandomSkill : MonoBehaviour
 {
     #region 
-
     [Header("圖片區域")]
     public Sprite[] spritesBlur;
     public Sprite[] spritesSkill;
 
-    private string[] nameSkill = { "連續射擊", "正向箭", "背向箭", "側向箭", "血量增加", "攻擊增加", "攻速增加", "爆擊增加" };
-
+    public string[] nameSkill = { "連續射擊", "正向箭", "背向箭", "側向箭", "血量增加", "攻擊增加", "攻速增加", "爆擊增加" };
 
     [Header("捲動速度"), Range(0.001f, 0.1f)]
     public float speed = 0.1f;
@@ -25,9 +23,10 @@ public class RandomSkill : MonoBehaviour
     private Image imgSkill;
     private Button btn;
     private Text textName;
-    private GameObject skillPanel;                             // 隨機技能的畫布版面
-    private int index;
+    private GameObject skillPanel;                             
+    public int index;
     private Animator ani;
+    public string nameskill;
 
     #endregion
 
@@ -54,7 +53,8 @@ public class RandomSkill : MonoBehaviour
     private void chooseSkill()
     {
         skillPanel.SetActive(false);
-        print(nameSkill[index]);
+        print(nameskill[index]);
+        nameskill = nameSkill[index];
     }
 
     /// <summary>

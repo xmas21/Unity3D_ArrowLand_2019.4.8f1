@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -10,9 +11,32 @@ public class MenuManager : MonoBehaviour
     public GameObject BuyPanelAttack;
     [Header("購買生命力畫面")]
     public GameObject BuyPanelHp;
+    public Text coin1;
+    public Text coin2;
+    public Text coin3;
+    public Text coin4;
+    public Text jewel1;
+    public Text jewel2;
+    public Text jewel3;
+    public Text jewel4;
+
+
     #endregion
 
     #region 
+
+    private void Start()
+    {
+        coin1.text = data.PlayerCoin.ToString();
+        coin2.text = data.PlayerCoin.ToString();
+        coin3.text = data.PlayerCoin.ToString();
+        coin4.text = data.PlayerCoin.ToString();
+        jewel1.text = data.PlayerCoin.ToString();
+        jewel2.text = data.PlayerCoin.ToString();
+        jewel3.text = data.PlayerCoin.ToString();
+        jewel4.text = data.PlayerCoin.ToString();
+    }
+
     public void LoadLevel()
     {
         data.hp = data.hpMax;

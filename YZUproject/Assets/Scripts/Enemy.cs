@@ -98,6 +98,4 @@ public class Enemy : MonoBehaviour
             Instantiate(data.coin, transform.position + transform.up * 2, Quaternion.identity);
         }
     }
-
-
 }
