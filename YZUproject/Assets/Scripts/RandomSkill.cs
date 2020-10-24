@@ -4,7 +4,7 @@ using System.Collections;
 
 public class RandomSkill : MonoBehaviour
 {
-    #region 欄位
+    #region 
 
     [Header("圖片區域")]
     public Sprite[] spritesBlur;
@@ -44,10 +44,10 @@ public class RandomSkill : MonoBehaviour
 
         StartCoroutine(RandomEffect());
 
-
-
     }
+    #endregion
 
+    #region
     /// <summary>
     /// 選取技能後的動作
     /// </summary>

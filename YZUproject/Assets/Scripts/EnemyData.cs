@@ -31,7 +31,4 @@ public class EnemyData : ScriptableObject
     public GameObject coin;
 
 
-
-
-
 }

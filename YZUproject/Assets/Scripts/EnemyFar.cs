@@ -6,7 +6,6 @@ public class EnemyFar : Enemy
     [Header("子彈")]
     public GameObject bullet;
 
-
     protected override void Attack()
     {
         base.Attack();

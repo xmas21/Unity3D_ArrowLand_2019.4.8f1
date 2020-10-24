@@ -9,7 +9,7 @@ public class ADmanager : MonoBehaviour, IUnityAdsListener
 
     private void Start()
     {
-        Advertisement.Initialize(googleID, true); // 廣告初始化
+        Advertisement.Initialize(googleID, false); // 廣告初始化
         Advertisement.AddListener(this);
 
         player = FindObjectOfType<Player>();

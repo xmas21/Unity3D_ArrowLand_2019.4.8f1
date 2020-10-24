@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
+    #region 
     [Header("金幣音效")]
     public AudioClip sound;
 
@@ -11,6 +13,9 @@ public class Item : MonoBehaviour
     private Transform player;
     private AudioSource aud;
 
+    #endregion
+
+    #region
     private void Start()
     {
         Physics.IgnoreLayerCollision(10, 10, false);
@@ -25,7 +30,9 @@ public class Item : MonoBehaviour
     {
         GoToPlayer();
     }
+    #endregion
 
+    #region
     private void HandleCollision()
     {
         Physics.IgnoreLayerCollision(10, 8);
@@ -37,13 +44,23 @@ public class Item : MonoBehaviour
         if (pass)
         {
             Physics.IgnoreLayerCollision(10, 10);
-            transform.position =  Vector3.Lerp(transform.position, player.position, 0.5f * Time.deltaTime * 30);
+            transform.position = Vector3.Lerp(transform.position, player.position, 0.5f * Time.deltaTime * 30);
 
             if (Vector3.Distance(transform.position, player.position) < 2 && !aud.isPlaying)
             {
-                aud.PlayOneShot(sound,0.3f);
+                aud.PlayOneShot(sound, 0.3f);
                 Destroy(gameObject, 0.3f);
             }
         }
     }
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "玩家")
+        {
+            Destroy(gameObject, 0.3f);
+        }
+    }
+    */
+    #endregion
 }

@@ -7,12 +7,14 @@ public class HpMpManager : MonoBehaviour
     private Image hpBar;
     private RectTransform rtValue;
     private Text textValue;
+    private Text texthp;
 
     private void Start()
     {
         hpBar = transform.GetChild(1).GetComponent<Image>();
         rtValue = transform.GetChild(2).GetComponent<RectTransform>();
         textValue = transform.GetChild(2).GetComponent<Text>();
+        texthp = transform.GetChild(3).GetComponent<Text>();
     }
 
     private void Update()
@@ -28,12 +30,12 @@ public class HpMpManager : MonoBehaviour
         transform.eulerAngles = new Vector3(50, -180, 0);
     }
 
-    public void UpdateHpBar(float hpcurrent,float hpMax)
+    public void UpdateHpBar(float hpcurrent, float hpMax)
     {
         hpBar.fillAmount = hpcurrent / hpMax;
     }
 
-    public IEnumerator ShowValue(float value, string mark , Vector3 size , Color valueColor)
+    public IEnumerator ShowValue(float value, string mark, Vector3 size, Color valueColor)
     {
         textValue.text = mark + value;  // 內容為 : 符號 + 數值 -90 , +50
         valueColor.a = 0;               // 顏色.透明度 = 0

@@ -15,8 +15,8 @@ public class LevelManager : MonoBehaviour
     public bool autoOpenDoor;
     [Header("復活介面")]
     public GameObject panelRevival;
-
-
+    [Header("金幣數量")]
+    public int coinNumber;
 
     private Animator door;
     private Image imgCross;
@@ -44,9 +44,17 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator NextLevel()
     {
-        int index = SceneManager.GetActiveScene().buildIndex;
+        AsyncOperation async;
 
-        AsyncOperation async = SceneManager.LoadSceneAsync(index+1);
+        if (SceneManager.GetActiveScene().name.Contains("魔王"))
+        {
+            async = SceneManager.LoadSceneAsync(0);
+        }
+        else
+        {
+            int index = SceneManager.GetActiveScene().buildIndex;
+            async = SceneManager.LoadSceneAsync(index + 1);
+        }
 
         async.allowSceneActivation = false;
 
