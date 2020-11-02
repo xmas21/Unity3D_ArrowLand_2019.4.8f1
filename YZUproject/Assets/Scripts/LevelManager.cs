@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
     private Animator door;
     private Image imgCross;
     private PlayerDate playerDate;
-
+    private Player player;
 
     private void Start() // 轉場
     {
@@ -28,6 +28,8 @@ public class LevelManager : MonoBehaviour
 
         if (autoShowSkill) showSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
+        player.AttackAbility();
+
     }
 
     private void showSkill()
@@ -99,7 +101,7 @@ public class LevelManager : MonoBehaviour
         }
 
         /*
-        for (int j = 0; j < coins.Length; j++)
+        for (int j = coins.Length; j > 0; j--)
         {
             playerDate.PlayerCoin++;
         }

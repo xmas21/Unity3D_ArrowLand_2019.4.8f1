@@ -53,8 +53,8 @@ public class RandomSkill : MonoBehaviour
     private void chooseSkill()
     {
         skillPanel.SetActive(false);
-        print(nameskill[index]);
         nameskill = nameSkill[index];
+        print(nameskill);
     }
 
     /// <summary>

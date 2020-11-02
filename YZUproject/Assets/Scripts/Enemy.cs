@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private float timer;
     private HpMpManager hpMpManager;
     private float hp;
+    private PlayerDate playerDate;
 
 
     private void Start()
@@ -96,6 +97,11 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < r; i++)
         {
             Instantiate(data.coin, transform.position + transform.up * 2, Quaternion.identity);
+        }
+
+        for (int j = 0; j < r; j++)
+        {
+            playerDate.PlayerCoin++;
         }
     }
 }

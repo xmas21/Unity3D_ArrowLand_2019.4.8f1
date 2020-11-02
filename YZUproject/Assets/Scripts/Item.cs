@@ -46,21 +46,13 @@ public class Item : MonoBehaviour
             Physics.IgnoreLayerCollision(10, 10);
             transform.position = Vector3.Lerp(transform.position, player.position, 0.5f * Time.deltaTime * 30);
 
-            if (Vector3.Distance(transform.position, player.position) < 2 && !aud.isPlaying)
+            if (Vector3.Distance(transform.position, player.position) < 1 && !aud.isPlaying)
             {
+                Destroy(gameObject, 0.2f);
                 aud.PlayOneShot(sound, 0.3f);
-                Destroy(gameObject, 0.3f);
             }
         }
     }
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name == "玩家")
-        {
-            Destroy(gameObject, 0.3f);
-        }
-    }
-    */
+
     #endregion
 }
