@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    #region
+    #region 欄位
     [Header("玩家資料")]
     public PlayerDate data;
     [Header("購買攻擊力畫面")]
@@ -18,7 +18,6 @@ public class MenuManager : MonoBehaviour
     [Header("攻擊力等級")]
     public Text attackLevel;
 
-    private PlayerDate playerDate;
     public Text coin1;
     public Text coin2;
     public Text coin3;
@@ -41,14 +40,15 @@ public class MenuManager : MonoBehaviour
         coin2.text = data.PlayerCoin.ToString();
         coin3.text = data.PlayerCoin.ToString();
         coin4.text = data.PlayerCoin.ToString();
-        jewel1.text = data.PlayerCoin.ToString();
-        jewel2.text = data.PlayerCoin.ToString();
-        jewel3.text = data.PlayerCoin.ToString();
-        jewel4.text = data.PlayerCoin.ToString();
+        jewel1.text = data.PlayerJewel.ToString();
+        jewel2.text = data.PlayerJewel.ToString();
+        jewel3.text = data.PlayerJewel.ToString();
+        jewel4.text = data.PlayerJewel.ToString();
         #endregion
 
     }
 
+    #endregion
     public void LoadLevel()
     {
         data.hp = data.hpMax;
@@ -100,11 +100,8 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowPanelHP()
     {
-
-        BuyPanelHp.SetActive(true);
-
-        /*
-        if (playerDate.PlayerCoin > 100)
+        
+        if (data.PlayerCoin > 100)
         {
             BuyPanelHp.SetActive(true);
         }
@@ -112,7 +109,7 @@ public class MenuManager : MonoBehaviour
         {
             ShowPanelNoMoney();
         }
-        */
+        
     }
 
     /// <summary>
@@ -120,11 +117,8 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowPanelATK()
     {
-
-        BuyPanelAttack.SetActive(true);
-
-        /*
-        if (playerDate.PlayerCoin > 100)
+        
+        if (data.PlayerCoin > 100)
         {
 
             BuyPanelAttack.SetActive(true);
@@ -133,7 +127,7 @@ public class MenuManager : MonoBehaviour
         {
             ShowPanelNoMoney();
         }
-        */
+        
     }
 
     public void ShowPanelNoMoney()
@@ -155,6 +149,6 @@ public class MenuManager : MonoBehaviour
     {
         PanelNoMoney.SetActive(false);
     }
-    #endregion
+
 
 }

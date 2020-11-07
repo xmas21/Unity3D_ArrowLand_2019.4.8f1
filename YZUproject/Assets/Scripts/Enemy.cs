@@ -94,14 +94,12 @@ public class Enemy : MonoBehaviour
     {
         int r = (int)Random.Range(data.coinRandom.x, data.coinRandom.y);
 
+        target.GetComponent<Player>().data.PlayerCoin += r;
+
         for (int i = 0; i < r; i++)
         {
             Instantiate(data.coin, transform.position + transform.up * 2, Quaternion.identity);
         }
 
-        for (int j = 0; j < r; j++)
-        {
-            playerDate.PlayerCoin++;
-        }
     }
 }

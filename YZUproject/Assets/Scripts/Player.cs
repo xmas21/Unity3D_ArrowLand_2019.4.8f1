@@ -25,14 +25,15 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        rig = GetComponent<Rigidbody>();                               // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
+        rig = GetComponent<Rigidbody>();                                 // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
         ani = GetComponent<Animator>();
         joystick = GameObject.Find("固態搖桿").GetComponent<Joystick>(); // 取得指定元件 (Joystick中的固態搖桿)
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
         levelManager = FindObjectOfType<LevelManager>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
         AttackAbility();
-
+        randomSkill = FindObjectOfType<RandomSkill>();
+        skillData = FindObjectOfType<SkillData>();
     }
 
     private void FixedUpdate()
@@ -139,7 +140,6 @@ public class Player : MonoBehaviour
             temp.AddComponent<Bullet>();
             temp.GetComponent<Bullet>().damage = data.attack;
             temp.GetComponent<Bullet>().playerBullet = true;
-
         }
     }
 

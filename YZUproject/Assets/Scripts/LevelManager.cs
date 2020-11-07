@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     {
         door = GameObject.Find("木頭門").GetComponent<Animator>();
         imgCross = GameObject.Find("轉場效果").GetComponent<Image>();
+        player = FindObjectOfType<Player>();
 
         if (autoShowSkill) showSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
@@ -99,12 +100,5 @@ public class LevelManager : MonoBehaviour
         {
             coins[i].pass = true;
         }
-
-        /*
-        for (int j = coins.Length; j > 0; j--)
-        {
-            playerDate.PlayerCoin++;
-        }
-        */
     }
 }

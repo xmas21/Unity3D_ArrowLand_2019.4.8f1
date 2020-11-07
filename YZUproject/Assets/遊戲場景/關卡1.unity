@@ -664,10 +664,21 @@ MonoBehaviour:
   - {fileID: -5380635846546674211, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
   - {fileID: -7634161343368957888, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
   - {fileID: 7629744394388040753, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
+  nameSkill:
+  - "\u9023\u7E8C\u5C04\u64CA"
+  - "\u6B63\u5411\u7BAD"
+  - "\u80CC\u5411\u7BAD"
+  - "\u5074\u5411\u7BAD"
+  - "\u8840\u91CF\u589E\u52A0"
+  - "\u653B\u64CA\u589E\u52A0"
+  - "\u653B\u901F\u589E\u52A0"
+  - "\u7206\u64CA\u589E\u52A0"
   speed: 0.01
   count: 5
   soundScroll: {fileID: 8300000, guid: 4fbaec4932be6a64db050e2e4c079f23, type: 3}
   soundSkill: {fileID: 8300000, guid: 62557658504dd7c47bc9248e68a36129, type: 3}
+  index: 0
+  nameskill: 
 --- !u!114 &131011193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1523,10 +1534,21 @@ MonoBehaviour:
   - {fileID: -5380635846546674211, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
   - {fileID: -7634161343368957888, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
   - {fileID: 7629744394388040753, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
+  nameSkill:
+  - "\u9023\u7E8C\u5C04\u64CA"
+  - "\u6B63\u5411\u7BAD"
+  - "\u80CC\u5411\u7BAD"
+  - "\u5074\u5411\u7BAD"
+  - "\u8840\u91CF\u589E\u52A0"
+  - "\u653B\u64CA\u589E\u52A0"
+  - "\u653B\u901F\u589E\u52A0"
+  - "\u7206\u64CA\u589E\u52A0"
   speed: 0.01
   count: 4
   soundScroll: {fileID: 8300000, guid: 4fbaec4932be6a64db050e2e4c079f23, type: 3}
   soundSkill: {fileID: 8300000, guid: 62557658504dd7c47bc9248e68a36129, type: 3}
+  index: 0
+  nameskill: 
 --- !u!82 &721216924
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3808,10 +3830,21 @@ MonoBehaviour:
   - {fileID: -5380635846546674211, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
   - {fileID: -7634161343368957888, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
   - {fileID: 7629744394388040753, guid: f0cba906b56c93e448504665c8a249bd, type: 3}
+  nameSkill:
+  - "\u9023\u7E8C\u5C04\u64CA"
+  - "\u6B63\u5411\u7BAD"
+  - "\u80CC\u5411\u7BAD"
+  - "\u5074\u5411\u7BAD"
+  - "\u8840\u91CF\u589E\u52A0"
+  - "\u653B\u64CA\u589E\u52A0"
+  - "\u653B\u901F\u589E\u52A0"
+  - "\u7206\u64CA\u589E\u52A0"
   speed: 0.01
   count: 6
   soundScroll: {fileID: 8300000, guid: 4fbaec4932be6a64db050e2e4c079f23, type: 3}
   soundSkill: {fileID: 8300000, guid: 62557658504dd7c47bc9248e68a36129, type: 3}
+  index: 0
+  nameskill: 
 --- !u!114 &1195403793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4570,6 +4603,7 @@ MonoBehaviour:
   ramdomSkill: {fileID: 864589426}
   autoShowSkill: 1
   autoOpenDoor: 1
+  panelRevival: {fileID: 0}
 --- !u!4 &1641550915
 Transform:
   m_ObjectHideFlags: 0
@@ -5571,6 +5605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   data: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!136 &2136033205
 CapsuleCollider:
   m_ObjectHideFlags: 0
