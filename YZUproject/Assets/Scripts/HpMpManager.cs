@@ -14,7 +14,7 @@ public class HpMpManager : MonoBehaviour
         hpBar = transform.GetChild(1).GetComponent<Image>();
         rtValue = transform.GetChild(2).GetComponent<RectTransform>();
         textValue = transform.GetChild(2).GetComponent<Text>();
-        texthp = transform.GetChild(3).GetComponent<Text>();
+        texthp = transform.GetChild(2).GetComponent<Text>();
     }
 
     private void Update()

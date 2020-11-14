@@ -23,10 +23,11 @@ public class RandomSkill : MonoBehaviour
     private Image imgSkill;
     private Button btn;
     private Text textName;
-    private GameObject skillPanel;                             
+    private GameObject skillPanel;
     public int index;
     private Animator ani;
-    public string nameskill;
+    public static string nameskill;
+    private Player player;
 
     #endregion
 
@@ -36,6 +37,7 @@ public class RandomSkill : MonoBehaviour
         aud = GetComponent<AudioSource>();
         imgSkill = GetComponent<Image>();
         btn = GetComponent<Button>();
+        player = FindObjectOfType<Player>();
         textName = transform.GetChild(0).GetComponent<Text>(); // 取得子物件
         skillPanel = GameObject.Find("隨機技能");
 
@@ -54,7 +56,8 @@ public class RandomSkill : MonoBehaviour
     {
         skillPanel.SetActive(false);
         nameskill = nameSkill[index];
-        print(nameskill);
+        // print(nameskill);
+        player.AttackAbility();
     }
 
     /// <summary>

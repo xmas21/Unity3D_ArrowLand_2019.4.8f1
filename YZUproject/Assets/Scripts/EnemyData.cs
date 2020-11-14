@@ -29,7 +29,5 @@ public class EnemyData : ScriptableObject
     public Vector2 coinRandom;
     [Header("金幣")]
     public GameObject coin;
-    //[Header("玩家金幣數量")]
-    //public GameObject playerCoin;
 
 }

@@ -29,7 +29,6 @@ public class LevelManager : MonoBehaviour
 
         if (autoShowSkill) showSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
-        player.AttackAbility();
 
     }
 
@@ -46,6 +45,8 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator NextLevel()
     {
+        player.AttackAbility();
+
         AsyncOperation async;
 
         if (SceneManager.GetActiveScene().name.Contains("魔王"))

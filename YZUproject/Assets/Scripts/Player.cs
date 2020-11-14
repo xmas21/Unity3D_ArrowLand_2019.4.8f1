@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private float timer;
     private Enemy[] enemys;
     private float[] enemyDistanse;
-    private RandomSkill randomSkill;
+    public RandomSkill randomSkill;
     private SkillData skillData;
 
     public float speed = 10;
@@ -31,8 +31,6 @@ public class Player : MonoBehaviour
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
         levelManager = FindObjectOfType<LevelManager>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
-        AttackAbility();
-        randomSkill = FindObjectOfType<RandomSkill>();
         skillData = FindObjectOfType<SkillData>();
     }
 
@@ -145,38 +143,37 @@ public class Player : MonoBehaviour
 
     public void AttackAbility()
     {
-        if (randomSkill.nameskill.Equals(skillData.Skill1))
+        if (RandomSkill.nameskill.Equals(skillData.Skill1))
         {
             print("連續射擊");
         }
-        else if (randomSkill.nameskill.Equals(skillData.Skill2))
+        else if (RandomSkill.nameskill.Equals(skillData.Skill2))
         {
             print("正向箭");
         }
-        else if (randomSkill.nameskill.Equals(skillData.Skill3))
+        else if (RandomSkill.nameskill.Equals(skillData.Skill3))
         {
             print("背向箭");
         }
-        else if (randomSkill.nameskill.Equals(skillData.Skill4))
+        else if (RandomSkill.nameskill.Equals(skillData.Skill4))
         {
             print("側向箭");
         }
-        else if (randomSkill.nameskill.Equals(skillData.Skill5))
+        else if (RandomSkill.nameskill.Equals(skillData.Skill5))
         {
             print("血量增加");
         }
-        else if (randomSkill.nameskill.Equals(skillData.Skill6))
+        else if (RandomSkill.nameskill.Equals(skillData.Skill6))
         {
             print("攻擊增加");
         }
-        else if (randomSkill.nameskill.Equals(skillData.Skill7))
+        else if (RandomSkill.nameskill.Equals(skillData.Skill7))
         {
             print("攻速增加");
         }
-        else if (randomSkill.nameskill.Equals(skillData.Skill8))
+        else if (RandomSkill.nameskill.Equals(skillData.Skill8))
         {
             print("爆擊增加");
         }
-
     }
 }
