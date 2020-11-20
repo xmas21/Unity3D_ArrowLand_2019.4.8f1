@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
+    #region 欄位
     private Joystick joystick; // 虛擬搖桿
     private Rigidbody rig;     // 鋼體
     private Animator ani;      // 動畫控制器
@@ -21,8 +22,9 @@ public class Player : MonoBehaviour
     public PlayerDate data;
     [Header("武器")]
     public GameObject bullet;
+    #endregion 
 
-
+    #region 方法
     private void Start()
     {
         rig = GetComponent<Rigidbody>();                                 // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
             levelManager.StartCoroutine("NextLevel");
         }
     }
+    #endregion 
 
     /// <summary>
     /// 移動
@@ -71,6 +74,10 @@ public class Player : MonoBehaviour
         if (v == 0 && h == 0) Attack();
     }
 
+    /// <summary>
+    /// 受傷
+    /// </summary>
+    /// <param name="damage"></param>
     public void Hit(float damage)
     {
         data.hp -= damage;
@@ -81,6 +88,9 @@ public class Player : MonoBehaviour
         if (data.hp <= 0) Dead();
     }
 
+    /// <summary>
+    /// 死亡
+    /// </summary>
     private void Dead()
     {
         ani.SetBool("死亡觸發", true);
@@ -89,6 +99,9 @@ public class Player : MonoBehaviour
         StartCoroutine(levelManager.ShowRevival());
     }
 
+    /// <summary>
+    /// 復活
+    /// </summary>
     public void Revival()
     {
         enabled = true;
@@ -136,44 +149,53 @@ public class Player : MonoBehaviour
             GameObject temp = Instantiate(bullet, pos, qua);
             temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
             temp.AddComponent<Bullet>();
-            temp.GetComponent<Bullet>().damage = data.attack;
+            temp.GetComponent<Bullet>().damage = data.attack + data.CriticalAttack;
             temp.GetComponent<Bullet>().playerBullet = true;
         }
     }
 
     public void AttackAbility()
     {
+        // 連續射擊
         if (RandomSkill.nameskill.Equals(skillData.Skill1))
         {
             print("連續射擊");
         }
+        // 正向劍
         else if (RandomSkill.nameskill.Equals(skillData.Skill2))
         {
             print("正向箭");
         }
+        // 背向劍
         else if (RandomSkill.nameskill.Equals(skillData.Skill3))
         {
             print("背向箭");
         }
+        // 側向劍
         else if (RandomSkill.nameskill.Equals(skillData.Skill4))
         {
             print("側向箭");
         }
+        // 血量增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill5))
         {
-            print("血量增加");
+            data.hp += 200;
+            data.hpMax = data.hp;
         }
+        // 攻擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill6))
         {
-            print("攻擊增加");
+            data.attack += 30;
         }
+        // 公訴增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill7))
         {
-            print("攻速增加");
+            data.cd -= 0.3f;
         }
+        // 爆擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill8))
         {
-            print("爆擊增加");
+            data.CriticalAttack += 50;
         }
     }
 }

@@ -17,6 +17,8 @@ public class MenuManager : MonoBehaviour
     public Text hpLevel;
     [Header("攻擊力等級")]
     public Text attackLevel;
+    [Header("關卡層數")]
+    public Text Level;
 
     public Text coin1;
     public Text coin2;
@@ -35,17 +37,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        #region 金幣鑽石
-        coin1.text = data.PlayerCoin.ToString();
-        coin2.text = data.PlayerCoin.ToString();
-        coin3.text = data.PlayerCoin.ToString();
-        coin4.text = data.PlayerCoin.ToString();
-        jewel1.text = data.PlayerJewel.ToString();
-        jewel2.text = data.PlayerJewel.ToString();
-        jewel3.text = data.PlayerJewel.ToString();
-        jewel4.text = data.PlayerJewel.ToString();
-        #endregion
-
+        Updatedata();
     }
 
     #endregion
@@ -77,11 +69,13 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void BuyHP()
     {
+        data.PlayerCoin -= 100;
         a++;
         data.hpMax += 50;
         hpLevel.text = "lv. " + a;
         data.hp = data.hpMax;
         NoShowPanelHP();
+        Updatedata();
     }
 
     /// <summary>
@@ -89,10 +83,12 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void BuyATK()
     {
+        data.PlayerCoin -= 100;
         b++;
         attackLevel.text = "lv. " + b;
         data.attack += 10;
         NoShowPanelATK();
+        Updatedata();
     }
 
     /// <summary>
@@ -100,7 +96,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowPanelHP()
     {
-        
+
         if (data.PlayerCoin > 100)
         {
             BuyPanelHp.SetActive(true);
@@ -109,7 +105,7 @@ public class MenuManager : MonoBehaviour
         {
             ShowPanelNoMoney();
         }
-        
+
     }
 
     /// <summary>
@@ -117,7 +113,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowPanelATK()
     {
-        
+
         if (data.PlayerCoin > 100)
         {
 
@@ -127,28 +123,51 @@ public class MenuManager : MonoBehaviour
         {
             ShowPanelNoMoney();
         }
-        
+
     }
 
+    /// <summary>
+    /// 沒錢畫面
+    /// </summary>
     public void ShowPanelNoMoney()
     {
         PanelNoMoney.SetActive(true);
     }
 
+    /// <summary>
+    /// 關閉HP畫面
+    /// </summary>
     public void NoShowPanelHP()
     {
         BuyPanelHp.SetActive(false);
     }
 
+    /// <summary>
+    /// 關閉攻擊力畫面
+    /// </summary>
     public void NoShowPanelATK()
     {
         BuyPanelAttack.SetActive(false);
     }
 
+    /// <summary>
+    /// 關閉沒錢畫面
+    /// </summary>
     public void NoShowPanelNoMoney()
     {
         PanelNoMoney.SetActive(false);
     }
 
+    private void Updatedata()
+    {
+        coin1.text = data.PlayerCoin.ToString();
+        coin2.text = data.PlayerCoin.ToString();
+        coin3.text = data.PlayerCoin.ToString();
+        coin4.text = data.PlayerCoin.ToString();
+        jewel1.text = data.PlayerJewel.ToString();
+        jewel2.text = data.PlayerJewel.ToString();
+        jewel3.text = data.PlayerJewel.ToString();
+        jewel4.text = data.PlayerJewel.ToString();
+    }
 
 }

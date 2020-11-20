@@ -9,11 +9,13 @@ public class PlayerDate : ScriptableObject
     public float hpMax;
 
     [Header("冷卻時間"), Range(0, 2)]
-    public float cd = 0.5f;
+    public float cd = 0.6f;
     [Header("武器速度"), Range(1000, 5000)]
     public float power = 1000;
     [Header("攻擊傷害"), Range(1, 5000)]
     public float attack = 50;
+    [Header("爆擊傷害"), Range(1, 100)]
+    public float CriticalAttack;
     [Header("金幣數量")]
     public float PlayerCoin = 0;
     [Header("鑽石數量")]

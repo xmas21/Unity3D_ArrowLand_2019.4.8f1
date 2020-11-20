@@ -20,12 +20,14 @@ public class LevelManager : MonoBehaviour
     private Image imgCross;
     private PlayerDate playerDate;
     private Player player;
+    private MenuManager menu;
 
     private void Start() // 轉場
     {
         door = GameObject.Find("木頭門").GetComponent<Animator>();
         imgCross = GameObject.Find("轉場效果").GetComponent<Image>();
         player = FindObjectOfType<Player>();
+        menu = FindObjectOfType<MenuManager>();
 
         if (autoShowSkill) showSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
@@ -45,8 +47,6 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator NextLevel()
     {
-        player.AttackAbility();
-
         AsyncOperation async;
 
         if (SceneManager.GetActiveScene().name.Contains("魔王"))

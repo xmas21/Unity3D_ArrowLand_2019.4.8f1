@@ -1925,6 +1925,7 @@ GameObject:
   - component: {fileID: 7906289985312118524}
   - component: {fileID: 7906289985312118527}
   - component: {fileID: 7906289985312118521}
+  - component: {fileID: 3888091712805882993}
   m_Layer: 8
   m_Name: "\u73A9\u5BB6"
   m_TagString: Untagged
@@ -2011,9 +2012,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc8214a150358d4eb4831241994f7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomSkill: {fileID: 0}
   speed: 20
   data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
   bullet: {fileID: 5480336891216011967, guid: 7f8d9e5c4b815ef4b849adb31908a5cb, type: 3}
+--- !u!114 &3888091712805882993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906289985673822706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4614df6ec8c9f43b8c768d9b4b5b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill1: "\u9023\u7E8C\u5C04\u64CA"
+  Skill2: "\u6B63\u5411\u7BAD"
+  Skill3: "\u80CC\u5411\u7BAD"
+  Skill4: "\u5074\u5411\u7BAD"
+  Skill5: "\u8840\u91CF\u589E\u52A0"
+  Skill6: "\u653B\u64CA\u589E\u52A0"
+  Skill7: "\u653B\u901F\u589E\u52A0"
+  Skill8: "\u7206\u64CA\u589E\u52A0"
 --- !u!1 &7906289985673822708
 GameObject:
   m_ObjectHideFlags: 0

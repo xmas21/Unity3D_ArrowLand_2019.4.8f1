@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class SkillData : MonoBehaviour
 {
-    public RandomSkill randomSkill;
 
     public string Skill1 = "連續射擊";
     public string Skill2 = "正向箭";
