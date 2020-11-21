@@ -6,12 +6,19 @@ public class EnemyFar : Enemy
     [Header("子彈")]
     public GameObject bullet;
 
+    /// <summary>
+    /// 攻擊
+    /// </summary>
     protected override void Attack()
     {
         base.Attack();
         StartCoroutine(CreateBullet());
     }
 
+    /// <summary>
+    /// 射子彈
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CreateBullet()
     {
         yield return new WaitForSeconds(data.NearAttackDelay);

@@ -31,7 +31,7 @@ public class RandomSkill : MonoBehaviour
 
     #endregion
 
-    #region 
+
     private void Start()
     {
         aud = GetComponent<AudioSource>();
@@ -46,9 +46,9 @@ public class RandomSkill : MonoBehaviour
         StartCoroutine(RandomEffect());
 
     }
-    #endregion
 
-    #region
+
+
     /// <summary>
     /// 選取技能後的動作
     /// </summary>
@@ -56,8 +56,7 @@ public class RandomSkill : MonoBehaviour
     {
         skillPanel.SetActive(false);
         nameskill = nameSkill[index];
-        // print(nameskill);
-        player.AttackAbility();
+        player.BuffAbility();
     }
 
     /// <summary>
@@ -86,5 +85,5 @@ public class RandomSkill : MonoBehaviour
         textName.text = nameSkill[index];
 
     }
-    #endregion
+
 }

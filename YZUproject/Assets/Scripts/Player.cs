@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     #endregion 
 
-    #region 方法
+
     private void Start()
     {
         rig = GetComponent<Rigidbody>();                                 // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
             levelManager.StartCoroutine("NextLevel");
         }
     }
-    #endregion 
 
     /// <summary>
     /// 移動
@@ -111,6 +110,9 @@ public class Player : MonoBehaviour
         levelManager.CloseRevival();
     }
 
+    /// <summary>
+    /// 攻擊
+    /// </summary>
     private void Attack()
     {
         if (timer < data.cd) timer += Time.deltaTime;
@@ -144,58 +146,98 @@ public class Player : MonoBehaviour
 
             Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f;
 
-            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x+180, transform.eulerAngles.y, transform.eulerAngles.z);
 
             GameObject temp = Instantiate(bullet, pos, qua);
             temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
             temp.AddComponent<Bullet>();
             temp.GetComponent<Bullet>().damage = data.attack + data.CriticalAttack;
             temp.GetComponent<Bullet>().playerBullet = true;
+
+            AttackAbility();
         }
     }
 
+    /// <summary>
+    /// 技能效果
+    /// </summary>
     public void AttackAbility()
     {
-        // 連續射擊
+        // 連續射擊 
         if (RandomSkill.nameskill.Equals(skillData.Skill1))
         {
-            print("連續射擊");
+            Bullet(-1.5f, transform.forward, transform.eulerAngles.x+180, transform.eulerAngles.y, transform.eulerAngles.z, Vector3.zero, 0);
         }
-        // 正向劍
+
+        // 正向劍 
         else if (RandomSkill.nameskill.Equals(skillData.Skill2))
         {
-            print("正向箭");
+            Bullet(1.5f, transform.forward, transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z, transform.right, 0.25f);
         }
-        // 背向劍
+
+        // 背向劍 
         else if (RandomSkill.nameskill.Equals(skillData.Skill3))
         {
-            print("背向箭");
+            Bullet(-1.5f, -transform.forward, transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z, Vector3.zero, 0);
         }
-        // 側向劍
+
+        // 側向劍 
         else if (RandomSkill.nameskill.Equals(skillData.Skill4))
         {
-            print("側向箭");
+            Bullet(0.5f, transform.right, transform.eulerAngles.x + 180, transform.eulerAngles.y + 90, transform.eulerAngles.z, transform.right, 1);
+
+            Bullet(0.5f, -transform.right, transform.eulerAngles.x + 180, transform.eulerAngles.y - 90, transform.eulerAngles.z, -transform.right, 1);
         }
+    }
+
+    /// <summary>
+    /// 技能Buff
+    /// </summary>
+    public void BuffAbility()
+    {
         // 血量增加
-        else if (RandomSkill.nameskill.Equals(skillData.Skill5))
+        if (RandomSkill.nameskill.Equals(skillData.Skill5))
         {
             data.hp += 200;
             data.hpMax = data.hp;
         }
+
         // 攻擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill6))
         {
             data.attack += 30;
         }
-        // 公訴增加
+
+        // 攻速增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill7))
         {
             data.cd -= 0.3f;
         }
+
         // 爆擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill8))
         {
             data.CriticalAttack += 50;
         }
+    }
+
+    /// <summary>
+    /// 技能
+    /// </summary>
+    /// <param name="forward1">劍生成的位置(前後)</param>
+    /// <param name="ways">劍飛的方向(前後左右)</param>
+    /// <param name="y1">劍的轉向(y)</param>
+    /// <param name="z1">劍的轉向(z)</param>
+    /// <param name="way2">劍生成的位置(左右)</param>
+    /// <param name="a1">劍的位置遠近</param>
+    private void Bullet(float forward1, Vector3 ways,float x1, float y1, float z1, Vector3 way2, float a1)
+    {
+        Vector3 pos = transform.position + transform.up * 1 + transform.forward * forward1 + way2 * a1;
+        Quaternion qua = Quaternion.Euler(x1, y1, z1);
+        GameObject temp = Instantiate(bullet, pos, qua);
+        temp.GetComponent<Rigidbody>().AddForce(ways * data.power);
+        temp.AddComponent<Bullet>();
+        temp.GetComponent<Bullet>().damage = data.attack + data.CriticalAttack;
+        temp.GetComponent<Bullet>().playerBullet = true;
     }
 }

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 140
   hpMax: 300
-  cd: 0.5
+  cd: 0.6
   power: 1000
-  attack: 100
-  PlayerCoin: 0
+  attack: 50
+  CriticalAttack: 50
+  PlayerCoin: 1030
   PlayerJewel: 0

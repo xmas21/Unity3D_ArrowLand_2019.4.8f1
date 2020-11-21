@@ -32,6 +32,9 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
+    /// <summary>
+    /// 移動
+    /// </summary>
     private void Move()
     {
         if (ani.GetBool("死亡觸發")) return;
@@ -54,6 +57,9 @@ public class Enemy : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 等待
+    /// </summary>
     private void Wait()
     {
         ani.SetBool("跑步觸發", false);
@@ -65,12 +71,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 攻擊
+    /// </summary>
     protected virtual void Attack()
     {
         timer = 0;
         ani.SetTrigger("攻擊觸發");
     }
 
+    /// <summary>
+    /// 受傷
+    /// </summary>
+    /// <param name="damage">傷害</param>
     public void Hit(float damage)
     {
         hp -= damage;
@@ -81,6 +94,9 @@ public class Enemy : MonoBehaviour
         if (hp <= 0) Dead();
     }
 
+    /// <summary>
+    /// 死亡
+    /// </summary>
     private void Dead()
     {
         ani.SetBool("死亡觸發", true);
@@ -90,6 +106,9 @@ public class Enemy : MonoBehaviour
         DropProp();
     }
 
+    /// <summary>
+    /// 掉金幣
+    /// </summary>
     private void DropProp()
     {
         int r = (int)Random.Range(data.coinRandom.x, data.coinRandom.y);

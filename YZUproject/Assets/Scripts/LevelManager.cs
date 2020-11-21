@@ -6,6 +6,7 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
+    #region
     public GameObject objLight;
     public GameObject ramdomSkill;
 
@@ -21,6 +22,7 @@ public class LevelManager : MonoBehaviour
     private PlayerDate playerDate;
     private Player player;
     private MenuManager menu;
+    #endregion
 
     private void Start() // 轉場
     {
@@ -34,17 +36,26 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 顯示技能
+    /// </summary>
     private void showSkill()
     {
         ramdomSkill.SetActive(true);
     }
 
+    /// <summary>
+    /// 開門
+    /// </summary>
     private void Opendoor()
     {
         objLight.SetActive(true);
         door.SetTrigger("開門觸發");
     }
 
+    /// <summary>
+    /// 下一關
+    /// </summary>
     public IEnumerator NextLevel()
     {
         AsyncOperation async;
@@ -71,6 +82,9 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 顯示復活
+    /// </summary>
     public IEnumerator ShowRevival()
     {
         panelRevival.SetActive(true);
@@ -82,6 +96,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 關閉復活
+    /// </summary>
     public void CloseRevival()
     {
         StopCoroutine(ShowRevival());

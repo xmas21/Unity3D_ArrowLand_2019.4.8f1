@@ -33,12 +33,18 @@ public class Item : MonoBehaviour
     #endregion
 
     #region
+    /// <summary>
+    /// 避免碰撞
+    /// </summary>
     private void HandleCollision()
     {
         Physics.IgnoreLayerCollision(10, 8);
         Physics.IgnoreLayerCollision(10, 9);
     }
 
+    /// <summary>
+    /// 跑向玩家
+    /// </summary>
     private void GoToPlayer()
     {
         if (pass)

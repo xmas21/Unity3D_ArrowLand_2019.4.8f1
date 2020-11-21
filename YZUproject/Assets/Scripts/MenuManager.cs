@@ -37,6 +37,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        data.hp = data.hpMax;
         Updatedata();
     }
 
@@ -158,6 +159,9 @@ public class MenuManager : MonoBehaviour
         PanelNoMoney.SetActive(false);
     }
 
+    /// <summary>
+    /// 更新資訊
+    /// </summary>
     private void Updatedata()
     {
         coin1.text = data.PlayerCoin.ToString();
