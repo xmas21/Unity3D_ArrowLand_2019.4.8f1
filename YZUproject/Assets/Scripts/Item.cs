@@ -15,7 +15,7 @@ public class Item : MonoBehaviour
 
     #endregion
 
-    #region
+
     private void Start()
     {
         Physics.IgnoreLayerCollision(10, 10, false);
@@ -30,9 +30,8 @@ public class Item : MonoBehaviour
     {
         GoToPlayer();
     }
-    #endregion
 
-    #region
+
     /// <summary>
     /// 避免碰撞
     /// </summary>
@@ -59,6 +58,4 @@ public class Item : MonoBehaviour
             }
         }
     }
-
-    #endregion
 }

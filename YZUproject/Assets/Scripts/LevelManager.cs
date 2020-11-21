@@ -6,7 +6,6 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
-    #region
     public GameObject objLight;
     public GameObject ramdomSkill;
 
@@ -22,7 +21,7 @@ public class LevelManager : MonoBehaviour
     private PlayerDate playerDate;
     private Player player;
     private MenuManager menu;
-    #endregion
+
 
     private void Start() // 轉場
     {
@@ -35,6 +34,7 @@ public class LevelManager : MonoBehaviour
         if (autoOpenDoor) Invoke("Opendoor", 6);
 
     }
+
 
     /// <summary>
     /// 顯示技能

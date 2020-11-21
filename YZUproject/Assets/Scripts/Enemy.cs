@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
+
     /// <summary>
     /// 移動
     /// </summary>

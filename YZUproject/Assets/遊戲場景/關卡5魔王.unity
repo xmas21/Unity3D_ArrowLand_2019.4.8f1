@@ -159,7 +159,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17494
+  m_Name: pb_Mesh14250
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -883,6 +883,11 @@ PrefabInstance:
       propertyPath: m_EffectColor.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5773660789696789489, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21
+      objectReference: {fileID: 0}
     - target: {fileID: 5773660789696789490, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
       propertyPath: m_Color.a
@@ -931,7 +936,7 @@ PrefabInstance:
     - target: {fileID: 5773660789745838709, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 5773660789745838709, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
@@ -941,7 +946,7 @@ PrefabInstance:
     - target: {fileID: 5773660789745838709, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 400
+      value: 334
       objectReference: {fileID: 0}
     - target: {fileID: 5773660789945031242, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
@@ -966,7 +971,7 @@ PrefabInstance:
     - target: {fileID: 5773660789945031242, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 5773660789945031242, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
@@ -976,7 +981,7 @@ PrefabInstance:
     - target: {fileID: 5773660789945031242, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 400
+      value: 334
       objectReference: {fileID: 0}
     - target: {fileID: 5773660789945031243, guid: 48079ac6ac3d19c4a93c3ecd5a599595,
         type: 3}
@@ -2047,7 +2052,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17480
+  m_Name: pb_Mesh14236
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2540,7 +2545,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17442
+  m_Name: pb_Mesh14200
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

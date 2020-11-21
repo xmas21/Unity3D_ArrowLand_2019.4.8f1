@@ -33,7 +33,6 @@ public class MenuManager : MonoBehaviour
     int b = 1;
     #endregion
 
-    #region 
 
     private void Start()
     {
@@ -41,11 +40,14 @@ public class MenuManager : MonoBehaviour
         Updatedata();
     }
 
-    #endregion
+
+    /// <summary>
+    /// 切換場景
+    /// </summary>
     public void LoadLevel()
     {
         data.hp = data.hpMax;
-        SceneManager.LoadScene("關卡1");
+        SceneManager.LoadScene(1);
     }
 
     /// <summary>

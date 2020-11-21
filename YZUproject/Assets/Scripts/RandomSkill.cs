@@ -4,7 +4,6 @@ using System.Collections;
 
 public class RandomSkill : MonoBehaviour
 {
-    #region 
     [Header("圖片區域")]
     public Sprite[] spritesBlur;
     public Sprite[] spritesSkill;
@@ -29,8 +28,6 @@ public class RandomSkill : MonoBehaviour
     public static string nameskill;
     private Player player;
 
-    #endregion
-
 
     private void Start()
     {
@@ -46,7 +43,6 @@ public class RandomSkill : MonoBehaviour
         StartCoroutine(RandomEffect());
 
     }
-
 
 
     /// <summary>

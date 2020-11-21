@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
         }
     }
 
+
     /// <summary>
     /// 移動
     /// </summary>
@@ -226,6 +227,7 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <param name="forward1">劍生成的位置(前後)</param>
     /// <param name="ways">劍飛的方向(前後左右)</param>
+    /// <param name="x1">劍的轉向(x)</param>
     /// <param name="y1">劍的轉向(y)</param>
     /// <param name="z1">劍的轉向(z)</param>
     /// <param name="way2">劍生成的位置(左右)</param>
