@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809926bd747c02f42be110459403f423, type: 3}
   m_Name: "\u73A9\u5BB6\u8CC7\u8A0A"
   m_EditorClassIdentifier: 
-  hp: 140
-  hpMax: 300
-  cd: 0.6
+  hp: 500
+  hpMax: 500
+  cd: 0.1
   power: 1000
-  attack: 50
+  attack: 90
   CriticalAttack: 50
-  PlayerCoin: 1030
+  PlayerCoin: 835
   PlayerJewel: 0

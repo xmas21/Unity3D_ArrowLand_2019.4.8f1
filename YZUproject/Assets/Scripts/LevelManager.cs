@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     public bool autoOpenDoor;
     [Header("復活介面")]
     public GameObject panelRevival;
+    [Header("主選單")]
+    public GameObject mainMenu;
 
     private Animator door;
     private Image imgCross;
@@ -118,5 +120,32 @@ public class LevelManager : MonoBehaviour
         {
             coins[i].pass = true;
         }
+    }
+
+    /// <summary>
+    /// 顯示主選單畫面
+    /// </summary>
+    public void ShowMenu()
+    {
+        Time.timeScale = 0;
+        mainMenu.SetActive(true);
+    }
+
+    /// <summary>
+    /// 回主選單
+    /// </summary>
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+
+    /// <summary>
+    /// 繼續遊戲
+    /// </summary>
+    public void ResumeGame()
+    {
+        mainMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 }
