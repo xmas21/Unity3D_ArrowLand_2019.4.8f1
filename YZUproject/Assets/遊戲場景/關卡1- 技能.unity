@@ -2762,8 +2762,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
-  - {fileID: 2100000, guid: ce4c64df5284f8c408b6c5fd0691b168, type: 2}
-  - {fileID: 2100000, guid: 20be5ceec4c875347b490fcc3938336e, type: 2}
+  - {fileID: 2100000, guid: c4f8e509e3ec5a946a720b25791f8bcf, type: 2}
+  - {fileID: 2100000, guid: 2486376f31b3d5840a30327dcc9fd34a, type: 2}
   - {fileID: 2100000, guid: 981ade9ae94015343883475efc94eef9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -3183,7 +3183,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17536
+  m_Name: pb_Mesh42794
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

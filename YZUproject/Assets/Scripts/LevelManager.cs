@@ -62,9 +62,20 @@ public class LevelManager : MonoBehaviour
     {
         AsyncOperation async;
 
-        if (SceneManager.GetActiveScene().name.Contains("魔王"))
+        if (SceneManager.GetActiveScene().name.Contains("魔王1"))
         {
             async = SceneManager.LoadSceneAsync(0);
+            menu.btn6.interactable = true;
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("魔王2"))
+        {
+            async = SceneManager.LoadSceneAsync(0);
+            menu.btn11.interactable = true;
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("魔王3"))
+        {
+            async = SceneManager.LoadSceneAsync(0);
+            menu.btn16.interactable = true;
         }
         else
         {
@@ -148,4 +159,6 @@ public class LevelManager : MonoBehaviour
         mainMenu.SetActive(false);
         Time.timeScale = 1;
     }
+
+
 }

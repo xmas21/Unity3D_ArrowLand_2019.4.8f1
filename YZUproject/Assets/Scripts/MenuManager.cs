@@ -13,12 +13,19 @@ public class MenuManager : MonoBehaviour
     public GameObject BuyPanelHp;
     [Header("沒錢畫面")]
     public GameObject PanelNoMoney;
+    [Header("選擇關卡畫面")]
+    public GameObject chooseLevel;
     [Header("生命等級")]
     public Text hpLevel;
     [Header("攻擊力等級")]
     public Text attackLevel;
-    [Header("關卡層數")]
-    public Text Level;
+    [Header("關卡6按鈕")]
+    public Button btn6 ;
+    [Header("關卡11按鈕")]
+    public Button btn11 ;
+    [Header("關卡16按鈕")]
+    public Button btn16 ;
+
 
     public Text coin1;
     public Text coin2;
@@ -176,4 +183,62 @@ public class MenuManager : MonoBehaviour
         jewel4.text = data.PlayerJewel.ToString();
     }
 
+    /// <summary>
+    /// 選擇關卡
+    /// </summary>
+    public void LevelChoose()
+    {
+        chooseLevel.SetActive(true);
+    }
+
+    /// <summary>
+    /// 關閉選擇關卡畫面
+    /// </summary>
+    public void NoShowLevelChoose()
+    {
+        chooseLevel.SetActive(false);
+    }
+
+    /// <summary>
+    /// 關卡1按鈕
+    /// </summary>
+    public void Level1() 
+    {
+        ButtonOfLevel(1);
+    }  
+
+    /// <summary>
+    /// 關卡7按鈕
+    /// </summary>
+    public void Level6() 
+    {
+        ButtonOfLevel(7);
+    }  
+
+    /// <summary>
+    /// 關卡13按鈕
+    /// </summary>
+    public void Level11() 
+    {
+        ButtonOfLevel(13);
+    }  
+
+    /// <summary>
+    /// 關卡19按鈕
+    /// </summary>
+    public void Level16() 
+    {
+        ButtonOfLevel(19);
+    }
+
+    /// <summary>
+    /// 關卡按鈕
+    /// </summary>
+    /// <param name="i">關卡號碼</param>
+    private void ButtonOfLevel(int i)
+    {
+        AsyncOperation async;
+        async = SceneManager.LoadSceneAsync(i);
+        chooseLevel.SetActive(false);
+    }
 }
