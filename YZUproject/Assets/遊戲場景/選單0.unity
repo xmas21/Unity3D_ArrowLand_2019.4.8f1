@@ -9292,6 +9292,11 @@ PrefabInstance:
       propertyPath: jewel4
       value: 
       objectReference: {fileID: 650559573}
+    - target: {fileID: 7301704232223281804, guid: efa89d627956d7e4ca4129a60bc92cc3,
+        type: 3}
+      propertyPath: btn_6
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7301704232223281805, guid: efa89d627956d7e4ca4129a60bc92cc3,
         type: 3}
       propertyPath: m_LocalPosition.x

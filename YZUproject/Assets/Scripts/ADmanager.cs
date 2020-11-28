@@ -16,6 +16,9 @@ public class ADmanager : MonoBehaviour, IUnityAdsListener
 
     }
 
+    /// <summary>
+    /// 顯示廣告
+    /// </summary>
     public void ShowRevivalAD()
     {
         if (Advertisement.IsReady(placementRevival))

@@ -4715,10 +4715,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2204835051221721213, guid: 9827f0c37c6583545b88e81eaf0cfc90,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7906289985312118521, guid: 9827f0c37c6583545b88e81eaf0cfc90,
         type: 3}
       propertyPath: randomSkill
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906289985312118521, guid: 9827f0c37c6583545b88e81eaf0cfc90,
+        type: 3}
+      propertyPath: speed
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906289985312118521, guid: 9827f0c37c6583545b88e81eaf0cfc90,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 5480336891216011967, guid: 2b9f3c25f3533344b89fb20f174e5154,
+        type: 3}
+    - target: {fileID: 7906289985312118524, guid: 9827f0c37c6583545b88e81eaf0cfc90,
+        type: 3}
+      propertyPath: m_Drag
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7906289985673822706, guid: 9827f0c37c6583545b88e81eaf0cfc90,
         type: 3}

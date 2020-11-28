@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812c2a7e217204e42825b4699d8efab2, type: 3}
   m_Name: "\u98DB\u9F8D BOSS_3"
   m_EditorClassIdentifier: 
-  hp: 1000
-  hpMax: 1000
-  attack: 100
-  cd: 3
+  hp: 1250
+  hpMax: 1250
+  attack: 180
+  cd: 2.6
   speed: 1
   StopDistanse: 200
   NearAttackLength: 0
   NearAttackPos: {x: 0, y: 8, z: 3}
   NearAttackDelay: 0
   farPower: 1500
-  coinRandom: {x: 30, y: 30}
+  coinRandom: {x: 100, y: 100}
   coin: {fileID: 6064191670129767382, guid: b4265fe55c046fe4d982cfb82c80a011, type: 3}

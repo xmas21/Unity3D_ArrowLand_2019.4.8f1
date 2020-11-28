@@ -18,6 +18,13 @@ public class LevelManager : MonoBehaviour
     [Header("主選單")]
     public GameObject mainMenu;
 
+    [Header("關卡6是否通關")]
+    public static bool bl_6 = false;
+    [Header("關卡11是否通關")]
+    public static bool bl_11 = false;
+    [Header("關卡16是否通關")]
+    public static bool bl_16 = false;
+
     private Animator door;
     private Image imgCross;
     private PlayerDate playerDate;
@@ -65,17 +72,17 @@ public class LevelManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Contains("魔王1"))
         {
             async = SceneManager.LoadSceneAsync(0);
-            menu.btn6.interactable = true;
+            bl_6 = true;            
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王2"))
         {
             async = SceneManager.LoadSceneAsync(0);
-            menu.btn11.interactable = true;
+            bl_11 = true;
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王3"))
         {
             async = SceneManager.LoadSceneAsync(0);
-            menu.btn16.interactable = true;
+            bl_16 = true;
         }
         else
         {
@@ -159,6 +166,5 @@ public class LevelManager : MonoBehaviour
         mainMenu.SetActive(false);
         Time.timeScale = 1;
     }
-
 
 }

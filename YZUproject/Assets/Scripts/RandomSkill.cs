@@ -79,7 +79,5 @@ public class RandomSkill : MonoBehaviour
         imgSkill.sprite = spritesSkill[index];
         aud.PlayOneShot(soundSkill, 0.1f);
         textName.text = nameSkill[index];
-
     }
-
 }

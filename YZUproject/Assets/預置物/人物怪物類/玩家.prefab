@@ -1979,7 +1979,7 @@ Rigidbody:
   m_GameObject: {fileID: 7906289985673822706}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 2
+  m_Drag: 20
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -2013,7 +2013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomSkill: {fileID: 0}
-  speed: 20
+  speed: 160
   data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
   bullet: {fileID: 5480336891216011967, guid: 7f8d9e5c4b815ef4b849adb31908a5cb, type: 3}
 --- !u!114 &3888091712805882993

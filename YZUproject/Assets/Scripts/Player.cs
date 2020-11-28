@@ -14,8 +14,9 @@ public class Player : MonoBehaviour
     private float timer;
     private Enemy[] enemys;
     private float[] enemyDistanse;
-    public RandomSkill randomSkill;
     private SkillData skillData;
+
+    public RandomSkill randomSkill;
 
     public float speed = 10;
     [Header("玩家資料")]

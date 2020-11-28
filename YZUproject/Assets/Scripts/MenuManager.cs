@@ -20,12 +20,11 @@ public class MenuManager : MonoBehaviour
     [Header("攻擊力等級")]
     public Text attackLevel;
     [Header("關卡6按鈕")]
-    public Button btn6 ;
+    public Button btn6;
     [Header("關卡11按鈕")]
-    public Button btn11 ;
+    public Button btn11;
     [Header("關卡16按鈕")]
-    public Button btn16 ;
-
+    public Button btn16;
 
     public Text coin1;
     public Text coin2;
@@ -36,15 +35,20 @@ public class MenuManager : MonoBehaviour
     public Text jewel3;
     public Text jewel4;
 
+
+
     int a = 1;
     int b = 1;
     #endregion
 
 
+
     private void Start()
     {
+  
         data.hp = data.hpMax;
         Updatedata();
+        Allowbtn();
     }
 
 
@@ -202,31 +206,31 @@ public class MenuManager : MonoBehaviour
     /// <summary>
     /// 關卡1按鈕
     /// </summary>
-    public void Level1() 
+    public void Level1()
     {
         ButtonOfLevel(1);
-    }  
+    }
 
     /// <summary>
     /// 關卡7按鈕
     /// </summary>
-    public void Level6() 
+    public void Level6()
     {
         ButtonOfLevel(7);
-    }  
+    }
 
     /// <summary>
     /// 關卡13按鈕
     /// </summary>
-    public void Level11() 
+    public void Level11()
     {
         ButtonOfLevel(13);
-    }  
+    }
 
     /// <summary>
     /// 關卡19按鈕
     /// </summary>
-    public void Level16() 
+    public void Level16()
     {
         ButtonOfLevel(19);
     }
@@ -240,5 +244,24 @@ public class MenuManager : MonoBehaviour
         AsyncOperation async;
         async = SceneManager.LoadSceneAsync(i);
         chooseLevel.SetActive(false);
+    }
+
+    /// <summary>
+    /// 激活按鈕
+    /// </summary>
+    private void Allowbtn()
+    {
+        if ( LevelManager.bl_6== true)
+        {
+            btn6.interactable = true;
+        }
+        if ( LevelManager.bl_11== true)
+        {
+            btn11.interactable = true;
+        }
+        if (LevelManager.bl_16 == true)
+        {
+            btn16.interactable = true;
+        }
     }
 }
