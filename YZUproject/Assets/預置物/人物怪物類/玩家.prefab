@@ -2013,9 +2013,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomSkill: {fileID: 0}
-  speed: 260
+  speed: 240
   data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
-  bullet: {fileID: 5480336891216011967, guid: 2b9f3c25f3533344b89fb20f174e5154, type: 3}
 --- !u!114 &3888091712805882993
 MonoBehaviour:
   m_ObjectHideFlags: 0

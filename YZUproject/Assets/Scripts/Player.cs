@@ -158,6 +158,7 @@ public class Player : MonoBehaviour
             temp.AddComponent<Bullet>();
             temp.GetComponent<Bullet>().damage = data.attack + data.CriticalAttack + data.WeaponAttack;
             temp.GetComponent<Bullet>().playerBullet = true;
+            //Invoke(Destroy(gameObject), 3f);
 
             AttackAbility();
         }

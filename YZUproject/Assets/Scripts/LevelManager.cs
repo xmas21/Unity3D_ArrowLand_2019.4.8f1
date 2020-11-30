@@ -99,7 +99,6 @@ public class LevelManager : MonoBehaviour
         }
 
         async.allowSceneActivation = true;
-
     }
 
     /// <summary>
@@ -141,7 +140,7 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 顯示主選單畫面
+    /// 選單按鈕
     /// </summary>
     public void ShowMenu()
     {
