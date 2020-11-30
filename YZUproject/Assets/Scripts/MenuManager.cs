@@ -26,22 +26,22 @@ public class MenuManager : MonoBehaviour
     [Header("關卡16按鈕")]
     public Button btn16;
 
+    [Header("武器庫畫面")]
+    public GameObject AllWeapon;
     [Header("武器1畫面")]
-    public GameObject weapon1;
+    public GameObject WeaponPanel_1;
     [Header("武器2畫面")]
-    public GameObject weapon2;
+    public GameObject WeaponPanel_2;
     [Header("武器3畫面")]
-    public GameObject weapon3;
+    public GameObject WeaponPanel_3;
     [Header("武器4畫面")]
-    public GameObject weapon4;
+    public GameObject WeaponPanel_4;
     [Header("武器5畫面")]
-    public GameObject weapon5;
+    public GameObject WeaponPanel_5;
     [Header("武器6畫面")]
-    public GameObject weapon6;
+    public GameObject WeaponPanel_6;
     [Header("沒錢買武器畫面")]
     public GameObject Nomoney;
-
-
     [Header("武器2按鈕")]
     public Button btnwpn2;
     [Header("武器3按鈕")]
@@ -53,6 +53,18 @@ public class MenuManager : MonoBehaviour
     [Header("武器6按鈕")]
     public Button btnwpn6;
 
+    [Header("武器1")]
+    public GameObject Weapon1;
+    [Header("武器2")]
+    public GameObject Weapon2;
+    [Header("武器3")]
+    public GameObject Weapon3;
+    [Header("武器4")]
+    public GameObject Weapon4;
+    [Header("武器5")]
+    public GameObject Weapon5;
+    [Header("武器6")]
+    public GameObject Weapon6;
 
     public Text coin1;
     public Text coin2;
@@ -64,13 +76,31 @@ public class MenuManager : MonoBehaviour
     public Text jewel4;
 
     private Player player;
+    public GameObject[] weapon;
+    public int windex;
 
 
     int a = 1;
     int b = 1;
     #endregion
 
-
+    /*
+    private void Awake()
+    {
+        
+        for (int i = 0; i < 6; i++)
+        {
+            weapon[i] = Resources.Load("武器", typeof(GameObject)) as GameObject;
+        }
+        
+        weapon[1] = Resources.Load("武器1") as GameObject;
+        weapon[2] = Resources.Load("武器2") as GameObject;
+        weapon[3] = Resources.Load("武器3") as GameObject;
+        weapon[4] = Resources.Load("武器4") as GameObject;
+        weapon[5] = Resources.Load("武器5") as GameObject;
+        weapon[6] = Resources.Load("武器6") as GameObject;
+    }
+    */
 
     private void Start()
     {
@@ -78,6 +108,7 @@ public class MenuManager : MonoBehaviour
         data.hp = data.hpMax;
         Updatedata();
         Allowbtn();
+        Player.bullet = Weapon1;
     }
 
 
@@ -295,11 +326,27 @@ public class MenuManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 開啟武器庫畫面
+    /// </summary>
+    public void ShowAllWeapon()
+    {
+        AllWeapon.SetActive(true);
+    }
+
+    /// <summary>
+    /// 關閉武器庫畫面
+    /// </summary>
+    public void NoShowAllWeapon()
+    {
+        AllWeapon.SetActive(false);
+    }
+
+    /// <summary>
     /// 開啟武器1畫面
     /// </summary>
     public void ShowWeapon1()
     {
-        weapon1.SetActive(true);
+        WeaponPanel_1.SetActive(true);
     }
 
     /// <summary>
@@ -307,7 +354,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowWeapon2()
     {
-        weapon2.SetActive(true);
+        WeaponPanel_2.SetActive(true);
     }
 
     /// <summary>
@@ -315,7 +362,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowWeapon3()
     {
-        weapon3.SetActive(true);
+        WeaponPanel_3.SetActive(true);
     }
 
     /// <summary>
@@ -323,7 +370,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowWeapon4()
     {
-        weapon4.SetActive(true);
+        WeaponPanel_4.SetActive(true);
     }
 
     /// <summary>
@@ -331,7 +378,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowWeapon5()
     {
-        weapon5.SetActive(true);
+        WeaponPanel_5.SetActive(true);
     }
 
     /// <summary>
@@ -339,7 +386,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowWeapon6()
     {
-        weapon6.SetActive(true);
+        WeaponPanel_6.SetActive(true);
     }
 
     /// <summary>
@@ -347,7 +394,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NoShowWeapon1()
     {
-        weapon1.SetActive(false);
+        WeaponPanel_1.SetActive(false);
     }
 
     /// <summary>
@@ -355,7 +402,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NoShowWeapon2()
     {
-        weapon2.SetActive(false);
+        WeaponPanel_2.SetActive(false);
     }
 
     /// <summary>
@@ -363,7 +410,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NoShowWeapon3()
     {
-        weapon3.SetActive(false);
+        WeaponPanel_3.SetActive(false);
     }
 
     /// <summary>
@@ -371,7 +418,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NoShowWeapon4()
     {
-        weapon4.SetActive(false);
+        WeaponPanel_4.SetActive(false);
     }
 
     /// <summary>
@@ -379,7 +426,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NoShowWeapon5()
     {
-        weapon5.SetActive(false);
+        WeaponPanel_5.SetActive(false);
     }
 
     /// <summary>
@@ -387,7 +434,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NoShowWeapon6()
     {
-        weapon6.SetActive(false);
+        WeaponPanel_6.SetActive(false);
     }
 
     /// <summary>
@@ -399,6 +446,8 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 500;
             btnwpn2.interactable = true;
+            NoShowWeapon2();
+            Updatedata();
         }
         else
         {
@@ -415,6 +464,8 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 1000;
             btnwpn3.interactable = true;
+            NoShowWeapon3();
+            Updatedata();
         }
         else
         {
@@ -431,6 +482,8 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 1500;
             btnwpn4.interactable = true;
+            NoShowWeapon4();
+            Updatedata();
         }
         else
         {
@@ -447,6 +500,8 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 3000;
             btnwpn5.interactable = true;
+            NoShowWeapon5();
+            Updatedata();
         }
         else
         {
@@ -459,10 +514,12 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void BuyWeapon6()
     {
-        if (data.PlayerCoin > 5000)
+        if (data.PlayerCoin > 6000)
         {
             data.PlayerCoin -= 5000;
             btnwpn6.interactable = true;
+            NoShowWeapon6();
+            Updatedata();
         }
         else
         {
@@ -497,7 +554,10 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void UseWeapon1()
     {
-        GameObject weapon1 = Instantiate(Resources.Load("武器1", typeof(GameObject))) as GameObject;
+        //windex = 1;
+        //weapon[1] = weapon[windex];
+        Player.bullet = Weapon1;
+        NoShowAllWeapon();
     }
 
     /// <summary>
@@ -505,7 +565,8 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void UseWeapon2()
     {
-        GameObject weapon1 = Instantiate(Resources.Load("武器2", typeof(GameObject))) as GameObject;
+        Player.bullet = Weapon2;
+        NoShowAllWeapon();
     }
 
     /// <summary>
@@ -513,7 +574,8 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void UseWeapon3()
     {
-        GameObject weapon1 = Instantiate(Resources.Load("武器3", typeof(GameObject))) as GameObject;
+        Player.bullet = Weapon3;
+        NoShowAllWeapon();
     }
 
     /// <summary>
@@ -521,7 +583,8 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void UseWeapon4()
     {
-        GameObject weapon1 = Instantiate(Resources.Load("武器4", typeof(GameObject))) as GameObject;
+        Player.bullet = Weapon4;
+        NoShowAllWeapon();
     }
 
     /// <summary>
@@ -529,7 +592,8 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void UseWeapon5()
     {
-        GameObject weapon1 = Instantiate(Resources.Load("武器5", typeof(GameObject))) as GameObject;
+        Player.bullet = Weapon5;
+        NoShowAllWeapon();
     }
 
     /// <summary>
@@ -537,8 +601,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void UseWeapon6()
     {
-        GameObject weapon1 = Instantiate(Resources.Load("武器6", typeof(GameObject))) as GameObject;
+        Player.bullet = Weapon6;
+        NoShowAllWeapon();
     }
-
-
 }
