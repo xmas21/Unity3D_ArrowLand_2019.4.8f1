@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 3a508e4011d36c14fa49a75f460f2ecf, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: cd603a1e38fbbf2428094e4a17fbb611, type: 2}
 --- !u!1 &162656925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1080,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-94508
+  m_Name: pb_Mesh-78898
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4133,7 +4133,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-94688
+  m_Name: pb_Mesh-79078
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4515,6 +4515,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1775576781599616397, guid: 3a39e080bcc50174bba68f896e5f13be,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c4f8e509e3ec5a946a720b25791f8bcf, type: 2}
     - target: {fileID: 4189835012996894186, guid: 3a39e080bcc50174bba68f896e5f13be,
         type: 3}
       propertyPath: m_Mesh
@@ -4675,6 +4680,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1721117439986003965, guid: b99db1502007fdc42b141ea7406b6a86,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c4f8e509e3ec5a946a720b25791f8bcf, type: 2}
     - target: {fileID: 3847189138241081242, guid: b99db1502007fdc42b141ea7406b6a86,
         type: 3}
       propertyPath: m_Mesh

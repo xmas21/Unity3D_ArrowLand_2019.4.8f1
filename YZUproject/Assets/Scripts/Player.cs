@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     [Header("玩家資料")]
     public PlayerDate data;
     [Header("武器")]
-    public static GameObject bullet;
+    public static GameObject bullet ;
     #endregion 
 
 

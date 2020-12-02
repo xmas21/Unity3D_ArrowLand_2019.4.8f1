@@ -566,6 +566,7 @@ public class MenuManager : MonoBehaviour
     public void UseWeapon2()
     {
         Player.bullet = Weapon2;
+       // Quaternion qua = Quaternion.Euler(transform.eulerAngles.x , transform.eulerAngles.y, transform.eulerAngles.z);
         NoShowAllWeapon();
     }
 
