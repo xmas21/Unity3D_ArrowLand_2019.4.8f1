@@ -3,11 +3,11 @@
 [CreateAssetMenu(fileName = "怪物資料", menuName = "HWC/怪物")]
 public class EnemyData : ScriptableObject
 {
-    [Header("血量"), Range(30, 3000)]
+    [Header("血量"), Range(30, 10000)]
     public float hp;
-    [Header("血量最大值"), Range(30, 3000)]
+    [Header("血量最大值"), Range(30, 10000)]
     public float hpMax;
-    [Header("攻擊力"), Range(0, 1000)]
+    [Header("攻擊力"), Range(0, 2000)]
     public float attack;
     [Header("冷卻"), Range(0, 5)]
     public float cd;

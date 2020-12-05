@@ -42,28 +42,40 @@ public class MenuManager : MonoBehaviour
     public GameObject WeaponPanel_6;
     [Header("沒錢買武器畫面")]
     public GameObject Nomoney;
-    [Header("武器2按鈕")]
+
+    [Header("使用武器2按鈕")]
     public Button btnwpn2;
-    [Header("武器3按鈕")]
+    [Header("使用武器3按鈕")]
     public Button btnwpn3;
-    [Header("武器4按鈕")]
+    [Header("使用武器4按鈕")]
     public Button btnwpn4;
-    [Header("武器5按鈕")]
+    [Header("使用武器5按鈕")]
     public Button btnwpn5;
-    [Header("武器6按鈕")]
+    [Header("使用武器6按鈕")]
     public Button btnwpn6;
 
-    [Header("武器1")]
+    [Header("購買武器2按鈕")]
+    public Button buywpn2;
+    [Header("購買武器3按鈕")]
+    public Button buywpn3;
+    [Header("購買武器4按鈕")]
+    public Button buywpn4;
+    [Header("購買武器5按鈕")]
+    public Button buywpn5;
+    [Header("購買武器6按鈕")]
+    public Button buywpn6;
+
+    [Header("玩家武器1")]
     public GameObject Weapon1;
-    [Header("武器2")]
+    [Header("玩家武器2")]
     public GameObject Weapon2;
-    [Header("武器3")]
+    [Header("玩家武器3")]
     public GameObject Weapon3;
-    [Header("武器4")]
+    [Header("玩家武器4")]
     public GameObject Weapon4;
-    [Header("武器5")]
+    [Header("玩家武器5")]
     public GameObject Weapon5;
-    [Header("武器6")]
+    [Header("玩家武器6")]
     public GameObject Weapon6;
 
     public Text coin1;
@@ -446,7 +458,7 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 500;
             btnwpn2.interactable = true;
-            NoShowWeapon2();
+            buywpn2.interactable = false;
             Updatedata();
         }
         else
@@ -464,7 +476,7 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 1000;
             btnwpn3.interactable = true;
-            NoShowWeapon3();
+            buywpn3.interactable = false;
             Updatedata();
         }
         else
@@ -482,7 +494,7 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 1500;
             btnwpn4.interactable = true;
-            NoShowWeapon4();
+            buywpn4.interactable = false;
             Updatedata();
         }
         else
@@ -500,7 +512,7 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 3000;
             btnwpn5.interactable = true;
-            NoShowWeapon5();
+            buywpn5.interactable = false;
             Updatedata();
         }
         else
@@ -518,7 +530,7 @@ public class MenuManager : MonoBehaviour
         {
             data.PlayerCoin -= 5000;
             btnwpn6.interactable = true;
-            NoShowWeapon6();
+            buywpn6.interactable = false;
             Updatedata();
         }
         else
@@ -554,9 +566,8 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void UseWeapon1()
     {
-        //windex = 1;
-        //weapon[1] = weapon[windex];
         Player.bullet = Weapon1;
+        data.WeaponAttack = 30;
         NoShowAllWeapon();
     }
 
@@ -566,7 +577,7 @@ public class MenuManager : MonoBehaviour
     public void UseWeapon2()
     {
         Player.bullet = Weapon2;
-       // Quaternion qua = Quaternion.Euler(transform.eulerAngles.x , transform.eulerAngles.y, transform.eulerAngles.z);
+        data.WeaponAttack = 80;
         NoShowAllWeapon();
     }
 
@@ -576,6 +587,7 @@ public class MenuManager : MonoBehaviour
     public void UseWeapon3()
     {
         Player.bullet = Weapon3;
+        data.WeaponAttack = 150;
         NoShowAllWeapon();
     }
 
@@ -585,6 +597,7 @@ public class MenuManager : MonoBehaviour
     public void UseWeapon4()
     {
         Player.bullet = Weapon4;
+        data.WeaponAttack = 300;
         NoShowAllWeapon();
     }
 
@@ -594,6 +607,7 @@ public class MenuManager : MonoBehaviour
     public void UseWeapon5()
     {
         Player.bullet = Weapon5;
+        data.WeaponAttack = 500;
         NoShowAllWeapon();
     }
 
@@ -603,6 +617,7 @@ public class MenuManager : MonoBehaviour
     public void UseWeapon6()
     {
         Player.bullet = Weapon6;
+        data.WeaponAttack = 1000;
         NoShowAllWeapon();
     }
 }

@@ -14,12 +14,20 @@ public class Bullet : MonoBehaviour
                 other.GetComponent<Player>().Hit(damage);
                 Destroy(gameObject);
             }
+            else if (other.tag == "牆壁")
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {
             if (other.GetComponent<Enemy>() && other.tag == "敵人")
             {
                 other.GetComponent<Enemy>().Hit(damage);
+                Destroy(gameObject);
+            }
+            else if (other.tag == "牆壁")
+            {
                 Destroy(gameObject);
             }
         }

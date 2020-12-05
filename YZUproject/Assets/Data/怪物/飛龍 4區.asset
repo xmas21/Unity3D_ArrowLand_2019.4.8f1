@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812c2a7e217204e42825b4699d8efab2, type: 3}
   m_Name: "\u98DB\u9F8D 4\u5340"
   m_EditorClassIdentifier: 
-  hp: 500
-  hpMax: 500
-  attack: 160
-  cd: 1.6
+  hp: 3300
+  hpMax: 3300
+  attack: 150
+  cd: 1.4
   speed: 1.6
   StopDistanse: 150
   NearAttackLength: 0

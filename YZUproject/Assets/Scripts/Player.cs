@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     #endregion 
 
 
+
     private void Start()
     {
         rig = GetComponent<Rigidbody>();                                 // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
@@ -37,7 +38,6 @@ public class Player : MonoBehaviour
         hpMpManager = GetComponentInChildren<HpMpManager>();
         skillData = FindObjectOfType<SkillData>();
         menuManager = FindObjectOfType<MenuManager>();
-        //Weapon();
     }
 
     private void FixedUpdate()
@@ -149,16 +149,15 @@ public class Player : MonoBehaviour
             posEnemy.y = transform.position.y;
             transform.LookAt(posEnemy);
 
-            Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f;
+            Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f; // 生成位置
 
-            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x+180, transform.eulerAngles.y, transform.eulerAngles.z);
+            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x+180, transform.eulerAngles.y, transform.eulerAngles.z); // 生成角度
 
             GameObject temp = Instantiate(bullet, pos, qua);
             temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
             temp.AddComponent<Bullet>();
             temp.GetComponent<Bullet>().damage = data.attack + data.CriticalAttack + data.WeaponAttack;
             temp.GetComponent<Bullet>().playerBullet = true;
-            //Invoke(Destroy(gameObject), 3f);
 
             AttackAbility();
         }
@@ -223,7 +222,7 @@ public class Player : MonoBehaviour
         // 爆擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill8))
         {
-            data.CriticalAttack += 50;
+            data.CriticalAttack += 30;
         }
     }
 
@@ -247,39 +246,6 @@ public class Player : MonoBehaviour
         temp.GetComponent<Bullet>().damage = data.attack + data.CriticalAttack;
         temp.GetComponent<Bullet>().playerBullet = true;
     }
-
-    /*
-    /// <summary>
-    /// 武器選擇
-    /// </summary>
-    private void Weapon()
-    {
-        if (menuManager.windex == 1)
-        {
-            bullet = menuManager.weapon[1];
-        }
-        else if (menuManager.windex == 2)
-        {
-            bullet = menuManager.weapon[2];
-        }
-        else if (menuManager.windex == 3)
-        {
-            bullet = menuManager.weapon[3];
-        }
-        else if (menuManager.windex == 4)
-        {
-            bullet = menuManager.weapon[4];
-        }
-        else if (menuManager.windex == 5)
-        {
-            bullet = menuManager.weapon[5];
-        }
-        else if (menuManager.windex == 6)
-        {
-            bullet = menuManager.weapon[6];
-        }
-    }
-    */
 
 
 }
