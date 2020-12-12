@@ -78,6 +78,11 @@ public class MenuManager : MonoBehaviour
     [Header("玩家武器6")]
     public GameObject Weapon6;
 
+    [Header("寵物區塊畫面")]
+    public GameObject pets;
+    [Header("寵物1畫面")]
+    public GameObject pet1;
+
     public Text coin1;
     public Text coin2;
     public Text coin3;
@@ -95,24 +100,6 @@ public class MenuManager : MonoBehaviour
     int a = 1;
     int b = 1;
     #endregion
-
-    /*
-    private void Awake()
-    {
-        
-        for (int i = 0; i < 6; i++)
-        {
-            weapon[i] = Resources.Load("武器", typeof(GameObject)) as GameObject;
-        }
-        
-        weapon[1] = Resources.Load("武器1") as GameObject;
-        weapon[2] = Resources.Load("武器2") as GameObject;
-        weapon[3] = Resources.Load("武器3") as GameObject;
-        weapon[4] = Resources.Load("武器4") as GameObject;
-        weapon[5] = Resources.Load("武器5") as GameObject;
-        weapon[6] = Resources.Load("武器6") as GameObject;
-    }
-    */
 
     private void Start()
     {
@@ -619,5 +606,37 @@ public class MenuManager : MonoBehaviour
         Player.bullet = Weapon6;
         data.WeaponAttack = 1000;
         NoShowAllWeapon();
+    }
+
+    /// <summary>
+    /// 開啟全部寵物畫面
+    /// </summary>
+    public void ShowPets()
+    {
+        pets.SetActive(true);
+    }
+
+    /// <summary>
+    /// 開啟寵物1資訊
+    /// </summary>
+    public void ShowPet1()
+    {
+        pet1.SetActive(true);
+    }
+
+    /// <summary>
+    /// 關閉全部寵物畫面
+    /// </summary>
+    public void NoShowPets()
+    {
+        pets.SetActive(false);
+    }
+
+    /// <summary>
+    /// 關閉寵物1資訊
+    /// </summary>
+    public void NoShowPet1()
+    {
+        pet1.SetActive(false);
     }
 }

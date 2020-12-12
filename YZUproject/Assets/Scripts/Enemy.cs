@@ -40,7 +40,6 @@ public class Enemy : MonoBehaviour
     {
         if (ani.GetBool("死亡觸發")) return;
 
-
         agent.SetDestination(target.position);
 
         Vector3 targetPos = target.position;

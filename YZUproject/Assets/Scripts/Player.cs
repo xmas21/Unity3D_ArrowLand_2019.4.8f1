@@ -247,5 +247,4 @@ public class Player : MonoBehaviour
         temp.GetComponent<Bullet>().playerBullet = true;
     }
 
-
 }

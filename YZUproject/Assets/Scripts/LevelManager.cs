@@ -25,6 +25,10 @@ public class LevelManager : MonoBehaviour
     [Header("關卡16是否通關")]
     public static bool bl_16 = false;
 
+    [Header("寵物1")]
+    public GameObject pet_1;
+
+
     private Animator door;
     private Image imgCross;
     private PlayerDate playerDate;

@@ -49,6 +49,8 @@ MonoBehaviour:
   autoShowSkill: 0
   autoOpenDoor: 0
   panelRevival: {fileID: 0}
+  mainMenu: {fileID: 0}
+  pet_1: {fileID: 7751315158332541931, guid: 64d880530991c0b4086c6d58d02c7e05, type: 3}
 --- !u!114 &8414213142779679522
 MonoBehaviour:
   m_ObjectHideFlags: 0
