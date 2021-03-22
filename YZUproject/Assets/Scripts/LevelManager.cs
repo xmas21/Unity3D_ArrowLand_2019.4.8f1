@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
     public static bool bl_16 = false;
 
     [Header("寵物1")]
-    public GameObject pet_1;
+    public static GameObject pet_1;
 
 
     private Animator door;

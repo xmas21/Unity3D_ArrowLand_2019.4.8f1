@@ -81,7 +81,17 @@ public class MenuManager : MonoBehaviour
     [Header("寵物區塊畫面")]
     public GameObject pets;
     [Header("寵物1畫面")]
-    public GameObject pet1;
+    public GameObject petPanel_1;
+
+    [Header("購買寵物1按鈕")]
+    public Button buypet1;
+
+    [Header("使用寵物1按鈕")]
+    public Button btnpet1;
+
+    [Header("玩家寵物1"),Tooltip("寵物1")]
+    public GameObject pets_1;
+
 
     public Text coin1;
     public Text coin2;
@@ -93,9 +103,6 @@ public class MenuManager : MonoBehaviour
     public Text jewel4;
 
     private Player player;
-    public GameObject[] weapon;
-    public int windex;
-
 
     int a = 1;
     int b = 1;
@@ -108,8 +115,8 @@ public class MenuManager : MonoBehaviour
         Updatedata();
         Allowbtn();
         Player.bullet = Weapon1;
+        data.WeaponAttack = 30;
     }
-
 
     /// <summary>
     /// 切換場景
@@ -555,6 +562,7 @@ public class MenuManager : MonoBehaviour
     {
         Player.bullet = Weapon1;
         data.WeaponAttack = 30;
+        WeaponPanel_1.SetActive(false);
         NoShowAllWeapon();
     }
 
@@ -565,6 +573,7 @@ public class MenuManager : MonoBehaviour
     {
         Player.bullet = Weapon2;
         data.WeaponAttack = 80;
+        WeaponPanel_2.SetActive(false);
         NoShowAllWeapon();
     }
 
@@ -575,6 +584,7 @@ public class MenuManager : MonoBehaviour
     {
         Player.bullet = Weapon3;
         data.WeaponAttack = 150;
+        WeaponPanel_3.SetActive(false);
         NoShowAllWeapon();
     }
 
@@ -585,6 +595,7 @@ public class MenuManager : MonoBehaviour
     {
         Player.bullet = Weapon4;
         data.WeaponAttack = 300;
+        WeaponPanel_4.SetActive(false);
         NoShowAllWeapon();
     }
 
@@ -595,6 +606,7 @@ public class MenuManager : MonoBehaviour
     {
         Player.bullet = Weapon5;
         data.WeaponAttack = 500;
+        WeaponPanel_5.SetActive(false);
         NoShowAllWeapon();
     }
 
@@ -605,6 +617,7 @@ public class MenuManager : MonoBehaviour
     {
         Player.bullet = Weapon6;
         data.WeaponAttack = 1000;
+        WeaponPanel_6.SetActive(false);
         NoShowAllWeapon();
     }
 
@@ -621,7 +634,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void ShowPet1()
     {
-        pet1.SetActive(true);
+        petPanel_1.SetActive(true);
     }
 
     /// <summary>
@@ -637,6 +650,33 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void NoShowPet1()
     {
-        pet1.SetActive(false);
+        petPanel_1.SetActive(false);
+    }
+
+    /// <summary>
+    /// 買寵物1
+    /// </summary>
+    public void BuyPet1()
+    {
+        if (data.PlayerCoin > 50)
+        {
+            data.PlayerCoin -= 50;
+            btnpet1.interactable = true;
+            buypet1.interactable = false;
+            Updatedata();
+        }
+        else
+        {
+            NoMoney();
+        }
+    }
+
+    /// <summary>
+    /// 使用寵物1
+    /// </summary>
+    public void UsePet1()
+    {
+        Player.pet1 = pets_1;
+        NoShowPets();
     }
 }

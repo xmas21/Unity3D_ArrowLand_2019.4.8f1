@@ -5,28 +5,29 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     #region 欄位
+    [Header("玩家資料")]
+    public PlayerDate data;
+    [Header("武器")]
+    public static GameObject bullet ;
+
+    public float speed = 10;
+    private float timer;
+    private float[] enemyDistanse;
+
+    public RandomSkill randomSkill;
+    public static GameObject pet1;
+
     private Joystick joystick; // 虛擬搖桿
     private Rigidbody rig;     // 鋼體
     private Animator ani;      // 動畫控制器
     private Transform target;  // 目標
     private LevelManager levelManager;
     private HpMpManager hpMpManager;
-    private float timer;
     private Enemy[] enemys;
-    private float[] enemyDistanse;
     private SkillData skillData;
     private MenuManager menuManager;
 
-    public RandomSkill randomSkill;
-
-    public float speed = 10;
-    [Header("玩家資料")]
-    public PlayerDate data;
-    [Header("武器")]
-    public static GameObject bullet ;
     #endregion 
-
-
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
         hpMpManager = GetComponentInChildren<HpMpManager>();
         skillData = FindObjectOfType<SkillData>();
         menuManager = FindObjectOfType<MenuManager>();
+        Instantiate(pet1);
     }
 
     private void FixedUpdate()
@@ -52,7 +54,6 @@ public class Player : MonoBehaviour
             levelManager.StartCoroutine("NextLevel");
         }
     }
-
 
     /// <summary>
     /// 移動

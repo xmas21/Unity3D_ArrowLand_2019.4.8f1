@@ -3,11 +3,11 @@
 public class Bullet : MonoBehaviour
 {
     public float damage;
-    public bool playerBullet;
+    public bool playerBullet;  // 是玩家的子彈
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!playerBullet)
+        if (!playerBullet)     // 怪物射得子彈
         {
             if (other.name == "玩家")
             {
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else
+        else                  // 玩家射的子彈
         {
             if (other.GetComponent<Enemy>() && other.tag == "敵人")
             {

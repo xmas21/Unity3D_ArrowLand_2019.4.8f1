@@ -9,10 +9,9 @@ public class Enemy : MonoBehaviour
     private Animator ani;
     private NavMeshAgent agent;
     private Transform target;
-    private float timer;
     private HpMpManager hpMpManager;
     private float hp;
-    private PlayerDate playerDate;
+    private float timer;
 
 
     private void Start()
@@ -40,11 +39,11 @@ public class Enemy : MonoBehaviour
     {
         if (ani.GetBool("死亡觸發")) return;
 
-        agent.SetDestination(target.position);
-
         Vector3 targetPos = target.position;
         targetPos.y = transform.position.y;
         transform.LookAt(targetPos);
+
+        agent.SetDestination(targetPos);
 
         if (agent.remainingDistance < agent.stoppingDistance)
         {
@@ -120,5 +119,13 @@ public class Enemy : MonoBehaviour
             Instantiate(data.coin, transform.position + transform.up * 2, Quaternion.identity);
         }
 
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "老虎攻擊範圍")
+        {
+            Hit(100);
+        }
     }
 }
