@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cd: 3
   power: 1000
-  attack: 30
+  attack: 300
   speed: 0.1
   stopDistanse: 4
   farPower: 1500

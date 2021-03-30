@@ -60,7 +60,7 @@ public class PetFar : MonoBehaviour
 
             ani.SetBool("跑步觸發", true);
 
-            PetPos = Vector3.Lerp(PetPos, targetPos, trackSpeed * Time.deltaTime); // 讓怪物跟著玩家走
+            PetPos = Vector3.Lerp(PetPos, targetPos, trackSpeed * Time.deltaTime); // 讓寵物跟著玩家走
 
             transform.position = PetPos;
         }
@@ -100,6 +100,7 @@ public class PetFar : MonoBehaviour
             Idle();
         }
 
+        enemys = FindObjectsOfType<Enemy>();
         timer = 0;
         ani.SetTrigger("攻擊觸發");
 
@@ -128,6 +129,10 @@ public class PetFar : MonoBehaviour
 
         for (int i = 0; i < enemys.Length; i++)
         {
+            if (enemys[i] == null)
+            {
+                continue;
+            }
             enemyDistanse[i] = Vector3.Distance(transform.position, enemys[i].transform.position);
         }
 

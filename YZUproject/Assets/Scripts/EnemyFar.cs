@@ -6,6 +6,13 @@ public class EnemyFar : Enemy
     [Header("子彈")]
     public GameObject bullet;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position + data.NearAttackPos, transform.forward * data.NearAttackLength);
+    }
+
+
     /// <summary>
     /// 攻擊
     /// </summary>
@@ -23,7 +30,7 @@ public class EnemyFar : Enemy
     {
         yield return new WaitForSeconds(data.NearAttackDelay);
 
-        Vector3 pos = transform.position + new Vector3(0, data.NearAttackPos.y, 0);
+        Vector3 pos = transform.position + new Vector3(data.NearAttackPos.x, data.NearAttackPos.y, 0);
 
         pos += transform.forward * data.NearAttackPos.z;
 
@@ -35,5 +42,6 @@ public class EnemyFar : Enemy
         temp.GetComponent<Bullet>().damage = data.attack;
         temp.GetComponent<Bullet>().playerBullet = false;
 
+        Destroy(temp, 3f);
     }
 }

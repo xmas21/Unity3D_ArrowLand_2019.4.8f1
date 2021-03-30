@@ -25,45 +25,16 @@ public class LevelManager : MonoBehaviour
     [Header("關卡16是否通關")]
     public static bool bl_16 = false;
 
-    [Header("寵物1")]
-    public static GameObject pet_1;
-
-
     private Animator door;
     private Image imgCross;
-    private PlayerDate playerDate;
-    private Player player;
-    private MenuManager menu;
 
-
-    private void Start() // 轉場
+    private void Start()
     {
         door = GameObject.Find("木頭門").GetComponent<Animator>();
         imgCross = GameObject.Find("轉場效果").GetComponent<Image>();
-        player = FindObjectOfType<Player>();
-        menu = FindObjectOfType<MenuManager>();
 
-        if (autoShowSkill) showSkill();
+        if (autoShowSkill) ShowSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
-
-    }
-
-
-    /// <summary>
-    /// 顯示技能
-    /// </summary>
-    private void showSkill()
-    {
-        ramdomSkill.SetActive(true);
-    }
-
-    /// <summary>
-    /// 開門
-    /// </summary>
-    private void Opendoor()
-    {
-        objLight.SetActive(true);
-        door.SetTrigger("開門觸發");
     }
 
     /// <summary>
@@ -170,4 +141,20 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    /// <summary>
+    /// 顯示技能
+    /// </summary>
+    private void ShowSkill()
+    {
+        ramdomSkill.SetActive(true);
+    }
+
+    /// <summary>
+    /// 開門
+    /// </summary>
+    private void Opendoor()
+    {
+        objLight.SetActive(true);
+        door.SetTrigger("開門觸發");
+    }
 }

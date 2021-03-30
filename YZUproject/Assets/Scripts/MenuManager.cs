@@ -82,16 +82,25 @@ public class MenuManager : MonoBehaviour
     public GameObject pets;
     [Header("寵物1畫面")]
     public GameObject petPanel_1;
+    [Header("寵物2畫面")]
+    public GameObject petPanel_2;
 
     [Header("購買寵物1按鈕")]
     public Button buypet1;
+    [Header("購買寵物2按鈕")]
+    public Button buypet2;
 
     [Header("使用寵物1按鈕")]
     public Button btnpet1;
+    [Header("使用寵物2按鈕")]
+    public Button btnpet2;
 
+    [Header("空的寵物")]
+    public GameObject pets_Empty;
     [Header("玩家寵物1"),Tooltip("寵物1")]
     public GameObject pets_1;
-
+    [Header("玩家寵物2"), Tooltip("寵物2")]
+    public GameObject pets_2;
 
     public Text coin1;
     public Text coin2;
@@ -102,19 +111,17 @@ public class MenuManager : MonoBehaviour
     public Text jewel3;
     public Text jewel4;
 
-    private Player player;
-
     int a = 1;
     int b = 1;
     #endregion
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
         data.hp = data.hpMax;
         Updatedata();
         Allowbtn();
         Player.bullet = Weapon1;
+        Player.pet1 = pets_Empty;
         data.WeaponAttack = 30;
     }
 
@@ -638,6 +645,14 @@ public class MenuManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 開啟寵物2資訊
+    /// </summary>
+    public void ShowPet2()
+    {
+        petPanel_2.SetActive(true);
+    }
+
+    /// <summary>
     /// 關閉全部寵物畫面
     /// </summary>
     public void NoShowPets()
@@ -651,6 +666,14 @@ public class MenuManager : MonoBehaviour
     public void NoShowPet1()
     {
         petPanel_1.SetActive(false);
+    }
+
+    /// <summary>
+    /// 關閉寵物2資訊
+    /// </summary>
+    public void NoShowPet2()
+    {
+        petPanel_2.SetActive(false);
     }
 
     /// <summary>
@@ -672,11 +695,38 @@ public class MenuManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 買寵物2
+    /// </summary>
+    public void BuyPet2()
+    {
+        if (data.PlayerCoin > 100)
+        {
+            data.PlayerCoin -= 100;
+            btnpet2.interactable = true;
+            buypet2.interactable = false;
+            Updatedata();
+        }
+        else
+        {
+            NoMoney();
+        }
+    }
+
+    /// <summary>
     /// 使用寵物1
     /// </summary>
     public void UsePet1()
     {
         Player.pet1 = pets_1;
+        NoShowPets();
+    }
+
+    /// <summary>
+    /// 使用寵物1
+    /// </summary>
+    public void UsePet2()
+    {
+        Player.pet1 = pets_2;
         NoShowPets();
     }
 }

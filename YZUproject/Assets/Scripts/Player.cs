@@ -7,10 +7,17 @@ public class Player : MonoBehaviour
     #region 欄位
     [Header("玩家資料")]
     public PlayerDate data;
-    [Header("武器")]
-    public static GameObject bullet ;
-
+    [Header("預設武器")]
+    public GameObject test_bullet;
+    [Header("預設寵物")]
+    public GameObject test_pet;
+    [Header("移動速度"), Range(0, 1000)]
     public float speed = 10;
+    [Header("生命"), Range(0, 1000)]
+    public float hp;
+
+    public static GameObject bullet;
+
     private float timer;
     private float[] enemyDistanse;
 
@@ -25,7 +32,7 @@ public class Player : MonoBehaviour
     private HpMpManager hpMpManager;
     private Enemy[] enemys;
     private SkillData skillData;
-    private MenuManager menuManager;
+
 
     #endregion 
 
@@ -38,13 +45,17 @@ public class Player : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
         skillData = FindObjectOfType<SkillData>();
-        menuManager = FindObjectOfType<MenuManager>();
+        bullet = test_bullet;
+        pet1 = test_pet;
+        data.hp = data.hpMax;
+        hp = data.hp;
         Instantiate(pet1);
     }
 
     private void FixedUpdate()
     {
         Move();
+        IsPass();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,6 +63,96 @@ public class Player : MonoBehaviour
         if (other.name == "傳送區域")
         {
             levelManager.StartCoroutine("NextLevel");
+        }
+    }
+
+    /// <summary>
+    /// 受傷
+    /// </summary>
+    /// <param name="damage"></param>
+    public void Hit(float damage)
+    {
+        hp -= damage;
+        hpMpManager.UpdateHpBar(hp, data.hpMax);
+
+        StartCoroutine(hpMpManager.ShowValue(damage, "-", Vector3.one, Color.white));
+
+        if (hp <= 0) Dead();
+    }
+
+    /// <summary>
+    /// 復活
+    /// </summary>
+    public void Revival()
+    {
+        enabled = true;
+        ani.SetBool("死亡觸發", false);
+        data.hp = data.hpMax;
+        hpMpManager.UpdateHpBar(data.hp, data.hpMax);
+        levelManager.CloseRevival();
+    }
+
+    /// <summary>
+    /// 技能效果
+    /// </summary>
+    public void AttackAbility()
+    {
+        // 連續射擊 
+        if (RandomSkill.nameskill.Equals(skillData.Skill1))
+        {
+            Bullet(-1.5f, transform.forward, transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z, Vector3.zero, 0);
+        }
+
+        // 正向劍 
+        else if (RandomSkill.nameskill.Equals(skillData.Skill2))
+        {
+            Bullet(1.5f, transform.forward, transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z, transform.right, 0.25f);
+        }
+
+        // 背向劍 
+        else if (RandomSkill.nameskill.Equals(skillData.Skill3))
+        {
+            Bullet(-1.5f, -transform.forward, transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z, Vector3.zero, 0);
+        }
+
+        // 側向劍 
+        else if (RandomSkill.nameskill.Equals(skillData.Skill4))
+        {
+            Bullet(0.5f, transform.right, transform.eulerAngles.x + 180, transform.eulerAngles.y + 90, transform.eulerAngles.z, transform.right, 1);
+
+            Bullet(0.5f, -transform.right, transform.eulerAngles.x + 180, transform.eulerAngles.y - 90, transform.eulerAngles.z, -transform.right, 1);
+        }
+
+    }
+
+    /// <summary>
+    /// 技能Buff
+    /// </summary>
+    public void BuffAbility()
+    {
+        // 血量增加
+        if (RandomSkill.nameskill.Equals(skillData.Skill5))
+        {
+            data.hp += 200;
+            data.hpMax = data.hp;
+        }
+
+        // 攻擊增加
+        else if (RandomSkill.nameskill.Equals(skillData.Skill6))
+        {
+            data.attack += 30;
+        }
+
+        // 攻速增加
+        else if (RandomSkill.nameskill.Equals(skillData.Skill7))
+        {
+            data.cd -= 0.3f;
+        }
+
+        // 爆擊增加
+        else if (RandomSkill.nameskill.Equals(skillData.Skill8))
+        {
+            data.CriticalAttack += 30;
         }
     }
 
@@ -80,20 +181,6 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// 受傷
-    /// </summary>
-    /// <param name="damage"></param>
-    public void Hit(float damage)
-    {
-        data.hp -= damage;
-        hpMpManager.UpdateHpBar(data.hp, data.hpMax);
-
-        StartCoroutine(hpMpManager.ShowValue(damage, "-", Vector3.one, Color.white));
-
-        if (data.hp <= 0) Dead();
-    }
-
-    /// <summary>
     /// 死亡
     /// </summary>
     private void Dead()
@@ -102,18 +189,6 @@ public class Player : MonoBehaviour
         enabled = false;
 
         StartCoroutine(levelManager.ShowRevival());
-    }
-
-    /// <summary>
-    /// 復活
-    /// </summary>
-    public void Revival()
-    {
-        enabled = true;
-        ani.SetBool("死亡觸發", false);
-        data.hp = data.hpMax;
-        hpMpManager.UpdateHpBar(data.hp, data.hpMax);
-        levelManager.CloseRevival();
     }
 
     /// <summary>
@@ -152,7 +227,7 @@ public class Player : MonoBehaviour
 
             Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f; // 生成位置
 
-            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x+180, transform.eulerAngles.y, transform.eulerAngles.z); // 生成角度
+            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z); // 生成角度
 
             GameObject temp = Instantiate(bullet, pos, qua);
             temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
@@ -161,69 +236,6 @@ public class Player : MonoBehaviour
             temp.GetComponent<Bullet>().playerBullet = true;
 
             AttackAbility();
-        }
-    }
-
-    /// <summary>
-    /// 技能效果
-    /// </summary>
-    public void AttackAbility()
-    {
-        // 連續射擊 
-        if (RandomSkill.nameskill.Equals(skillData.Skill1))
-        {
-            Bullet(-1.5f, transform.forward, transform.eulerAngles.x+180, transform.eulerAngles.y, transform.eulerAngles.z, Vector3.zero, 0);
-        }
-
-        // 正向劍 
-        else if (RandomSkill.nameskill.Equals(skillData.Skill2))
-        {
-            Bullet(1.5f, transform.forward, transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z, transform.right, 0.25f);
-        }
-
-        // 背向劍 
-        else if (RandomSkill.nameskill.Equals(skillData.Skill3))
-        {
-            Bullet(-1.5f, -transform.forward, transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z, Vector3.zero, 0);
-        }
-
-        // 側向劍 
-        else if (RandomSkill.nameskill.Equals(skillData.Skill4))
-        {
-            Bullet(0.5f, transform.right, transform.eulerAngles.x + 180, transform.eulerAngles.y + 90, transform.eulerAngles.z, transform.right, 1);
-
-            Bullet(0.5f, -transform.right, transform.eulerAngles.x + 180, transform.eulerAngles.y - 90, transform.eulerAngles.z, -transform.right, 1);
-        }
-    }
-
-    /// <summary>
-    /// 技能Buff
-    /// </summary>
-    public void BuffAbility()
-    {
-        // 血量增加
-        if (RandomSkill.nameskill.Equals(skillData.Skill5))
-        {
-            data.hp += 200;
-            data.hpMax = data.hp;
-        }
-
-        // 攻擊增加
-        else if (RandomSkill.nameskill.Equals(skillData.Skill6))
-        {
-            data.attack += 30;
-        }
-
-        // 攻速增加
-        else if (RandomSkill.nameskill.Equals(skillData.Skill7))
-        {
-            data.cd -= 0.3f;
-        }
-
-        // 爆擊增加
-        else if (RandomSkill.nameskill.Equals(skillData.Skill8))
-        {
-            data.CriticalAttack += 30;
         }
     }
 
@@ -237,7 +249,7 @@ public class Player : MonoBehaviour
     /// <param name="z1">劍的轉向(z)</param>
     /// <param name="way2">劍生成的位置(左右)</param>
     /// <param name="a1">劍的位置遠近</param>
-    private void Bullet(float forward1, Vector3 ways,float x1, float y1, float z1, Vector3 way2, float a1)
+    private void Bullet(float forward1, Vector3 ways, float x1, float y1, float z1, Vector3 way2, float a1)
     {
         Vector3 pos = transform.position + transform.up * 1 + transform.forward * forward1 + way2 * a1;
         Quaternion qua = Quaternion.Euler(x1, y1, z1);
@@ -248,4 +260,17 @@ public class Player : MonoBehaviour
         temp.GetComponent<Bullet>().playerBullet = true;
     }
 
+    /// <summary>
+    /// 是否通關
+    /// </summary>
+    private void IsPass()
+    {
+        enemys = FindObjectsOfType<Enemy>();
+
+        if (enemys.Length == 0)
+        {
+            levelManager.Pass();
+            return;
+        }
+    }
 }

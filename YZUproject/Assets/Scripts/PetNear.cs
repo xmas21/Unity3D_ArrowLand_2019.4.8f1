@@ -22,7 +22,6 @@ public class PetNear : MonoBehaviour
         ani = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         enemys = FindObjectsOfType<Enemy>();
-
         agent.stoppingDistance = data.stopDistanse;
     }
 
@@ -42,7 +41,7 @@ public class PetNear : MonoBehaviour
     /// <summary>
     /// 攻擊
     /// </summary>
-    private  void Attack()
+    private void Attack()
     {
         timer = 0;
         ani.SetTrigger("攻擊觸發");
@@ -71,30 +70,40 @@ public class PetNear : MonoBehaviour
         {
             Idle();
         }
-
-        enemyDistanse = new float[enemys.Length];
-
-        for (int i = 0; i < enemys.Length; i++)
-        {
-            enemyDistanse[i] = Vector3.Distance(transform.position, enemys[i].transform.position);
-        }
-
-        float min = enemyDistanse.Min();
-        int index = enemyDistanse.ToList().IndexOf(min);
-
-        Vector3 posEnemy = enemys[index].transform.position;
-        posEnemy.y = transform.position.y;
-        transform.LookAt(posEnemy);
-
-        agent.SetDestination(posEnemy);
-
-        if (agent.remainingDistance < data.stopDistanse)
-        {
-            Wait();
-        }
         else
         {
-            ani.SetBool("移動開關", true);
+            enemys = FindObjectsOfType<Enemy>();
+            enemyDistanse = new float[enemys.Length];
+
+            for (int i = 0; i < enemys.Length; i++)
+            {
+                if (enemys[i] == null)
+                {
+                    continue;
+                }
+                else
+                {
+                    enemyDistanse[i] = Vector3.Distance(transform.position, enemys[i].transform.position);
+                }
+            }
+
+            float min = enemyDistanse.Min();
+            int index = enemyDistanse.ToList().IndexOf(min);
+
+            Vector3 posEnemy = enemys[index].transform.position;
+            posEnemy.y = transform.position.y;
+            transform.LookAt(posEnemy);
+
+            agent.SetDestination(posEnemy);
+
+            if (agent.remainingDistance < data.stopDistanse)
+            {
+                Wait();
+            }
+            else
+            {
+                ani.SetBool("移動開關", true);
+            }
         }
     }
 

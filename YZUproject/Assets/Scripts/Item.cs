@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    #region 
     [Header("金幣音效")]
     public AudioClip sound;
 
@@ -13,16 +12,11 @@ public class Item : MonoBehaviour
     private Transform player;
     private AudioSource aud;
 
-    #endregion
-
-
     private void Start()
     {
         Physics.IgnoreLayerCollision(10, 10, false);
         aud = GetComponent<AudioSource>();
-
         player = GameObject.Find("玩家").transform;
-
         HandleCollision();
     }
 
@@ -30,7 +24,6 @@ public class Item : MonoBehaviour
     {
         GoToPlayer();
     }
-
 
     /// <summary>
     /// 避免碰撞
