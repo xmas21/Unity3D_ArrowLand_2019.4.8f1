@@ -16,13 +16,14 @@ public class Player : MonoBehaviour
     [Header("生命"), Range(0, 1000)]
     public float hp;
 
-    public static GameObject bullet;
-
     private float timer;
     private float[] enemyDistanse;
 
     public RandomSkill randomSkill;
+
+    public static GameObject bullet;
     public static GameObject pet1;
+    public  bool insBoss = false;  //魔王是否生成
 
     private Joystick joystick; // 虛擬搖桿
     private Rigidbody rig;     // 鋼體
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
         skillData = FindObjectOfType<SkillData>();
+        insBoss = false;
         bullet = test_bullet;
         pet1 = test_pet;
         data.hp = data.hpMax;
@@ -267,9 +269,10 @@ public class Player : MonoBehaviour
     {
         enemys = FindObjectsOfType<Enemy>();
 
-        if (enemys.Length == 0)
+        if (enemys.Length == 0 && insBoss == true )
         {
             levelManager.Pass();
+            insBoss = false;
             return;
         }
     }
