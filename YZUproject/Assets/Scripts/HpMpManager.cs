@@ -14,7 +14,7 @@ public class HpMpManager : MonoBehaviour
         hpBar = transform.GetChild(1).GetComponent<Image>();
         rtValue = transform.GetChild(2).GetComponent<RectTransform>();
         textValue = transform.GetChild(2).GetComponent<Text>();
-        texthp = transform.GetChild(2).GetComponent<Text>();
+        texthp = transform.GetChild(3).GetComponent<Text>();
     }
 
     private void Update()
@@ -42,10 +42,10 @@ public class HpMpManager : MonoBehaviour
         textValue.color = valueColor;   // 更新文字.顏色
         rtValue.localScale = size;      // 更新文字.尺寸
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 30; i++)
         {
-            textValue.color += new Color(0, 0, 0, 0.1f);
-            rtValue.anchoredPosition += Vector2.up * 5;
+            textValue.color += new Color(0, 0, 0, 0.2f);
+            rtValue.anchoredPosition += Vector2.up * 4;
             yield return new WaitForSeconds(0.01f);
         }
 

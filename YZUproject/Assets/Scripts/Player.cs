@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.UIElements;
 
@@ -15,16 +16,27 @@ public class Player : MonoBehaviour
     public float speed = 10;
     [Header("生命"), Range(0, 1000)]
     public float hp;
-
-    private float timer;
-    private float[] enemyDistanse;
+    [Header("最大生命"), Range(0, 1000)]
+    public float hpMax;
+    [Header("角色攻擊力"), Range(0, 1000)]
+    public float attack;
+    [Header("武器攻擊力"), Range(0, 1000)]
+    public float attack_WP;
+    [Header("角色爆擊傷害"), Range(0, 1000)]
+    public float criticalAttack;
+    [Header("攻擊冷卻"), Range(0, 1000)]
+    public float cd;
 
     public RandomSkill randomSkill;
 
     public static GameObject bullet;
     public static GameObject pet1;
-    public  bool insBoss = false;  //魔王是否生成
+    public  bool insBoss = true;  //魔王是否生成
 
+    private float timer;
+    private float[] enemyDistanse;
+
+    private Text hpText;
     private Joystick joystick; // 虛擬搖桿
     private Rigidbody rig;     // 鋼體
     private Animator ani;      // 動畫控制器
@@ -41,21 +53,31 @@ public class Player : MonoBehaviour
     {
         rig = GetComponent<Rigidbody>();                                 // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
         ani = GetComponent<Animator>();
+        hpMpManager = GetComponentInChildren<HpMpManager>();
+
+        hpText = GameObject.Find("生命值").GetComponent<Text>();
         joystick = GameObject.Find("固態搖桿").GetComponent<Joystick>(); // 取得指定元件 (Joystick中的固態搖桿)
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
+
         levelManager = FindObjectOfType<LevelManager>();
-        hpMpManager = GetComponentInChildren<HpMpManager>();
         skillData = FindObjectOfType<SkillData>();
-        insBoss = false;
-        bullet = test_bullet;
-        pet1 = test_pet;
-        data.hp = data.hpMax;
+
+        bullet = test_bullet; // 設定預設子彈
+        pet1 = test_pet;      // 設定預設寵物
+        data.hp = data.hpMax; // 設定生命力
         hp = data.hp;
+        hpMax = data.hpMax;
+        attack = data.attack;
+        cd = data.cd;
+        criticalAttack = data.CriticalAttack;
+        attack_WP = data.WeaponAttack;
+
         Instantiate(pet1);
     }
 
     private void FixedUpdate()
     {
+        UpdateValue();
         Move();
         IsPass();
     }
@@ -135,26 +157,26 @@ public class Player : MonoBehaviour
         // 血量增加
         if (RandomSkill.nameskill.Equals(skillData.Skill5))
         {
-            data.hp += 200;
-            data.hpMax = data.hp;
+            hp += 200;
+            hpMax += 200;
         }
 
         // 攻擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill6))
         {
-            data.attack += 30;
+            attack += 30;
         }
 
         // 攻速增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill7))
         {
-            data.cd -= 0.3f;
+            cd -= 0.3f;
         }
 
         // 爆擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill8))
         {
-            data.CriticalAttack += 30;
+            criticalAttack += 30;
         }
     }
 
@@ -198,9 +220,11 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Attack()
     {
-        if (timer < data.cd) timer += Time.deltaTime;
+        if (timer < cd) timer += Time.deltaTime;
         else
         {
+            timer = 0;
+
             enemys = FindObjectsOfType<Enemy>();
             enemyDistanse = new float[enemys.Length];
 
@@ -209,10 +233,6 @@ public class Player : MonoBehaviour
                 levelManager.Pass();
                 return;
             }
-
-            timer = 0;
-
-            ani.SetTrigger("攻擊觸發");
 
             for (int i = 0; i < enemys.Length; i++)
             {
@@ -227,6 +247,8 @@ public class Player : MonoBehaviour
             posEnemy.y = transform.position.y;
             transform.LookAt(posEnemy);
 
+            ani.SetTrigger("攻擊觸發");
+
             Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f; // 生成位置
 
             Quaternion qua = Quaternion.Euler(transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z); // 生成角度
@@ -234,10 +256,12 @@ public class Player : MonoBehaviour
             GameObject temp = Instantiate(bullet, pos, qua);
             temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
             temp.AddComponent<Bullet>();
-            temp.GetComponent<Bullet>().damage = data.attack + data.CriticalAttack + data.WeaponAttack;
+            temp.GetComponent<Bullet>().damage = attack + criticalAttack + attack_WP;
             temp.GetComponent<Bullet>().playerBullet = true;
 
             AttackAbility();
+
+            Destroy(temp, 5f);
         }
     }
 
@@ -258,7 +282,7 @@ public class Player : MonoBehaviour
         GameObject temp = Instantiate(bullet, pos, qua);
         temp.GetComponent<Rigidbody>().AddForce(ways * data.power);
         temp.AddComponent<Bullet>();
-        temp.GetComponent<Bullet>().damage = data.attack + data.CriticalAttack;
+        temp.GetComponent<Bullet>().damage = attack + criticalAttack + attack_WP;
         temp.GetComponent<Bullet>().playerBullet = true;
     }
 
@@ -275,5 +299,10 @@ public class Player : MonoBehaviour
             insBoss = false;
             return;
         }
+    }
+
+    private void UpdateValue()
+    {
+        hpText.text = hp.ToString("f0");
     }
 }

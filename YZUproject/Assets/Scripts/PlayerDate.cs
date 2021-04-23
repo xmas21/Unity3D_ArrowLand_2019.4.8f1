@@ -3,11 +3,10 @@
 [CreateAssetMenu(fileName ="玩家血量",menuName ="HWC/玩家資料")]
 public class PlayerDate : ScriptableObject
 {
-    [Header("血量與最大血量"), Range(200, 3000)]
+    [Header("生命值"), Range(100, 30000)]
     public float hp = 300;
-
+    [Header("最大血量"), Range(100, 30000)]
     public float hpMax;
-
     [Header("冷卻時間"), Range(0.01f, 2)]
     public float cd = 1f;
     [Header("武器速度"), Range(1000, 5000)]

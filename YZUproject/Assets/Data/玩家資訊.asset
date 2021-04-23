@@ -16,7 +16,7 @@ MonoBehaviour:
   hpMax: 600
   cd: 0.5
   power: 1000
-  attack: 10
+  attack: 50
   CriticalAttack: 0
   WeaponAttack: 0
   PlayerCoin: 6528

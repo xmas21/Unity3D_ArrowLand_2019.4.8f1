@@ -18,19 +18,19 @@ public class Enemy : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        hpMpManager = GetComponentInChildren<HpMpManager>();
+
         agent.speed = data.speed;
         agent.stoppingDistance = data.StopDistanse;
         hp = data.hp;
 
         target = GameObject.Find("玩家").transform;
-        hpMpManager = GetComponentInChildren<HpMpManager>();
     }
 
     private void Update()
     {
         Move();
     }
-
 
     /// <summary>
     /// 移動
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
         ani.SetBool("死亡觸發", true);
         agent.isStopped = true;
         Destroy(this);
-        Destroy(gameObject, 0.6f);
+        Destroy(gameObject, 1.2f);
         DropProp();
     }
 

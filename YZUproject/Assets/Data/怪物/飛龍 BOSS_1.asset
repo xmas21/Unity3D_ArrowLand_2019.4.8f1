@@ -21,6 +21,6 @@ MonoBehaviour:
   NearAttackLength: 2
   NearAttackPos: {x: -0.2, y: 6.5, z: 5}
   NearAttackDelay: 0.5
-  farPower: 1500
+  farPower: 1800
   coinRandom: {x: 30, y: 30}
   coin: {fileID: 6064191670129767382, guid: b4265fe55c046fe4d982cfb82c80a011, type: 3}

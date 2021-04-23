@@ -24,13 +24,18 @@ ScriptsOnlyBuild:
     - UnityEngine.ProBuilder.ProBuilderMesh
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-    UnityEngine.Advertisements.Editor.dll:
-    - UnityEngine.Advertisements.Placeholder
-    - UnityEngine.Advertisements.Platform.Editor.BannerPlaceholder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -3619,7 +3624,7 @@ ScriptsOnlyBuild:
     className: HorizontalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 2329d5da78c6475ed16270bbb68d3888
+      Hash: 492f8e4fe234332d69cf92870657409b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -3908,4 +3913,4 @@ ScriptsOnlyBuild:
   - "Assets/\u4E3B\u9AD4 - \u904A\u6232\u5834\u666F/\u95DC\u536122.unity"
   - "Assets/\u4E3B\u9AD4 - \u904A\u6232\u5834\u666F/\u95DC\u536123.unity"
   - "Assets/\u4E3B\u9AD4 - \u904A\u6232\u5834\u666F/\u95DC\u536124- \u9B54\u738B4.unity"
-  playerPath: D:/Unity_3D_YZUproject/KnifeLegend01.apk
+  playerPath: D:/Unity_3D_YZUproject/KnifeLegend3.1.apk

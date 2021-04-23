@@ -233,21 +233,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6110013079138174432, guid: 06dc9f645c0240e48af8e42cc5f4b395,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.01000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6110013079138174432, guid: 06dc9f645c0240e48af8e42cc5f4b395,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.010000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 6110013079138174432, guid: 06dc9f645c0240e48af8e42cc5f4b395,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.010000007
-      objectReference: {fileID: 0}
     - target: {fileID: 6110013079138174439, guid: 06dc9f645c0240e48af8e42cc5f4b395,
         type: 3}
       propertyPath: m_Name
@@ -293,7 +278,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh60024
+  m_Name: pb_Mesh78938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1036,7 +1021,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh59922
+  m_Name: pb_Mesh78836
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3336,7 +3321,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh59988
+  m_Name: pb_Mesh78902
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4221,7 +4206,13 @@ MonoBehaviour:
     type: 3}
   speed: 260
   hp: 0
+  hpMax: 0
+  attack: 0
+  attack_WP: 0
+  criticalAttack: 0
+  cd: 0
   randomSkill: {fileID: 721216923}
+  insBoss: 0
 --- !u!136 &2136033205
 CapsuleCollider:
   m_ObjectHideFlags: 0

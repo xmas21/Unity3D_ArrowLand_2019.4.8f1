@@ -118,11 +118,11 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         data.hp = data.hpMax;
+        data.WeaponAttack = 30;
         Updatedata();
         Allowbtn();
         Player.bullet = Weapon1;
         Player.pet1 = pets_Empty;
-        data.WeaponAttack = 30;
     }
 
     /// <summary>

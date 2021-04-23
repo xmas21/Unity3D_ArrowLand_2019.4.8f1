@@ -32,16 +32,14 @@ public class EnemyFar : Enemy
 
         Vector3 pos = transform.position + new Vector3(data.NearAttackPos.x, data.NearAttackPos.y, 0);
 
-        pos += transform.forward * data.NearAttackPos.z;
+        //pos += transform.forward * data.NearAttackPos.z;
 
         GameObject temp = Instantiate(bullet, pos, transform.rotation);
-
         temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.farPower);
-
         temp.AddComponent<Bullet>();
         temp.GetComponent<Bullet>().damage = data.attack;
         temp.GetComponent<Bullet>().playerBullet = false;
 
-        Destroy(temp, 3f);
+        Destroy(temp, 3.5f);
     }
 }

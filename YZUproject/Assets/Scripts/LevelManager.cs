@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     [Header("關卡16是否通關")]
     public static bool bl_16 = false;
 
+    private Player player;
     private Animator door;
     private Image imgCross;
 
@@ -32,6 +33,8 @@ public class LevelManager : MonoBehaviour
     {
         door = GameObject.Find("木頭門").GetComponent<Animator>();
         imgCross = GameObject.Find("轉場效果").GetComponent<Image>();
+
+        player = FindObjectOfType<Player>();
 
         if (autoShowSkill) ShowSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
@@ -47,7 +50,7 @@ public class LevelManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Contains("魔王1"))
         {
             async = SceneManager.LoadSceneAsync(0);
-            bl_6 = true;            
+            bl_6 = true;
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王2"))
         {
@@ -63,6 +66,15 @@ public class LevelManager : MonoBehaviour
         {
             int index = SceneManager.GetActiveScene().buildIndex;
             async = SceneManager.LoadSceneAsync(index + 1);
+        }
+
+        if (SceneManager.GetActiveScene().name.Contains("魔王前一關"))
+        {
+            player.insBoss = false;
+        }
+        else
+        {
+            player.insBoss = true;
         }
 
         async.allowSceneActivation = false;

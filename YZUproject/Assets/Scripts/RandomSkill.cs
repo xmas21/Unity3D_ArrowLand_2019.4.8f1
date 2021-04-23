@@ -4,28 +4,28 @@ using System.Collections;
 
 public class RandomSkill : MonoBehaviour
 {
-    [Header("圖片區域")]
+    [Header("圖片模糊")]
     public Sprite[] spritesBlur;
+    [Header("圖片正常")]
     public Sprite[] spritesSkill;
-
-    public string[] nameSkill = { "連續射擊", "正向箭", "背向箭", "側向箭", "血量增加", "攻擊增加", "攻速增加", "爆擊增加" };
-
     [Header("捲動速度"), Range(0.001f, 0.1f)]
     public float speed = 0.1f;
     [Header("隨機圖片輪迴次數"), Range(1, 30)]
     public int count = 3;
 
+    public string[] nameSkill = { "連續射擊", "正向箭", "背向箭", "側向箭", "血量增加", "攻擊增加", "攻速增加", "爆擊增加" };
+
+    public int index;
+
     public AudioClip soundScroll;
     public AudioClip soundSkill;
+    public static string nameskill;
 
     private AudioSource aud;
     private Image imgSkill;
     private Button btn;
     private Text textName;
     private GameObject skillPanel;
-    public int index;
-    private Animator ani;
-    public static string nameskill;
     private Player player;
 
 
@@ -41,7 +41,6 @@ public class RandomSkill : MonoBehaviour
         btn.onClick.AddListener(chooseSkill);
 
         StartCoroutine(RandomEffect());
-
     }
 
 

@@ -294,7 +294,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh114414
+  m_Name: pb_Mesh74472
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2778,7 +2778,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh114388
+  m_Name: pb_Mesh74458
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3271,7 +3271,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh114350
+  m_Name: pb_Mesh74420
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3598,6 +3598,16 @@ PrefabInstance:
         type: 3}
       propertyPath: insBoss
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906289985312118527, guid: 9827f0c37c6583545b88e81eaf0cfc90,
+        type: 3}
+      propertyPath: m_Height
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906289985312118527, guid: 9827f0c37c6583545b88e81eaf0cfc90,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 4.94
       objectReference: {fileID: 0}
     - target: {fileID: 7906289985673822706, guid: 9827f0c37c6583545b88e81eaf0cfc90,
         type: 3}
