@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\u67F4\u72AC\u5BF5\u7269\u8CC7\u8A0A"
   m_EditorClassIdentifier: 
   cd: 3
-  power: 1000
+  power: 1200
   attack: 300
   speed: 0.1
   stopDistanse: 4

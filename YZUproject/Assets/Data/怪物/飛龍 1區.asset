@@ -15,7 +15,7 @@ MonoBehaviour:
   hp: 400
   hpMax: 400
   attack: 80
-  cd: 2.2
+  cd: 2
   speed: 1
   StopDistanse: 150
   NearAttackLength: 1
