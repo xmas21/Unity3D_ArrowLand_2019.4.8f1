@@ -26,6 +26,32 @@ public class MenuManager : MonoBehaviour
     [Header("關卡16按鈕")]
     public Button btn16;
 
+    [Header("設定畫面1")]
+    public GameObject setPanel1;
+    [Header("設定畫面2")]
+    public GameObject setPanel2;
+    [Header("設定畫面3")]
+    public GameObject setPanel3;
+    [Header("設定畫面4")]
+    public GameObject setPanel4;
+    [Header("開發素材畫面1")]
+    public GameObject soursePanel1;
+    [Header("開發素材畫面2")]
+    public GameObject soursePanel2;
+    [Header("開發素材畫面3")]
+    public GameObject soursePanel3;
+    [Header("開發素材畫面4")]
+    public GameObject soursePanel4;
+
+    [Header("開發素材按鈕1")]
+    public Button btnSource1;
+    [Header("開發素材按鈕2")]
+    public Button btnSource2;
+    [Header("開發素材按鈕3")]
+    public Button btnSource3;
+    [Header("開發素材按鈕4")]
+    public Button btnSource4;
+
     [Header("武器庫畫面")]
     public GameObject AllWeapon;
     [Header("武器1畫面")]
@@ -111,18 +137,31 @@ public class MenuManager : MonoBehaviour
     public Text jewel3;
     public Text jewel4;
 
+    private Button setButton1;
+    private Button setButton2;
+    private Button setButton3;
+    private Button setButton4;
+
     int a = 1;
     int b = 1;
     #endregion
 
     private void Start()
     {
+        setButton1 = GameObject.Find("設定按鈕1").GetComponent<Button>();
+        setButton2 = GameObject.Find("設定按鈕2").GetComponent<Button>();
+        setButton3 = GameObject.Find("設定按鈕3").GetComponent<Button>();
+        setButton4 = GameObject.Find("設定按鈕4").GetComponent<Button>();
+
         data.hp = data.hpMax;
         data.WeaponAttack = 30;
-        Updatedata();
-        Allowbtn();
+
         Player.bullet = Weapon1;
         Player.pet1 = pets_Empty;
+
+        Updatedata();
+        Allowbtn();
+        SetButton();
     }
 
     /// <summary>
@@ -729,4 +768,99 @@ public class MenuManager : MonoBehaviour
         Player.pet1 = pets_2;
         NoShowPets();
     }
+
+    /// <summary>
+    /// 點擊設定按鈕
+    /// </summary>
+    private void SetButton()
+    {
+        setButton1.onClick.AddListener(ShowSetPanel);
+        setButton2.onClick.AddListener(ShowSetPanel);
+        setButton3.onClick.AddListener(ShowSetPanel);
+        setButton4.onClick.AddListener(ShowSetPanel);
+    }
+
+    /// <summary>
+    /// 顯示設定畫面
+    /// </summary>
+    private void ShowSetPanel()
+    {
+        setPanel1.SetActive(true);
+        setPanel2.SetActive(true);
+        setPanel3.SetActive(true);
+        setPanel4.SetActive(true);
+    }
+
+    public void NoShowSetPanel1()
+    {
+        setPanel1.SetActive(false);
+        setPanel2.SetActive(false);
+        setPanel3.SetActive(false);
+        setPanel4.SetActive(false);
+    }
+
+    public void NoShowSetPanel2()
+    {
+        setPanel1.SetActive(false);
+        setPanel2.SetActive(false);
+        setPanel3.SetActive(false);
+        setPanel4.SetActive(false);
+    }
+
+    public void NoShowSetPanel3()
+    {
+        setPanel1.SetActive(false);
+        setPanel2.SetActive(false);
+        setPanel3.SetActive(false);
+        setPanel4.SetActive(false);
+    }
+
+    public void NoShowSetPanel4()
+    {
+        setPanel1.SetActive(false);
+        setPanel2.SetActive(false);
+        setPanel3.SetActive(false);
+        setPanel4.SetActive(false);
+    }
+
+    public void NoShowSourcePanel1()
+    {
+        soursePanel1.SetActive(false);
+    }
+
+    public void NoShowSourcePanel2()
+    {
+        soursePanel2.SetActive(false);
+    }
+
+    public void NoShowSourcePanel3()
+    {
+        soursePanel3.SetActive(false);
+    }
+
+    public void NoShowSourcePanel4()
+    {
+        soursePanel4.SetActive(false);
+    }
+
+    public void BtnSource1()
+    {
+        soursePanel1.SetActive(true);
+    }
+
+    public void BtnSource2()
+    {
+        soursePanel2.SetActive(true);
+    }
+
+    public void BtnSource3()
+    {
+        soursePanel3.SetActive(true);
+    }
+
+    public void BtnSource4()
+    {
+        soursePanel4.SetActive(true);
+    }
+
 }
