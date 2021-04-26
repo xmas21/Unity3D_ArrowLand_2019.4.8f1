@@ -3,11 +3,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-
 public class LevelManager : MonoBehaviour
 {
     public GameObject objLight;
     public GameObject ramdomSkill;
+    public Enemy[] enemys;
 
     [Header("是否顯示隨機技能")]
     public bool autoShowSkill;
@@ -27,19 +27,41 @@ public class LevelManager : MonoBehaviour
     [Header("關卡16是否通關")]
     public static bool bl_16 = false;
 
-    private Player player;
-    private Animator door;
-    private Image imgCross;
+    public Player player;
+    public Animator door;
+    public Image imgCross;
 
-    private void Start()
+
+    protected virtual void Start()
     {
         door = GameObject.Find("木頭門").GetComponent<Animator>();
         imgCross = GameObject.Find("轉場效果").GetComponent<Image>();
 
         player = FindObjectOfType<Player>();
 
+        insBoss = false;
+
         if (autoShowSkill) ShowSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
+    }
+
+    /// <summary>
+    /// 是否通關
+    /// </summary>
+    protected virtual void IsPass()
+    {
+        enemys = FindObjectsOfType<Enemy>();
+
+        if (enemys.Length == 0 && insBoss == false)
+        {
+            Pass();
+            return;
+        }
+    }
+
+    private void Update()
+    {
+        IsPass();
     }
 
     /// <summary>
@@ -51,21 +73,18 @@ public class LevelManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name.Contains("魔王1"))
         {
-            insBoss = true;
             async = SceneManager.LoadSceneAsync(0);
             bl_6 = true;
             ValueReset();
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王2"))
         {
-            insBoss = true;
             async = SceneManager.LoadSceneAsync(0);
             bl_11 = true;
             ValueReset();
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王3"))
         {
-            insBoss = true;
             async = SceneManager.LoadSceneAsync(0);
             bl_16 = true;
             ValueReset();
@@ -156,7 +175,7 @@ public class LevelManager : MonoBehaviour
     /// <summary>
     /// 顯示技能
     /// </summary>
-    private void ShowSkill()
+    public void ShowSkill()
     {
         ramdomSkill.SetActive(true);
     }

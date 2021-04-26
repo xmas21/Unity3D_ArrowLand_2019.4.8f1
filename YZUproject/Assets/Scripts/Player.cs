@@ -74,7 +74,6 @@ public class Player : MonoBehaviour
     {
         UpdateValue();
         Move();
-        IsPass();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -279,20 +278,6 @@ public class Player : MonoBehaviour
         temp.AddComponent<Bullet>();
         temp.GetComponent<Bullet>().damage = attack + criticalAttack + attack_WP;
         temp.GetComponent<Bullet>().playerBullet = true;
-    }
-
-    /// <summary>
-    /// 是否通關
-    /// </summary>
-    private void IsPass()
-    {
-        enemys = FindObjectsOfType<Enemy>();
-
-        if (enemys.Length == 0 && levelManager.insBoss==false)
-        {
-            levelManager.Pass();
-            return;
-        }
     }
 
     /// <summary>
