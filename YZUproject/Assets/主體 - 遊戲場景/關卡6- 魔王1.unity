@@ -3698,6 +3698,11 @@ PrefabInstance:
       propertyPath: mainMenu
       value: 
       objectReference: {fileID: 871955165}
+    - target: {fileID: 8414213142779679524, guid: d2c77c1ab7a406747899e27998224f4c,
+        type: 3}
+      propertyPath: insBoss
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8414213142779679525, guid: d2c77c1ab7a406747899e27998224f4c,
         type: 3}
       propertyPath: m_LocalPosition.x

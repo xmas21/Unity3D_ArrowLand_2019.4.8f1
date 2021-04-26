@@ -270,7 +270,7 @@ Transform:
   - {fileID: 1302749925}
   - {fileID: 1019351975}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &60631738
 Mesh:
@@ -278,7 +278,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh117582
+  m_Name: pb_Mesh39434
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -906,7 +906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400058, guid: 9ce6002518e821e43b4f97c76700fbac, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400058, guid: 9ce6002518e821e43b4f97c76700fbac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1021,7 +1021,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh117480
+  m_Name: pb_Mesh39332
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1347,7 +1347,7 @@ Transform:
   m_Children:
   - {fileID: 452948633}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &847440304
 MonoBehaviour:
@@ -3093,7 +3093,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1272833367
 GameObject:
@@ -3262,8 +3262,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1641550915}
-  - component: {fileID: 1641550914}
   - component: {fileID: 1641550916}
+  - component: {fileID: 1641550914}
   m_Layer: 0
   m_Name: "\u904A\u6232\u7BA1\u7406\u5668"
   m_TagString: Untagged
@@ -3289,6 +3289,7 @@ MonoBehaviour:
   autoOpenDoor: 1
   panelRevival: {fileID: 159448419}
   mainMenu: {fileID: 1676960680611922731}
+  insBoss: 0
 --- !u!4 &1641550915
 Transform:
   m_ObjectHideFlags: 0
@@ -3321,7 +3322,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh117546
+  m_Name: pb_Mesh39398
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4179,7 +4180,7 @@ Transform:
   - {fileID: 83758526}
   - {fileID: 720808685}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2136033202 stripped
 GameObject:
@@ -4205,12 +4206,6 @@ MonoBehaviour:
   test_pet: {fileID: 9172607311221019281, guid: 51e7239e458fcd64bb74aa118ef03928,
     type: 3}
   speed: 260
-  hp: 0
-  hpMax: 0
-  attack: 0
-  attack_WP: 0
-  criticalAttack: 0
-  cd: 0
   randomSkill: {fileID: 721216923}
   insBoss: 0
 --- !u!136 &2136033205
@@ -4329,7 +4324,7 @@ PrefabInstance:
     - target: {fileID: 8958380604120565690, guid: 2669eeaaaaa9ea740815a99a5e301ae2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8958380604120565690, guid: 2669eeaaaaa9ea740815a99a5e301ae2,
         type: 3}
@@ -4653,7 +4648,7 @@ PrefabInstance:
     - target: {fileID: 1439658156956587781, guid: cc5285f376d391042bdf4628b15c5cd1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1439658156956587781, guid: cc5285f376d391042bdf4628b15c5cd1,
         type: 3}

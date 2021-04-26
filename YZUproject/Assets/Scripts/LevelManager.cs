@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
     [Header("主選單")]
     public GameObject mainMenu;
 
+    [Header("關卡是否生大王")]
+    public  bool insBoss ;
     [Header("關卡6是否通關")]
     public static bool bl_6 = false;
     [Header("關卡11是否通關")]
@@ -49,32 +51,29 @@ public class LevelManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name.Contains("魔王1"))
         {
+            insBoss = true;
             async = SceneManager.LoadSceneAsync(0);
             bl_6 = true;
+            ValueReset();
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王2"))
         {
+            insBoss = true;
             async = SceneManager.LoadSceneAsync(0);
             bl_11 = true;
+            ValueReset();
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王3"))
         {
+            insBoss = true;
             async = SceneManager.LoadSceneAsync(0);
             bl_16 = true;
+            ValueReset();
         }
         else
         {
             int index = SceneManager.GetActiveScene().buildIndex;
             async = SceneManager.LoadSceneAsync(index + 1);
-        }
-
-        if (SceneManager.GetActiveScene().name.Contains("魔王前一關"))
-        {
-            player.insBoss = false;
-        }
-        else
-        {
-            player.insBoss = true;
         }
 
         async.allowSceneActivation = false;
@@ -142,6 +141,7 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
+        ValueReset();
     }
 
     /// <summary>
@@ -168,5 +168,18 @@ public class LevelManager : MonoBehaviour
     {
         objLight.SetActive(true);
         door.SetTrigger("開門觸發");
+    }
+
+    /// <summary>
+    /// 玩家數值重置
+    /// </summary>
+    private void ValueReset()
+    {
+        Player.hp = player.data.hp;
+        Player.hpMax = player.data.hpMax;
+        Player.attack = player.data.attack;
+        Player.attack_WP = player.data.WeaponAttack;
+        Player.cd = player.data.cd;
+        Player.criticalAttack = player.data.CriticalAttack;
     }
 }

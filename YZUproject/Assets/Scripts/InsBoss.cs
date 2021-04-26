@@ -6,11 +6,11 @@ public class InsBoss : MonoBehaviour
     public GameObject boss;
 
     private BoxCollider box;
-    private Player player;
+    private LevelManager level;
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
+        level = FindObjectOfType<LevelManager>();
         box = GetComponent<BoxCollider>();
     }
 
@@ -18,7 +18,7 @@ public class InsBoss : MonoBehaviour
     {
         if (col.name == "玩家")
         {
-            player.insBoss = true;
+            level.insBoss = false;
             boss.SetActive(true);
             box.enabled = false;
         }

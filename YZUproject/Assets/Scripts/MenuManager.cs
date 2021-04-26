@@ -141,6 +141,7 @@ public class MenuManager : MonoBehaviour
     private Button setButton2;
     private Button setButton3;
     private Button setButton4;
+    private Player player;
 
     int a = 1;
     int b = 1;
@@ -148,13 +149,12 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<Player>();
+
         setButton1 = GameObject.Find("設定按鈕1").GetComponent<Button>();
         setButton2 = GameObject.Find("設定按鈕2").GetComponent<Button>();
         setButton3 = GameObject.Find("設定按鈕3").GetComponent<Button>();
         setButton4 = GameObject.Find("設定按鈕4").GetComponent<Button>();
-
-        data.hp = data.hpMax;
-        data.WeaponAttack = 30;
 
         Player.bullet = Weapon1;
         Player.pet1 = pets_Empty;
@@ -162,6 +162,28 @@ public class MenuManager : MonoBehaviour
         Updatedata();
         Allowbtn();
         SetButton();
+    }
+
+    /// <summary>
+    /// 更新資訊
+    /// </summary>
+    private void Updatedata()
+    {
+        coin1.text = data.PlayerCoin.ToString();
+        coin2.text = data.PlayerCoin.ToString();
+        coin3.text = data.PlayerCoin.ToString();
+        coin4.text = data.PlayerCoin.ToString();
+        jewel1.text = data.PlayerJewel.ToString();
+        jewel2.text = data.PlayerJewel.ToString();
+        jewel3.text = data.PlayerJewel.ToString();
+        jewel4.text = data.PlayerJewel.ToString();
+
+        Player.hp = player.data.hp;
+        Player.hpMax = player.data.hpMax;
+        Player.attack = player.data.attack;
+        Player.attack_WP = player.data.WeaponAttack;
+        Player.cd = player.data.cd;
+        Player.criticalAttack = player.data.CriticalAttack;
     }
 
     /// <summary>
@@ -284,20 +306,6 @@ public class MenuManager : MonoBehaviour
         PanelNoMoney.SetActive(false);
     }
 
-    /// <summary>
-    /// 更新資訊
-    /// </summary>
-    private void Updatedata()
-    {
-        coin1.text = data.PlayerCoin.ToString();
-        coin2.text = data.PlayerCoin.ToString();
-        coin3.text = data.PlayerCoin.ToString();
-        coin4.text = data.PlayerCoin.ToString();
-        jewel1.text = data.PlayerJewel.ToString();
-        jewel2.text = data.PlayerJewel.ToString();
-        jewel3.text = data.PlayerJewel.ToString();
-        jewel4.text = data.PlayerJewel.ToString();
-    }
 
     /// <summary>
     /// 選擇關卡

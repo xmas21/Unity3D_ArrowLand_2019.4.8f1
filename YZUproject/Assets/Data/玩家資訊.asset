@@ -19,5 +19,5 @@ MonoBehaviour:
   attack: 50
   CriticalAttack: 0
   WeaponAttack: 30
-  PlayerCoin: 3000
+  PlayerCoin: 3128
   PlayerJewel: 0

@@ -12,26 +12,27 @@ public class Player : MonoBehaviour
     public GameObject test_bullet;
     [Header("預設寵物")]
     public GameObject test_pet;
+
     [Header("移動速度"), Range(0, 1000)]
     public float speed = 10;
+
     [Header("生命"), Range(0, 1000)]
-    public float hp;
+    public static float hp;
     [Header("最大生命"), Range(0, 1000)]
-    public float hpMax;
+    public static float hpMax;
     [Header("角色攻擊力"), Range(0, 1000)]
-    public float attack;
+    public static float attack;
     [Header("武器攻擊力"), Range(0, 1000)]
-    public float attack_WP;
+    public static float attack_WP;
     [Header("角色爆擊傷害"), Range(0, 1000)]
-    public float criticalAttack;
+    public static float criticalAttack;
     [Header("攻擊冷卻"), Range(0, 1000)]
-    public float cd;
+    public static float cd;
 
     public RandomSkill randomSkill;
 
     public static GameObject bullet;
     public static GameObject pet1;
-    public  bool insBoss = true;  //魔王是否生成
 
     private float timer;
     private float[] enemyDistanse;
@@ -65,12 +66,6 @@ public class Player : MonoBehaviour
         bullet = test_bullet; // 設定預設子彈
         pet1 = test_pet;      // 設定預設寵物
         data.hp = data.hpMax; // 設定生命力
-        hp = data.hp;
-        hpMax = data.hpMax;
-        attack = data.attack;
-        cd = data.cd;
-        criticalAttack = data.CriticalAttack;
-        attack_WP = data.WeaponAttack;
 
         Instantiate(pet1);
     }
@@ -293,14 +288,16 @@ public class Player : MonoBehaviour
     {
         enemys = FindObjectsOfType<Enemy>();
 
-        if (enemys.Length == 0 && insBoss == true )
+        if (enemys.Length == 0 && levelManager.insBoss==false)
         {
             levelManager.Pass();
-            insBoss = false;
             return;
         }
     }
 
+    /// <summary>
+    /// 生命值更新
+    /// </summary>
     private void UpdateValue()
     {
         hpText.text = hp.ToString("f0");

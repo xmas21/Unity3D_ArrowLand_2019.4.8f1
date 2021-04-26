@@ -42,14 +42,14 @@ public class HpMpManager : MonoBehaviour
         textValue.color = valueColor;   // 更新文字.顏色
         rtValue.localScale = size;      // 更新文字.尺寸
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 15; i++)
         {
-            textValue.color += new Color(0, 0, 0, 0.2f);
+            textValue.color += new Color(0, 0, 0, 0.4f);
             rtValue.anchoredPosition += Vector2.up * 4;
             yield return new WaitForSeconds(0.01f);
         }
 
-        rtValue.anchoredPosition = new Vector2(0, 70);
+        rtValue.anchoredPosition = new Vector2(0, 60);
         textValue.color = new Color(0, 0, 0, 0);
     }
 }
