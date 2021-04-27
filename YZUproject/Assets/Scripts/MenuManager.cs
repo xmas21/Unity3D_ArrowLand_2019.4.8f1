@@ -137,6 +137,9 @@ public class MenuManager : MonoBehaviour
     public Text jewel3;
     public Text jewel4;
 
+    private Text hpValue;
+    private Text atkValue;
+    private Text name;
     private Button setButton1;
     private Button setButton2;
     private Button setButton3;
@@ -155,6 +158,9 @@ public class MenuManager : MonoBehaviour
         setButton2 = GameObject.Find("設定按鈕2").GetComponent<Button>();
         setButton3 = GameObject.Find("設定按鈕3").GetComponent<Button>();
         setButton4 = GameObject.Find("設定按鈕4").GetComponent<Button>();
+        hpValue = GameObject.Find("生命值").GetComponent<Text>();
+        atkValue = GameObject.Find("攻擊力").GetComponent<Text>();
+        name = GameObject.Find("玩家名稱").GetComponent<Text>();
 
         Player.bullet = Weapon1;
         Player.pet1 = pets_Empty;
@@ -177,6 +183,11 @@ public class MenuManager : MonoBehaviour
         jewel2.text = data.PlayerJewel.ToString();
         jewel3.text = data.PlayerJewel.ToString();
         jewel4.text = data.PlayerJewel.ToString();
+
+        float atk = data.attack + data.WeaponAttack + data.CriticalAttack;
+        atkValue.text = atk.ToString();
+        hpValue.text = data.hp.ToString("F0");
+        name.text = data.name + "の裝備";
 
         Player.hp = player.data.hp;
         Player.hpMax = player.data.hpMax;
@@ -305,7 +316,6 @@ public class MenuManager : MonoBehaviour
     {
         PanelNoMoney.SetActive(false);
     }
-
 
     /// <summary>
     /// 選擇關卡

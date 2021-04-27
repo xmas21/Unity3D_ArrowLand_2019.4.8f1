@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809926bd747c02f42be110459403f423, type: 3}
   m_Name: "\u73A9\u5BB6\u8CC7\u8A0A"
   m_EditorClassIdentifier: 
-  hp: 600
-  hpMax: 600
+  name: "\u863F\u8514"
+  hp: 650
+  hpMax: 650
   cd: 0.5
   power: 1200
-  attack: 50
+  attack: 60
   CriticalAttack: 0
-  WeaponAttack: 30
-  PlayerCoin: 3128
+  WeaponAttack: 80
+  PlayerCoin: 2426
   PlayerJewel: 0
