@@ -5,16 +5,12 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    #region 欄位
     [Header("玩家資料")]
     public PlayerDate data;
     [Header("預設武器")]
     public GameObject test_bullet;
     [Header("預設寵物")]
     public GameObject test_pet;
-
-    [Header("移動速度"), Range(0, 1000)]
-    public float speed = 10;
 
     [Header("生命"), Range(0, 1000)]
     public static float hp;
@@ -28,6 +24,8 @@ public class Player : MonoBehaviour
     public static float criticalAttack;
     [Header("攻擊冷卻"), Range(0, 1000)]
     public static float cd;
+    [Header("移動速度"), Range(0, 1000)]
+    public static float speed;
 
     public RandomSkill randomSkill;
 
@@ -47,8 +45,6 @@ public class Player : MonoBehaviour
     private Enemy[] enemys;
     private SkillData skillData;
 
-
-    #endregion 
 
     private void Start()
     {

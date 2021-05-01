@@ -75,19 +75,16 @@ public class LevelManager : MonoBehaviour
         {
             async = SceneManager.LoadSceneAsync(0);
             bl_6 = true;
-            ValueReset();
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王2"))
         {
             async = SceneManager.LoadSceneAsync(0);
             bl_11 = true;
-            ValueReset();
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王3"))
         {
             async = SceneManager.LoadSceneAsync(0);
             bl_16 = true;
-            ValueReset();
         }
         else
         {
@@ -160,7 +157,6 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
-        ValueReset();
     }
 
     /// <summary>
@@ -189,16 +185,4 @@ public class LevelManager : MonoBehaviour
         door.SetTrigger("開門觸發");
     }
 
-    /// <summary>
-    /// 玩家數值重置
-    /// </summary>
-    private void ValueReset()
-    {
-        Player.hp = player.data.hp;
-        Player.hpMax = player.data.hpMax;
-        Player.attack = player.data.attack;
-        Player.attack_WP = player.data.WeaponAttack;
-        Player.cd = player.data.cd;
-        Player.criticalAttack = player.data.CriticalAttack;
-    }
 }

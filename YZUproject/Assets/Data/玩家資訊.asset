@@ -13,12 +13,55 @@ MonoBehaviour:
   m_Name: "\u73A9\u5BB6\u8CC7\u8A0A"
   m_EditorClassIdentifier: 
   name: "\u863F\u8514"
-  hp: 650
-  hpMax: 650
-  cd: 0.5
-  power: 1200
-  attack: 60
+  hp: 600
+  attack: 40
   CriticalAttack: 0
+  cd: 0.8
+  speed: 260
+  hpMax: 600
+  power: 1200
   WeaponAttack: 80
-  PlayerCoin: 2426
+  PlayerCoin: 2483
   PlayerJewel: 0
+  ownWeapons:
+  - name: "\u5C0F\u5C0F\u5200"
+    owned: 1
+    level: 1
+  - name: "\u523A\u9AA8\u528D"
+    owned: 0
+    level: 0
+  - name: "\u7834\u5929\u69CC"
+    owned: 0
+    level: 0
+  - name: "\u8ED2\u8F45\u528D"
+    owned: 0
+    level: 0
+  - name: "\u7389\u77F3\u528D"
+    owned: 0
+    level: 0
+  - name: "\u51B0\u68D2\u528D"
+    owned: 0
+    level: 0
+  - name: "\u80FD\u91CF\u528D"
+    owned: 0
+    level: 0
+  - name: "\u897F\u74DC\u528D"
+    owned: 0
+    level: 0
+  - name: "\u5929\u9B54\u528D"
+    owned: 0
+    level: 0
+  ownPets:
+  - name: "Q\u840C\u72AC"
+    owned: 0
+    level: 0
+  - name: "\u562F\u5929\u864E"
+    owned: 0
+    level: 0
+  talents:
+  - name: "\u751F\u547D"
+    level: 0
+  - name: "\u529B\u91CF"
+    level: 0
+  - name: "\u8DD1\u901F"
+    level: 0
