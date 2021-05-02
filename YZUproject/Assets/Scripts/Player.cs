@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public static float cd;
     [Header("移動速度"), Range(0, 1000)]
     public static float speed;
+    [Header("每秒回血"), Range(0, 1000)]
+    public static float rehp;
 
     public RandomSkill randomSkill;
 
@@ -44,7 +46,6 @@ public class Player : MonoBehaviour
     private HpMpManager hpMpManager;
     private Enemy[] enemys;
     private SkillData skillData;
-
 
     private void Start()
     {
@@ -70,6 +71,7 @@ public class Player : MonoBehaviour
     {
         UpdateValue();
         Move();
+        RestoreHp();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -86,10 +88,13 @@ public class Player : MonoBehaviour
     /// <param name="damage"></param>
     public void Hit(float damage)
     {
-        hp -= damage;
-        hpMpManager.UpdateHpBar(hp, data.hpMax);
+        float dmg = damage * (1 - data.armor); // 減傷後的傷害
 
-        StartCoroutine(hpMpManager.ShowValue(damage, "-", Vector3.one, Color.white));
+        int dmgValue = (int)dmg;  // 把浮點樹轉整數(無條件捨去)
+
+        hp -= dmgValue;
+
+        StartCoroutine(hpMpManager.ShowValue(dmgValue, "-", Vector3.one, Color.white));
 
         if (hp <= 0) Dead();
     }
@@ -282,5 +287,15 @@ public class Player : MonoBehaviour
     private void UpdateValue()
     {
         hpText.text = hp.ToString("f0");
+    }
+
+    /// <summary>
+    /// 每秒回復生命
+    /// </summary>
+    private void RestoreHp()
+    {
+        hp = Mathf.Clamp(hp, 0, hpMax);
+        hp += rehp * Time.deltaTime;
+        hpMpManager.UpdateHpBar(hp, hpMax);
     }
 }

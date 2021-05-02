@@ -85,10 +85,13 @@ public class Enemy : MonoBehaviour
     /// <param name="damage">傷害</param>
     public void Hit(float damage)
     {
-        hp -= damage;
+        int dmg = (int)damage;
+
+        hp -= dmg;
+
         hpMpManager.UpdateHpBar(hp, data.hpMax);
 
-        StartCoroutine(hpMpManager.ShowValue(damage, "-", Vector3.one, Color.white));
+        StartCoroutine(hpMpManager.ShowValue(dmg, "-", Vector3.one, Color.white));
 
         if (hp <= 0) Dead();
     }

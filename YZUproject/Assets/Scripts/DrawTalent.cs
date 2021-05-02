@@ -6,7 +6,7 @@ public class DrawTalent : MonoBehaviour
 {
     [Header("玩家資料")]
     public PlayerDate data;
-    [Header("所有天賦的按鈕")]
+    [Header("所有天賦的按鈕圖案")]
     public Image[] talentBtn;
 
     private Button drawBtn;    // 抽天賦按鈕
@@ -47,11 +47,15 @@ public class DrawTalent : MonoBehaviour
         Levelup(index);
     }
 
+    /// <summary>
+    /// 天賦升級
+    /// </summary>
+    /// <param name="index">天賦編號</param>
     private void Levelup(int index)
     {
         if (index == 0)
         {
-            data.hp += 180;
+            data.hp += 150;
         }
         else if (index == 1)
         {
@@ -59,7 +63,19 @@ public class DrawTalent : MonoBehaviour
         }
         else if (index == 2)
         {
-            data.speed += 10;
+            data.CriticalAttack += 20;
+        }
+        else if (index == 3)
+        {
+            data.speed += 5;
+        }
+        else if (index == 4)
+        {
+            data.armor += 0.02f;
+        }
+        else if (index == 5)
+        {
+            data.rehp += 2;
         }
     }
 }

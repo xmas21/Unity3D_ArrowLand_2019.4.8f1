@@ -35,7 +35,7 @@ public class HpMpManager : MonoBehaviour
         hpBar.fillAmount = hpcurrent / hpMax;
     }
 
-    public IEnumerator ShowValue(float value, string mark, Vector3 size, Color valueColor)
+    public IEnumerator ShowValue(int value, string mark, Vector3 size, Color valueColor)
     {
         textValue.text = mark + value;  // 內容為 : 符號 + 數值 -90 , +50
         valueColor.a = 0;               // 顏色.透明度 = 0

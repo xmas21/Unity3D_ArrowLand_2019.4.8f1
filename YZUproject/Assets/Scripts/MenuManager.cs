@@ -95,7 +95,10 @@ public class MenuManager : MonoBehaviour
     private Text hpValue;      // 生命數值
     private Text hpTL;         // TL 代表天賦等級
     private Text atkTL;        // 天賦攻擊等級
-    private Text criticalTL;        // 天賦攻擊等級
+    private Text criticalTL;   // 爆擊
+    private Text speedTL;      // 跑速
+    private Text armorTL;      // 減傷
+    private Text rehpTL ;      // 回復生命
     private Text name;         // 玩家名稱
 
 
@@ -119,6 +122,9 @@ public class MenuManager : MonoBehaviour
         hpTL = GameObject.Find("生命等級").GetComponent<Text>();
         atkTL = GameObject.Find("力量等級").GetComponent<Text>(); 
         criticalTL = GameObject.Find("爆擊等級").GetComponent<Text>();
+        speedTL = GameObject.Find("跑速等級").GetComponent<Text>();
+        armorTL = GameObject.Find("減傷等級").GetComponent<Text>();
+        rehpTL = GameObject.Find("回血等級").GetComponent<Text>();
         ps = GameObject.Find("選單粒子效果");
         player = FindObjectOfType<Player>();
 
@@ -152,6 +158,9 @@ public class MenuManager : MonoBehaviour
         hpTL.text = player.data.talents[0].level.ToString();
         atkTL.text = player.data.talents[1].level.ToString();
         criticalTL.text = player.data.talents[2].level.ToString();
+        speedTL.text = player.data.talents[3].level.ToString();
+        armorTL.text = player.data.talents[4].level.ToString();
+        rehpTL.text = player.data.talents[5].level.ToString();
 
         Player.hp = player.data.hp;
         Player.hpMax = player.data.hpMax;
@@ -160,6 +169,7 @@ public class MenuManager : MonoBehaviour
         Player.cd = player.data.cd;
         Player.criticalAttack = player.data.CriticalAttack;
         Player.speed = player.data.speed;
+        Player.rehp = player.data.rehp;
     }
 
     /// <summary>
