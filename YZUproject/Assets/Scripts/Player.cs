@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         ani = GetComponent<Animator>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
 
-        hpText = GameObject.Find("生命值").GetComponent<Text>();
+        hpText = transform.GetChild(3).GetChild(3).GetComponent<Text>();
         joystick = GameObject.Find("固態搖桿").GetComponent<Joystick>(); // 取得指定元件 (Joystick中的固態搖桿)
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
 

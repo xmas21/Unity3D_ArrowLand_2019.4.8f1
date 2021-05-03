@@ -20,6 +20,8 @@ public class PlayerDate : ScriptableObject
     public float armor = 0;
     [Header("回血"), Range(0.01f, 2000)]
     public float rehp;
+    //****************************************************//
+
     [Header("最大血量"), Range(100, 30000)]
     public float hpMax;
     [Header("武器速度"), Range(1000, 5000)]

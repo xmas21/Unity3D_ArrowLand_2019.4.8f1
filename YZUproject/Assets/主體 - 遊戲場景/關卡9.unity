@@ -183,6 +183,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7024000792998046502, guid: cc5285f376d391042bdf4628b15c5cd1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7024000793428261450, guid: cc5285f376d391042bdf4628b15c5cd1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7024000793433948910, guid: cc5285f376d391042bdf4628b15c5cd1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7393825148328427867, guid: cc5285f376d391042bdf4628b15c5cd1,
         type: 3}
       propertyPath: m_Name
@@ -3789,7 +3804,7 @@ MeshCollider:
   m_GameObject: {fileID: 1211479672}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30

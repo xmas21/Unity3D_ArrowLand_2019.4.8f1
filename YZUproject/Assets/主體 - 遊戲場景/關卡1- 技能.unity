@@ -793,7 +793,7 @@ MeshCollider:
   m_GameObject: {fileID: 136606449}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -3285,11 +3285,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objLight: {fileID: 136606449}
   ramdomSkill: {fileID: 864589426}
+  enemys: []
   autoShowSkill: 1
   autoOpenDoor: 1
   panelRevival: {fileID: 159448419}
   mainMenu: {fileID: 1676960680611922731}
   insBoss: 0
+  player: {fileID: 0}
+  door: {fileID: 0}
+  imgCross: {fileID: 0}
 --- !u!4 &1641550915
 Transform:
   m_ObjectHideFlags: 0
@@ -4205,9 +4209,7 @@ MonoBehaviour:
     type: 3}
   test_pet: {fileID: 9172607311221019281, guid: 51e7239e458fcd64bb74aa118ef03928,
     type: 3}
-  speed: 260
   randomSkill: {fileID: 721216923}
-  insBoss: 0
 --- !u!136 &2136033205
 CapsuleCollider:
   m_ObjectHideFlags: 0

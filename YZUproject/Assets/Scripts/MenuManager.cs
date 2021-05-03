@@ -54,6 +54,13 @@ public class MenuManager : MonoBehaviour
     public GameObject weaponArea;
     [Header("寵物區塊")]
     public GameObject petArea;
+    [Header("是否點了設定按鈕")]
+    public bool isSet = false;
+
+    [Header("設定畫面退出按鈕")]
+    public Button[] setExit;
+    [Header("設定畫面")]
+    public GameObject[] setPanel;
 
     [Header("武器按鈕")]
     public Button[] weaponBtn;
@@ -62,17 +69,19 @@ public class MenuManager : MonoBehaviour
     [Header("武器畫面")]
     public GameObject[] weaponPanel;
 
-    [Header("設定畫面退出按鈕")]
-    public Button[] setExit;
-    [Header("設定畫面")]
-    public GameObject[] setPanel;
-
     [Header("人員素材按鈕")]
     public Button[] soueceBtn;
     [Header("人員素材退出按鈕")]
     public Button[] soueceExit;
     [Header("人員素材畫面")]
     public GameObject[] soursePanel;
+
+    [Header("天賦按鈕")]
+    public Button[] talentBtn;
+    [Header("天賦畫面")]
+    public GameObject[] talentPanel;
+    [Header("天賦數值")]
+    public Text[] talentValue;
 
     private GameObject ps;     // 粒子
 
@@ -86,21 +95,13 @@ public class MenuManager : MonoBehaviour
     private Button lowButton4;
     private Button atkButton;  // 選擇武器的按鈕
     private Button petButton;  // 選擇寵物的按鈕
-    private Button hpTL_Btn;   // 生命天賦按鈕
-    private Button atkTL_Btn;  // 力量天賦按鈕
 
     private Player player;
+    private DrawTalent draw;
 
-    private Text atkValue;     // 攻擊力數值
-    private Text hpValue;      // 生命數值
-    private Text hpTL;         // TL 代表天賦等級
-    private Text atkTL;        // 天賦攻擊等級
-    private Text criticalTL;   // 爆擊
-    private Text speedTL;      // 跑速
-    private Text armorTL;      // 減傷
-    private Text rehpTL ;      // 回復生命
+    private Text atkValue;     // 裝備 攻擊力數值
+    private Text hpValue;      // 裝備 生命數值
     private Text name;         // 玩家名稱
-
 
     private void Start()
     {
@@ -114,27 +115,42 @@ public class MenuManager : MonoBehaviour
         lowButton4 = GameObject.Find("天賦下方按鈕").GetComponent<Button>();
         atkButton = GameObject.Find("武器按鈕").GetComponent<Button>();
         petButton = GameObject.Find("寵物按鈕").GetComponent<Button>();
-        hpTL_Btn = GameObject.Find("生命按鈕").GetComponent<Button>();
-        atkTL_Btn = GameObject.Find("力量按鈕").GetComponent<Button>();
         hpValue = GameObject.Find("生命值").GetComponent<Text>();
         atkValue = GameObject.Find("攻擊力").GetComponent<Text>();
         name = GameObject.Find("玩家名稱").GetComponent<Text>();
-        hpTL = GameObject.Find("生命等級").GetComponent<Text>();
-        atkTL = GameObject.Find("力量等級").GetComponent<Text>(); 
-        criticalTL = GameObject.Find("爆擊等級").GetComponent<Text>();
-        speedTL = GameObject.Find("跑速等級").GetComponent<Text>();
-        armorTL = GameObject.Find("減傷等級").GetComponent<Text>();
-        rehpTL = GameObject.Find("回血等級").GetComponent<Text>();
         ps = GameObject.Find("選單粒子效果");
+
         player = FindObjectOfType<Player>();
+        draw = FindObjectOfType<DrawTalent>();
 
         Player.bullet = Weapon1;
         Player.pet1 = pets_Empty;
+
+        isSet = false;
 
         Updatedata();
         Allowbtn();
         ClickButton();
     }
+
+    private void Update()
+    {
+        if (isSet)
+        {
+            lowButton1.interactable = false;
+            lowButton2.interactable = false;
+            lowButton3.interactable = false;
+            lowButton4.interactable = false;
+        }
+        else if (isSet == false)
+        {
+            lowButton1.interactable = true;
+            lowButton2.interactable = true;
+            lowButton3.interactable = true;
+            lowButton4.interactable = true;
+        }
+    }
+
 
     /// <summary>
     /// 更新數值
@@ -150,17 +166,17 @@ public class MenuManager : MonoBehaviour
         jewel3.text = data.PlayerJewel.ToString();
         jewel4.text = data.PlayerJewel.ToString();
 
+        talentValue[0].text = "天賦生命值增加 + " + draw.hpValue;
+        talentValue[1].text = "天賦攻擊力增加 + " + draw.atkValue;
+        talentValue[2].text = "天賦爆擊增加 + " + draw.criticalValue;
+        talentValue[3].text = "天賦跑速增加 + " + draw.speedValue;
+        talentValue[4].text = "天賦減傷增加 + " + draw.armorValue;
+        talentValue[5].text = "天賦回復力增加 + " + draw.rehpValue;
+
         float atk = data.attack + data.WeaponAttack + data.CriticalAttack;
         atkValue.text = atk.ToString();
         hpValue.text = data.hp.ToString("F0");
         name.text = data.name + "の裝備";
-
-        hpTL.text = player.data.talents[0].level.ToString();
-        atkTL.text = player.data.talents[1].level.ToString();
-        criticalTL.text = player.data.talents[2].level.ToString();
-        speedTL.text = player.data.talents[3].level.ToString();
-        armorTL.text = player.data.talents[4].level.ToString();
-        rehpTL.text = player.data.talents[5].level.ToString();
 
         Player.hp = player.data.hp;
         Player.hpMax = player.data.hpMax;
@@ -196,13 +212,6 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     private void ClickButton()
     {
-        /*
-        setButton1.onClick.AddListener(ShowSetPanel);
-        setButton2.onClick.AddListener(ShowSetPanel);
-        setButton3.onClick.AddListener(ShowSetPanel);
-        setButton4.onClick.AddListener(ShowSetPanel);
-        */
-
         lowButton1.onClick.AddListener(NoShowParticle);
         lowButton2.onClick.AddListener(NoShowParticle);
         lowButton4.onClick.AddListener(NoShowParticle);
@@ -211,13 +220,46 @@ public class MenuManager : MonoBehaviour
         atkButton.onClick.AddListener(ShowWeaponArea);
         petButton.onClick.AddListener(ShowPetArea);
 
-        /*
+        setButton1.onClick.AddListener(() => { ShowSetPanel(0); });
+        setButton2.onClick.AddListener(() => { ShowSetPanel(1); });
+        setButton3.onClick.AddListener(() => { ShowSetPanel(2); });
+        setButton4.onClick.AddListener(() => { ShowSetPanel(3); });
+
+        for (int i = 0; i < setExit.Length; i++)
+        {
+            int index = i;
+            setExit[index].onClick.AddListener(() => { NoShowSetPanel(index); });
+        }
+
         for (int i = 0; i < weaponBtn.Length; i++)
         {
-            weaponBtn[i].onClick.AddListener(ShowWeaponPanel);
-            weaponExit[i].onClick.AddListener(NoShowWeaponPanel);
+            int index = i;
+            weaponBtn[index].onClick.AddListener(() => { ShowWeaponPanel(index); });
+            weaponExit[index].onClick.AddListener(() => { NoShowWeaponPanel(index); });
         }
-        */
+
+        for (int i = 0; i < soueceBtn.Length; i++)
+        {
+            int index = i;
+            soueceBtn[index].onClick.AddListener(() => { ShowSourcePanel(index); });
+            soueceExit[index].onClick.AddListener(() => { NoShowSourcePanel(index); });
+        }
+
+        for (int i = 0; i < talentBtn.Length; i++)
+        {
+            for (int j = 0; j < talentBtn.Length; j++)
+            {
+                int iindex = j;
+                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(0); });
+                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(1); });
+                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(2); });
+                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(3); });
+                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(4); });
+                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(5); });
+            }
+            int index = i;
+            talentBtn[index].onClick.AddListener(() => { ShowTalentPanel(index); });
+        }
     }
 
     /// <summary>
@@ -415,34 +457,45 @@ public class MenuManager : MonoBehaviour
         ps.SetActive(false);
     }
 
-    private void ShowSourcePanel(int n) // 開啟人素材員畫面
+    private void ShowSetPanel(int i) // 顯示設定畫面
     {
-        soursePanel[n].SetActive(true);
+        isSet = true;
+        setPanel[i].SetActive(true);
     }
 
-    private void NoShowSourcePanel(int n) // 關閉人員素材畫面
+    private void NoShowSetPanel(int i) // 關閉設定畫面
     {
-        soursePanel[n].SetActive(false);
+        isSet = false;
+        setPanel[i].SetActive(false);
     }
 
-    private void ShowSetPanel(int n) // 顯示設定畫面
+    private void ShowSourcePanel(int i) // 開啟人素材員畫面
     {
-        setPanel[n].SetActive(true);
+        soursePanel[i].SetActive(true);
     }
 
-    private void NoShowSetPanel(int n) // 關閉設定畫面
+    private void NoShowSourcePanel(int i) // 關閉人員素材畫面
     {
-        setPanel[n].SetActive(false);
+        soursePanel[i].SetActive(false);
     }
 
-    private void ShowWeaponPanel(int n) // 顯示武器畫面
+    private void ShowWeaponPanel(int i) // 顯示武器畫面
     {
-        weaponPanel[n].SetActive(true);
+        weaponPanel[i].SetActive(true);
     }
 
-    private void NoShowWeaponPanel(int n) // 不顯示武器畫面
+    private void NoShowWeaponPanel(int i) // 不顯示武器畫面
     {
-        weaponPanel[n].SetActive(false);
+        weaponPanel[i].SetActive(false);
     }
 
+    private void ShowTalentPanel(int i)  // 顯示天賦畫面
+    {
+        talentPanel[i].SetActive(true);
+    }
+
+    private void NoShowTalentPanel(int i) // 不顯示天賦畫面
+    {
+        talentPanel[i].SetActive(false);
+    }
 }

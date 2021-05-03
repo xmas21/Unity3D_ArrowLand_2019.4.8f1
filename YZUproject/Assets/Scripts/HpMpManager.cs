@@ -30,11 +30,24 @@ public class HpMpManager : MonoBehaviour
         transform.eulerAngles = new Vector3(50, -180, 0);
     }
 
+    /// <summary>
+    /// 更新生命條
+    /// </summary>
+    /// <param name="hpcurrent">當前生命</param>
+    /// <param name="hpMax">最大生命</param>
     public void UpdateHpBar(float hpcurrent, float hpMax)
     {
         hpBar.fillAmount = hpcurrent / hpMax;
     }
 
+    /// <summary>
+    /// 顯示傷害
+    /// </summary>
+    /// <param name="value">傷害</param>
+    /// <param name="mark">正負</param>
+    /// <param name="size">大小</param>
+    /// <param name="valueColor">顏色</param>
+    /// <returns></returns>
     public IEnumerator ShowValue(int value, string mark, Vector3 size, Color valueColor)
     {
         textValue.text = mark + value;  // 內容為 : 符號 + 數值 -90 , +50

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: "\u73A9\u5BB6\u8CC7\u8A0A"
   m_EditorClassIdentifier: 
   name: "\u863F\u8514"
-  hp: 600
-  attack: 40
+  hp: 900
+  attack: 60
   CriticalAttack: 0
   cd: 0.8
-  speed: 260
-  armor: 0.04
-  rehp: 1
+  speed: 265
+  armor: 0.06
+  rehp: 3
   hpMax: 600
   power: 1200
-  WeaponAttack: 80
+  WeaponAttack: 30
   PlayerCoin: 2930
   PlayerJewel: 0
   ownWeapons:
@@ -88,7 +88,7 @@ MonoBehaviour:
     level: 0
   - name: "\u8DD1\u901F"
     level: 0
-  - name: "\u8DD1\u901F"
+  - name: "\u6E1B\u50B7"
     level: 0
   - name: "\u56DE\u8840"
     level: 0
