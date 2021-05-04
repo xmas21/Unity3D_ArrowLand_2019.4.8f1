@@ -1961,7 +1961,7 @@ MeshCollider:
   m_GameObject: {fileID: 1211479672}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -4326,7 +4326,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-52382
+  m_Name: pb_Mesh-11422
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4545,6 +4545,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7024000792998046502, guid: cc5285f376d391042bdf4628b15c5cd1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7024000793428261450, guid: cc5285f376d391042bdf4628b15c5cd1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7024000793433948910, guid: cc5285f376d391042bdf4628b15c5cd1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7393825148328427867, guid: cc5285f376d391042bdf4628b15c5cd1,
         type: 3}
       propertyPath: m_Name
@@ -4745,7 +4760,7 @@ PrefabInstance:
     - target: {fileID: 3495057799610870611, guid: fe1f198b91f9b8e4ba2a4099742a2e53,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8974833
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 3495057799610870611, guid: fe1f198b91f9b8e4ba2a4099742a2e53,
         type: 3}

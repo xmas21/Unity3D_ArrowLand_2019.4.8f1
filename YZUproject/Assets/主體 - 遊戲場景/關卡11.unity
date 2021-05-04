@@ -2424,10 +2424,10 @@ Transform:
   - {fileID: 1786130377}
   - {fileID: 1963119638}
   - {fileID: 1692819263}
-  - {fileID: 1465412173}
   - {fileID: 1639277731}
-  - {fileID: 2049069171}
+  - {fileID: 1465412173}
   - {fileID: 399098287}
+  - {fileID: 2049069171}
   m_Father: {fileID: 162656926}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3722,7 +3722,7 @@ MeshCollider:
   m_GameObject: {fileID: 1211479672}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30

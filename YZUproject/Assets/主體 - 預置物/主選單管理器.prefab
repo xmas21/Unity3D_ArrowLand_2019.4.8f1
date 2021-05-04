@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7301704232223281805}
   - component: {fileID: 7301704232223281804}
+  - component: {fileID: 999952435}
   m_Layer: 0
-  m_Name: "\u5834\u666F\u7BA1\u7406\u5668"
+  m_Name: "\u4E3B\u9078\u55AE\u7BA1\u7406\u5668"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,15 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
-  BuyPanelAttack: {fileID: 0}
-  BuyPanelHp: {fileID: 0}
-  PanelNoMoney: {fileID: 0}
   chooseLevel: {fileID: 0}
-  hpLevel: {fileID: 0}
-  attackLevel: {fileID: 0}
   btn6: {fileID: 0}
   btn11: {fileID: 0}
   btn16: {fileID: 0}
+  Weapon1: {fileID: 6088696310604196177, guid: 673f1482b16446347a78f3e839ca3c84, type: 3}
+  Weapon2: {fileID: 1887206081874044908, guid: 1f963493bc8427644bf60014802bf62b, type: 3}
+  Weapon3: {fileID: 4594250779954693747, guid: 59d641faee24359478e5f67d3feb41ae, type: 3}
+  Weapon4: {fileID: 542820297688161614, guid: 04530a58b47f0b042abe668491421cd3, type: 3}
+  Weapon5: {fileID: 9183052912762396343, guid: 5779b3b7d4218cf458516dd9e5d192be, type: 3}
+  Weapon6: {fileID: 3722457102289915776, guid: 2de52ba4540bc064bb97c53d18155d63, type: 3}
+  pets_Empty: {fileID: 9172607311221019281, guid: 51e7239e458fcd64bb74aa118ef03928,
+    type: 3}
+  pets_1: {fileID: 8218885869101436693, guid: 7a5bef797cb27414e9bf0a5cacdcf785, type: 3}
+  pets_2: {fileID: 6886716727398770913, guid: c83b340190da30249be3b3e77a55622e, type: 3}
   coin1: {fileID: 0}
   coin2: {fileID: 0}
   coin3: {fileID: 0}
@@ -61,3 +67,113 @@ MonoBehaviour:
   jewel2: {fileID: 0}
   jewel3: {fileID: 0}
   jewel4: {fileID: 0}
+  weaponArea: {fileID: 0}
+  petArea: {fileID: 0}
+  setExit:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  setPanel:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponBtn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponExit:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponPanel:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  soueceBtn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  soueceExit:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  soursePanel:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  talentBtn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  talentPanel:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  talentValue:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &999952435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301704232223281807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ab296e333a35346b6693c7439def60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
+  noMoney: {fileID: 0}
+  talentBtn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  loop: 3
+  cost: 100
+  count: 0
+  hpValue: 0
+  atkValue: 0
+  criticalValue: 0
+  speedValue: 0
+  armorValue: 0
+  rehpValue: 0
+  close1: {fileID: 0}
+  close2: {fileID: 0}

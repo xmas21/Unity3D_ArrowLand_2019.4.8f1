@@ -159,27 +159,18 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    /// <summary>
-    /// 繼續遊戲
-    /// </summary>
-    public void ResumeGame()
+    public void ResumeGame() // 繼續遊戲
     {
         mainMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
-    /// <summary>
-    /// 顯示技能
-    /// </summary>
-    public void ShowSkill()
+    public void ShowSkill() // 顯示抽技能
     {
         ramdomSkill.SetActive(true);
     }
 
-    /// <summary>
-    /// 開門
-    /// </summary>
-    private void Opendoor()
+    private void Opendoor() //開門
     {
         objLight.SetActive(true);
         door.SetTrigger("開門觸發");

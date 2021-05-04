@@ -29,8 +29,6 @@ public class Player : MonoBehaviour
     [Header("每秒回血"), Range(0, 1000)]
     public static float rehp;
 
-    public RandomSkill randomSkill;
-
     public static GameObject bullet;
     public static GameObject pet1;
 

@@ -7,55 +7,28 @@ public class MenuManager : MonoBehaviour
 {
     [Header("玩家資料")]
     public PlayerDate data;
-    [Header("選擇關卡畫面")]
-    public GameObject chooseLevel;
-    [Header("生命等級")]
-    public Text hpLevel;
-    [Header("攻擊力等級")]
-    public Text attackLevel;
     [Header("關卡6按鈕")]
     public Button btn6;
     [Header("關卡11按鈕")]
     public Button btn11;
     [Header("關卡16按鈕")]
     public Button btn16;
-
-    [Header("玩家武器1")]
-    public GameObject Weapon1;
-    [Header("玩家武器2")]
-    public GameObject Weapon2;
-    [Header("玩家武器3")]
-    public GameObject Weapon3;
-    [Header("玩家武器4")]
-    public GameObject Weapon4;
-    [Header("玩家武器5")]
-    public GameObject Weapon5;
-    [Header("玩家武器6")]
-    public GameObject Weapon6;
-
-    [Header("空的寵物")]
-    public GameObject pets_Empty;
-    [Header("玩家寵物1"), Tooltip("寵物1")]
-    public GameObject pets_1;
-    [Header("玩家寵物2"), Tooltip("寵物2")]
-    public GameObject pets_2;
-
-    public Text coin1;
-    public Text coin2;
-    public Text coin3;
-    public Text coin4;
-    public Text jewel1;
-    public Text jewel2;
-    public Text jewel3;
-    public Text jewel4;
-
-    // ************************************************ //
+    [Header("選擇關卡畫面")]
+    public GameObject chooseLevel;
     [Header("武器區塊")]
     public GameObject weaponArea;
     [Header("寵物區塊")]
     public GameObject petArea;
-    [Header("是否點了設定按鈕")]
-    public bool isSet = false;
+
+    [Header("玩家武器")]
+    public GameObject[] weapon;
+    [Header("玩家寵物")]
+    public GameObject[] pet;
+
+    [Header("金幣群組")]
+    public Text[] coin;
+    [Header("鑽石群組")]
+    public Text[] jewel;
 
     [Header("設定畫面退出按鈕")]
     public Button[] setExit;
@@ -123,55 +96,31 @@ public class MenuManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         draw = FindObjectOfType<DrawTalent>();
 
-        Player.bullet = Weapon1;
-        Player.pet1 = pets_Empty;
-
-        isSet = false;
-
         Updatedata();
         Allowbtn();
         ClickButton();
     }
 
-    private void Update()
+    public void Updatedata() //更新數值
     {
-        if (isSet)
+        for (int i = 0; i < coin.Length; i++)  // 金幣更新
         {
-            lowButton1.interactable = false;
-            lowButton2.interactable = false;
-            lowButton3.interactable = false;
-            lowButton4.interactable = false;
+            int index = i;
+            coin[index].text = data.PlayerCoin.ToString("F0");
         }
-        else if (isSet == false)
+
+        for (int i = 0; i < jewel.Length; i++)
         {
-            lowButton1.interactable = true;
-            lowButton2.interactable = true;
-            lowButton3.interactable = true;
-            lowButton4.interactable = true;
+            int index = i;
+            jewel[index].text = data.PlayerJewel.ToString("F0");
         }
-    }
 
-
-    /// <summary>
-    /// 更新數值
-    /// </summary>
-    private void Updatedata()
-    {
-        coin1.text = data.PlayerCoin.ToString();
-        coin2.text = data.PlayerCoin.ToString();
-        coin3.text = data.PlayerCoin.ToString();
-        coin4.text = data.PlayerCoin.ToString();
-        jewel1.text = data.PlayerJewel.ToString();
-        jewel2.text = data.PlayerJewel.ToString();
-        jewel3.text = data.PlayerJewel.ToString();
-        jewel4.text = data.PlayerJewel.ToString();
-
-        talentValue[0].text = "天賦生命值增加 + " + draw.hpValue;
-        talentValue[1].text = "天賦攻擊力增加 + " + draw.atkValue;
-        talentValue[2].text = "天賦爆擊增加 + " + draw.criticalValue;
-        talentValue[3].text = "天賦跑速增加 + " + draw.speedValue;
-        talentValue[4].text = "天賦減傷增加 + " + draw.armorValue;
-        talentValue[5].text = "天賦回復力增加 + " + draw.rehpValue;
+        talentValue[0].text = "天賦生命值增加 + " + draw.hpValue.ToString("F0");
+        talentValue[1].text = "天賦攻擊力增加 + " + draw.atkValue.ToString("F0");
+        talentValue[2].text = "天賦爆擊增加 + " + draw.criticalValue.ToString("F0");
+        talentValue[3].text = "天賦跑速增加 + " + draw.speedValue.ToString("F0");
+        talentValue[4].text = "天賦減傷增加 + " + draw.armorValue.ToString("F0");
+        talentValue[5].text = "天賦回復力增加 + " + draw.rehpValue.ToString("F0");
 
         float atk = data.attack + data.WeaponAttack + data.CriticalAttack;
         atkValue.text = atk.ToString();
@@ -188,10 +137,7 @@ public class MenuManager : MonoBehaviour
         Player.rehp = player.data.rehp;
     }
 
-    /// <summary>
-    /// 激活按鈕
-    /// </summary>
-    private void Allowbtn()
+    private void Allowbtn() // 激活按鈕
     {
         if (LevelManager.bl_6 == true)
         {
@@ -207,10 +153,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 點擊按鈕
-    /// </summary>
-    private void ClickButton()
+    private void ClickButton() // 點擊按鈕
     {
         lowButton1.onClick.AddListener(NoShowParticle);
         lowButton2.onClick.AddListener(NoShowParticle);
@@ -225,115 +168,42 @@ public class MenuManager : MonoBehaviour
         setButton3.onClick.AddListener(() => { ShowSetPanel(2); });
         setButton4.onClick.AddListener(() => { ShowSetPanel(3); });
 
-        for (int i = 0; i < setExit.Length; i++)
+        for (int i = 0; i < setExit.Length; i++)  // 退出設定按鈕
         {
             int index = i;
             setExit[index].onClick.AddListener(() => { NoShowSetPanel(index); });
         }
 
-        for (int i = 0; i < weaponBtn.Length; i++)
+        for (int i = 0; i < weaponBtn.Length; i++)  // 武器按鈕
         {
             int index = i;
             weaponBtn[index].onClick.AddListener(() => { ShowWeaponPanel(index); });
             weaponExit[index].onClick.AddListener(() => { NoShowWeaponPanel(index); });
         }
 
-        for (int i = 0; i < soueceBtn.Length; i++)
+        for (int i = 0; i < soueceBtn.Length; i++)  // 人員素材按鈕
         {
             int index = i;
             soueceBtn[index].onClick.AddListener(() => { ShowSourcePanel(index); });
             soueceExit[index].onClick.AddListener(() => { NoShowSourcePanel(index); });
         }
 
-        for (int i = 0; i < talentBtn.Length; i++)
+        for (int i = 0; i < talentBtn.Length; i++)  // 天賦按鈕
         {
             for (int j = 0; j < talentBtn.Length; j++)
             {
                 int iindex = j;
-                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(0); });
-                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(1); });
-                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(2); });
-                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(3); });
-                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(4); });
-                talentBtn[iindex].onClick.AddListener(() => { NoShowTalentPanel(5); });
+                NoShowTalentPanel(iindex);
             }
             int index = i;
             talentBtn[index].onClick.AddListener(() => { ShowTalentPanel(index); });
         }
     }
 
-    /// <summary>
-    /// 切換場景
-    /// </summary>
-    public void LoadLevel()
+    public void LoadLevel() // 切換場景
     {
         data.hp = data.hpMax;
         SceneManager.LoadScene(1);
-    }
-
-    /// <summary>
-    /// 鑽石買生命
-    /// </summary>
-    public void BuyHp()
-    {
-        data.hpMax += 500;
-        data.hp = data.hpMax;
-    }
-
-    /// <summary>
-    /// 鑽石買攻擊力
-    /// </summary>
-    public void BuyAtk()
-    {
-        data.attack += 50;
-    }
-
-    /// <summary>
-    /// 選擇關卡
-    /// </summary>
-    public void LevelChoose()
-    {
-        chooseLevel.SetActive(true);
-    }
-
-    /// <summary>
-    /// 關閉選擇關卡畫面
-    /// </summary>
-    public void NoShowLevelChoose()
-    {
-        chooseLevel.SetActive(false);
-    }
-
-    /// <summary>
-    /// 關卡1按鈕
-    /// </summary>
-    public void Level1()
-    {
-        ButtonOfLevel(1);
-    }
-
-    /// <summary>
-    /// 關卡7按鈕
-    /// </summary>
-    public void Level7()
-    {
-        ButtonOfLevel(7);
-    }
-
-    /// <summary>
-    /// 關卡13按鈕
-    /// </summary>
-    public void Level13()
-    {
-        ButtonOfLevel(13);
-    }
-
-    /// <summary>
-    /// 關卡19按鈕
-    /// </summary>
-    public void Level19()
-    {
-        ButtonOfLevel(19);
     }
 
     /// <summary>
@@ -346,94 +216,31 @@ public class MenuManager : MonoBehaviour
         chooseLevel.SetActive(false);
     }
 
-    /*
-    public void BuyWeapon6()
+    public void Level7() // 關卡7按鈕
     {
-        if (data.PlayerCoin > 6000)
-        {
-            data.PlayerCoin -= 5000;
-            btnwpn6.interactable = true;
-            buywpn6.interactable = false;
-            Updatedata();
-        }
-        else
-        {
-            NoMoney();
-        }
-    }
-    */
-
-    /// <summary>
-    /// 使用武器1
-    /// </summary>
-    public void UseWeapon1()
-    {
-        Player.bullet = Weapon1;
-        data.WeaponAttack = 30;
+        ButtonOfLevel(7);
     }
 
-    /// <summary>
-    /// 使用武器2
-    /// </summary>
-    public void UseWeapon2()
+    public void Level13() // 關卡13按鈕
     {
-        Player.bullet = Weapon2;
-        data.WeaponAttack = 80;
+        ButtonOfLevel(13);
     }
 
-    /// <summary>
-    /// 使用武器3
-    /// </summary>
-    public void UseWeapon3()
+    public void Level19() // 關卡19按鈕
     {
-        Player.bullet = Weapon3;
-        data.WeaponAttack = 150;
+        ButtonOfLevel(19);
     }
 
-    /// <summary>
-    /// 使用武器4
-    /// </summary>
-    public void UseWeapon4()
+    public void ShowLevelChoose() // 開啟選擇關卡畫面
     {
-        Player.bullet = Weapon4;
-        data.WeaponAttack = 300;
+
+        chooseLevel.SetActive(true);
     }
 
-    /// <summary>
-    /// 使用武器5
-    /// </summary>
-    public void UseWeapon5()
+    public void NoShowLevelChoose() // 關閉選擇關卡畫面
     {
-        Player.bullet = Weapon5;
-        data.WeaponAttack = 500;
+        chooseLevel.SetActive(false);
     }
-
-    /// <summary>
-    /// 使用武器6
-    /// </summary>
-    public void UseWeapon6()
-    {
-        Player.bullet = Weapon6;
-        data.WeaponAttack = 1000;
-    }
-
-    /// <summary>
-    /// 使用寵物1
-    /// </summary>
-    public void UsePet1()
-    {
-        Player.pet1 = pets_1;
-    }
-
-    /// <summary>
-    /// 使用寵物1
-    /// </summary>
-    public void UsePet2()
-    {
-        Player.pet1 = pets_2;
-    }
-
-    // ******************************************************************************************* //
 
     private void ShowWeaponArea() // 開啟武器區域畫面
     {
@@ -459,14 +266,20 @@ public class MenuManager : MonoBehaviour
 
     private void ShowSetPanel(int i) // 顯示設定畫面
     {
-        isSet = true;
         setPanel[i].SetActive(true);
+        lowButton1.interactable = false;
+        lowButton2.interactable = false;
+        lowButton3.interactable = false;
+        lowButton4.interactable = false;
     }
 
     private void NoShowSetPanel(int i) // 關閉設定畫面
     {
-        isSet = false;
         setPanel[i].SetActive(false);
+        lowButton1.interactable = true;
+        lowButton2.interactable = true;
+        lowButton3.interactable = true;
+        lowButton4.interactable = true;
     }
 
     private void ShowSourcePanel(int i) // 開啟人素材員畫面
