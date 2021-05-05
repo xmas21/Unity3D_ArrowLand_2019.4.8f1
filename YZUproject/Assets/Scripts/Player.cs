@@ -104,8 +104,8 @@ public class Player : MonoBehaviour
     {
         enabled = true;
         ani.SetBool("死亡觸發", false);
-        data.hp = data.hpMax;
-        hpMpManager.UpdateHpBar(data.hp, data.hpMax);
+        hp = data.hp;
+        hpMpManager.UpdateHpBar(hp, hpMax);
         levelManager.CloseRevival();
     }
 

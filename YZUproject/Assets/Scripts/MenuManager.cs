@@ -7,19 +7,23 @@ public class MenuManager : MonoBehaviour
 {
     [Header("玩家資料")]
     public PlayerDate data;
+    [Header("選擇關卡畫面")]
+    public GameObject chooseLevel;
     [Header("關卡6按鈕")]
     public Button btn6;
     [Header("關卡11按鈕")]
     public Button btn11;
     [Header("關卡16按鈕")]
     public Button btn16;
-    [Header("選擇關卡畫面")]
-    public GameObject chooseLevel;
+    [Header("詳細資訊畫面")]
+    public GameObject valueDetail;
     [Header("武器區塊")]
     public GameObject weaponArea;
     [Header("寵物區塊")]
     public GameObject petArea;
 
+    [Header("玩家數值")]
+    public Text[] playerValue;
     [Header("玩家武器")]
     public GameObject[] weapon;
     [Header("玩家寵物")]
@@ -58,6 +62,7 @@ public class MenuManager : MonoBehaviour
 
     private GameObject ps;     // 粒子
 
+    private Button valueDetailBtn;  // 詳細資訊按鈕
     private Button setButton1; // 設定按鈕
     private Button setButton2;
     private Button setButton3;
@@ -75,6 +80,7 @@ public class MenuManager : MonoBehaviour
     private Text atkValue;     // 裝備 攻擊力數值
     private Text hpValue;      // 裝備 生命數值
     private Text name;         // 玩家名稱
+    private bool isDetail;
 
     private void Start()
     {
@@ -88,6 +94,7 @@ public class MenuManager : MonoBehaviour
         lowButton4 = GameObject.Find("天賦下方按鈕").GetComponent<Button>();
         atkButton = GameObject.Find("武器按鈕").GetComponent<Button>();
         petButton = GameObject.Find("寵物按鈕").GetComponent<Button>();
+        valueDetailBtn = GameObject.Find("詳細資訊按鈕").GetComponent<Button>();
         hpValue = GameObject.Find("生命值").GetComponent<Text>();
         atkValue = GameObject.Find("攻擊力").GetComponent<Text>();
         name = GameObject.Find("玩家名稱").GetComponent<Text>();
@@ -95,6 +102,8 @@ public class MenuManager : MonoBehaviour
 
         player = FindObjectOfType<Player>();
         draw = FindObjectOfType<DrawTalent>();
+
+        isDetail = false;
 
         Updatedata();
         Allowbtn();
@@ -167,6 +176,8 @@ public class MenuManager : MonoBehaviour
         setButton2.onClick.AddListener(() => { ShowSetPanel(1); });
         setButton3.onClick.AddListener(() => { ShowSetPanel(2); });
         setButton4.onClick.AddListener(() => { ShowSetPanel(3); });
+
+        valueDetailBtn.onClick.AddListener(ShowValueDetail);
 
         for (int i = 0; i < setExit.Length; i++)  // 退出設定按鈕
         {
@@ -311,4 +322,26 @@ public class MenuManager : MonoBehaviour
     {
         talentPanel[i].SetActive(false);
     }
+
+    private void ShowValueDetail()  // 開關詳細資訊
+    {
+        playerValue[0].text = data.hp.ToString("F0");
+        float PV_atk = data.attack + data.CriticalAttack + data.WeaponAttack; 
+        playerValue[1].text = PV_atk.ToString("F0");
+        playerValue[2].text = data.speed.ToString("F0");
+        playerValue[3].text = data.armor.ToString("F2") + " %";
+        playerValue[4].text = data.rehp.ToString("F2") + " /s";
+        playerValue[5].text = data.cd.ToString("F1")+" /s";
+
+        isDetail = !isDetail;
+        if (isDetail)
+        {
+            valueDetail.SetActive(true);
+        }
+        else
+        {
+            valueDetail.SetActive(false);
+        }
+    }
+
 }
