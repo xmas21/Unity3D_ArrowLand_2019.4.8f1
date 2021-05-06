@@ -35,7 +35,7 @@ public class PlayerDate : ScriptableObject
 
     [Header("武器庫")]
     public OwnWeapon[] ownWeapons;
-    [Header("武器庫")]
+    [Header("武器碎片")]
     public WeaponChip[] weaponChips;
     [Header("寵物庫")]
     public OwnPet[] ownPets;
@@ -52,6 +52,10 @@ public class OwnWeapon
     public bool owned;
     [Header("武器等級")]
     public int level;
+    [Header("武器傷害")]
+    public float damage;
+    [Header("武器攻速")]
+    public float cd;
 }
 
 [System.Serializable]

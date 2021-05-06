@@ -41,10 +41,24 @@ public class MenuManager : MonoBehaviour
 
     [Header("武器按鈕")]
     public Button[] weaponBtn;
+    [Header("武器按鈕全部照片")]
+    public Sprite[] weaponBtn_allimg;
     [Header("武器取消按鈕")]
     public Button[] weaponExit;
     [Header("武器畫面")]
     public GameObject[] weaponPanel;
+
+    [Header("武器使用按鈕")]
+    public Button[] weaponUse_Btn;
+    [Header("武器使用全部照片")]
+    public Sprite[] weaponUse_allimg;
+    [Header("武器使用中圖片")]
+    public Image[] weaponUse_Img;
+
+    [Header("武器升級條")]
+    public Image[] weaponUp_Bar;
+    [Header("武器碎片文字")]
+    public Text[] weaponChip_Text;
 
     [Header("人員素材按鈕")]
     public Button[] soueceBtn;
@@ -63,20 +77,22 @@ public class MenuManager : MonoBehaviour
     private GameObject ps;     // 粒子
 
     private Button valueDetailBtn;  // 詳細資訊按鈕
-    private Button setButton1; // 設定按鈕
+    private Button setButton1;      // 設定按鈕
     private Button setButton2;
     private Button setButton3;
     private Button setButton4;
-    private Button lowButton1; // 下方選單按鈕
+    private Button lowButton1;      // 下方選單按鈕
     private Button lowButton2;
     private Button lowButton3;
     private Button lowButton4;
-    private Button atkButton;  // 選擇武器的按鈕
-    private Button petButton;  // 選擇寵物的按鈕
+    private Button atkButton;       // 選擇武器的按鈕
+    private Button petButton;       // 選擇寵物的按鈕
 
     private Player player;
     private DrawTalent draw;
 
+    private Image atkBtn_img;       // 選擇武器的按鈕的圖片
+    private Image petBtn_img;       // 選擇寵物的按鈕的圖片
     private Text atkValue;     // 裝備 攻擊力數值
     private Text hpValue;      // 裝備 生命數值
     private Text name;         // 玩家名稱
@@ -98,6 +114,8 @@ public class MenuManager : MonoBehaviour
         hpValue = GameObject.Find("生命值").GetComponent<Text>();
         atkValue = GameObject.Find("攻擊力").GetComponent<Text>();
         name = GameObject.Find("玩家名稱").GetComponent<Text>();
+        atkBtn_img = atkButton.GetComponent<Image>();
+        petBtn_img = petButton.GetComponent<Image>();
         ps = GameObject.Find("選單粒子效果");
 
         player = FindObjectOfType<Player>();
@@ -118,10 +136,28 @@ public class MenuManager : MonoBehaviour
             coin[index].text = data.PlayerCoin.ToString("F0");
         }
 
-        for (int i = 0; i < jewel.Length; i++)
+        for (int i = 0; i < jewel.Length; i++)  // 鑽石更新
         {
             int index = i;
             jewel[index].text = data.PlayerJewel.ToString("F0");
+        }
+
+        for (int i = 0; i < weaponBtn.Length; i++)  // 裝備 武器照片抓資料
+        {
+            int index = i;
+            weaponUse_Img[index] = weaponBtn[index].GetComponent<Image>();
+        }
+
+        for (int i = 0; i < weaponChip_Text.Length; i++) // 裝備 武器碎片數量更新
+        {
+            int index = i;
+            weaponChip_Text[index].text = data.weaponChips[index].count + "/ 30";
+        }
+
+        for (int i = 0; i < weaponUp_Bar.Length; i++)    // 裝備 武器 升級條更新
+        {
+            int index = i;
+            weaponUp_Bar[index].fillAmount = data.weaponChips[index].count / 30;
         }
 
         talentValue[0].text = "天賦生命值增加 + " + draw.hpValue.ToString("F0");
@@ -190,6 +226,7 @@ public class MenuManager : MonoBehaviour
             int index = i;
             weaponBtn[index].onClick.AddListener(() => { ShowWeaponPanel(index); });
             weaponExit[index].onClick.AddListener(() => { NoShowWeaponPanel(index); });
+            weaponUse_Btn[index].onClick.AddListener(() => { UseWeapon(index); });
         }
 
         for (int i = 0; i < soueceBtn.Length; i++)  // 人員素材按鈕
@@ -306,11 +343,19 @@ public class MenuManager : MonoBehaviour
     private void ShowWeaponPanel(int i) // 顯示武器畫面
     {
         weaponPanel[i].SetActive(true);
+        lowButton1.interactable = false;
+        lowButton2.interactable = false;
+        lowButton3.interactable = false;
+        lowButton4.interactable = false;
     }
 
     private void NoShowWeaponPanel(int i) // 不顯示武器畫面
     {
         weaponPanel[i].SetActive(false);
+        lowButton1.interactable = true;
+        lowButton2.interactable = true;
+        lowButton3.interactable = true;
+        lowButton4.interactable = true;
     }
 
     private void ShowTalentPanel(int i)  // 顯示天賦畫面
@@ -342,6 +387,18 @@ public class MenuManager : MonoBehaviour
         {
             valueDetail.SetActive(false);
         }
+    }
+
+    private void UseWeapon(int i)  // 選擇武器
+    {
+        for (int j = 0; j < weaponBtn.Length; j++)
+        {
+            weaponUse_Img[j].sprite = weaponBtn_allimg[j];
+        }
+        atkBtn_img.sprite = weaponBtn_allimg[i];
+        weaponUse_Img[i].sprite = weaponUse_allimg[i];
+        Player.bullet = weapon[i];
+        weaponPanel[i].SetActive(false);
     }
 
 }
