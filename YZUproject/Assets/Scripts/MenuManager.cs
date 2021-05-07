@@ -55,6 +55,12 @@ public class MenuManager : MonoBehaviour
     [Header("武器使用中圖片")]
     public Image[] weaponUse_Img;
 
+    [Header("武器等級文字")]
+    public Text[] weaponLevel_text;
+    [Header("武器傷害文字")]
+    public Text[] weaponDamage_text;
+    [Header("武器升級按鈕")]
+    public Button[] weaponUp_Btn;
     [Header("武器升級條")]
     public Image[] weaponUp_Bar;
     [Header("武器碎片文字")]
@@ -74,7 +80,7 @@ public class MenuManager : MonoBehaviour
     [Header("天賦數值")]
     public Text[] talentValue;
 
-    private GameObject ps;     // 粒子
+    private GameObject ps;          // 粒子
 
     private Button valueDetailBtn;  // 詳細資訊按鈕
     private Button setButton1;      // 設定按鈕
@@ -93,13 +99,27 @@ public class MenuManager : MonoBehaviour
 
     private Image atkBtn_img;       // 選擇武器的按鈕的圖片
     private Image petBtn_img;       // 選擇寵物的按鈕的圖片
-    private Text atkValue;     // 裝備 攻擊力數值
-    private Text hpValue;      // 裝備 生命數值
-    private Text name;         // 玩家名稱
+    private Text atkValue;          // 裝備 攻擊力數值
+    private Text hpValue;           // 裝備 生命數值
+    private Text name;              // 玩家名稱
     private bool isDetail;
 
     private void Start()
     {
+        // *********************** //
+        data.WeaponAttack = data.ownWeapons[0].damage;
+        data.cd = data.ownWeapons[0].cd;
+        data.ownWeapons[0].level = 1;
+        data.ownWeapons[1].level = 1;
+        data.ownWeapons[2].level = 1;
+        data.ownWeapons[3].level = 1;
+        data.ownWeapons[4].level = 1;
+        data.ownWeapons[5].level = 1;
+        data.ownWeapons[6].level = 1;
+        data.ownWeapons[7].level = 1;
+        data.ownWeapons[8].level = 1;
+
+        // *********************** //
         setButton1 = GameObject.Find("設定按鈕0").GetComponent<Button>();
         setButton2 = GameObject.Find("設定按鈕1").GetComponent<Button>();
         setButton3 = GameObject.Find("設定按鈕2").GetComponent<Button>();
@@ -160,12 +180,37 @@ public class MenuManager : MonoBehaviour
             weaponUp_Bar[index].fillAmount = data.weaponChips[index].count / 30;
         }
 
-        talentValue[0].text = "天賦生命值增加 + " + draw.hpValue.ToString("F0");
-        talentValue[1].text = "天賦攻擊力增加 + " + draw.atkValue.ToString("F0");
+        for (int i = 0; i < weaponUp_Btn.Length; i++)    // 裝備 武器 升級按鈕控制
+        {
+            int index = i;
+            if (data.weaponChips[index].count >= 10)
+            {
+                weaponUp_Btn[index].interactable = true;
+            }
+            else if (data.weaponChips[index].count < 10)
+            {
+                weaponUp_Btn[index].interactable = false;
+            }
+        }
+
+        for (int i = 0; i < weaponLevel_text.Length; i++)  // 裝備 武器 等級文字更新
+        {
+            int index = i;
+            weaponLevel_text[index].text = "Lv." + data.ownWeapons[index].level;
+        }
+
+        for (int i = 0; i < weaponDamage_text.Length; i++)
+        {
+            int index = i;
+            weaponDamage_text[index].text = "傷害 : " + data.ownWeapons[i].damage;
+        }
+
+        talentValue[0].text = "天賦生命增加 + " + draw.hpValue.ToString("F0");
+        talentValue[1].text = "天賦攻擊增加 + " + draw.atkValue.ToString("F0");
         talentValue[2].text = "天賦爆擊增加 + " + draw.criticalValue.ToString("F0");
         talentValue[3].text = "天賦跑速增加 + " + draw.speedValue.ToString("F0");
         talentValue[4].text = "天賦減傷增加 + " + draw.armorValue.ToString("F0");
-        talentValue[5].text = "天賦回復力增加 + " + draw.rehpValue.ToString("F0");
+        talentValue[5].text = "天賦回復增加 + " + draw.rehpValue.ToString("F0");
 
         float atk = data.attack + data.WeaponAttack + data.CriticalAttack;
         atkValue.text = atk.ToString();
@@ -238,13 +283,14 @@ public class MenuManager : MonoBehaviour
 
         for (int i = 0; i < talentBtn.Length; i++)  // 天賦按鈕
         {
-            for (int j = 0; j < talentBtn.Length; j++)
-            {
-                int iindex = j;
-                NoShowTalentPanel(iindex);
-            }
             int index = i;
             talentBtn[index].onClick.AddListener(() => { ShowTalentPanel(index); });
+        }
+
+        for (int i = 0; i < weaponUp_Btn.Length; i++)
+        {
+            int index = i;
+            weaponUp_Btn[index].onClick.AddListener(() => { WeaponLevelUp(index); });
         }
     }
 
@@ -360,23 +406,22 @@ public class MenuManager : MonoBehaviour
 
     private void ShowTalentPanel(int i)  // 顯示天賦畫面
     {
+        for (int j = 0; j < talentPanel.Length; j++)
+        {
+            talentPanel[j].SetActive(false);
+        }
         talentPanel[i].SetActive(true);
-    }
-
-    private void NoShowTalentPanel(int i) // 不顯示天賦畫面
-    {
-        talentPanel[i].SetActive(false);
     }
 
     private void ShowValueDetail()  // 開關詳細資訊
     {
         playerValue[0].text = data.hp.ToString("F0");
-        float PV_atk = data.attack + data.CriticalAttack + data.WeaponAttack; 
+        float PV_atk = data.attack + data.CriticalAttack + data.WeaponAttack;
         playerValue[1].text = PV_atk.ToString("F0");
         playerValue[2].text = data.speed.ToString("F0");
         playerValue[3].text = data.armor.ToString("F2") + " %";
         playerValue[4].text = data.rehp.ToString("F2") + " /s";
-        playerValue[5].text = data.cd.ToString("F1")+" /s";
+        playerValue[5].text = data.cd.ToString("F1") + " /s";
 
         isDetail = !isDetail;
         if (isDetail)
@@ -393,12 +438,30 @@ public class MenuManager : MonoBehaviour
     {
         for (int j = 0; j < weaponBtn.Length; j++)
         {
-            weaponUse_Img[j].sprite = weaponBtn_allimg[j];
+            if (data.ownWeapons[j].owned == true)
+            {
+                weaponUse_Img[j].sprite = weaponBtn_allimg[j];
+            }
         }
         atkBtn_img.sprite = weaponBtn_allimg[i];
         weaponUse_Img[i].sprite = weaponUse_allimg[i];
         Player.bullet = weapon[i];
+        data.WeaponAttack = data.ownWeapons[i].damage;
+        data.cd = data.ownWeapons[i].cd;
+        Updatedata();
         weaponPanel[i].SetActive(false);
+        lowButton1.interactable = true;
+        lowButton2.interactable = true;
+        lowButton3.interactable = true;
+        lowButton4.interactable = true;
+    }
+
+    private void WeaponLevelUp(int i)  // 武器升級
+    {
+        data.weaponChips[i].count -= 10;
+        data.ownWeapons[i].level++;
+        data.ownWeapons[i].damage += 10;
+        Updatedata();
     }
 
 }

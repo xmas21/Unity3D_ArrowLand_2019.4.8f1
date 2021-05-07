@@ -104,108 +104,108 @@ public class DrawWeapon : MonoBehaviour
 
     private IEnumerator ClickBtn_in()  // 點擊寶箱
     {
-            RewardID();
-            lowButton1.interactable = false;
-            lowButton2.interactable = false;
-            lowButton3.interactable = false;
-            lowButton4.interactable = false;
-            if (data.ownWeapons[iindex].owned == false)  // 假如 還沒有那一把武器 抽到武器
+        RewardID();
+        lowButton1.interactable = false;
+        lowButton2.interactable = false;
+        lowButton3.interactable = false;
+        lowButton4.interactable = false;
+        if (data.ownWeapons[iindex].owned == false)  // 假如 還沒有那一把武器 抽到武器
+        {
+            if (!count[0] && !count[1])    // 第一階段 寶箱開始晃動
             {
-                if (!count[0] && !count[1])    // 第一階段 寶箱開始晃動
-                {
-                    chestText.text = "";
-                    ani.SetTrigger("點寶箱晃動");
-                    count[0] = true;
-                    chestBtn_in.interactable = false;
-                    yield return new WaitForSeconds(0.6f);
-                    chestText.text = "再次點擊寶箱";
-                    chestBtn_in.interactable = true;
-                }
-                else if (count[0] && !count[1]) // 第二階段 抽東西
-                {
-                    chestText.text = "";
-                    ani.SetTrigger("點寶箱開啟");
-                    count[1] = true;
-                    chestBtn_in.interactable = false;
-                    yield return new WaitForSeconds(0.6f);
-                    chestImg.SetActive(false);
-                    rewardSP.sprite = allImg[iindex];
-                    yield return new WaitForSeconds(0.4f);
-                    reward.SetActive(true);
-                    chestText.text = "恭喜你抽到   " + data.ownWeapons[iindex].name;
-                    data.ownWeapons[iindex].owned = true;
-                    menu.weaponBtn[iindex].interactable = true;
-                    yield return new WaitForSeconds(1.5f);
-                    chestText.text = "點擊任意處離開";
-                    chestBtn_in.interactable = true;
-                }
-                else if (count[0] && count[1])  // 第三階段 關閉畫面
-                {
-                    ani.SetTrigger("寶箱重製");
-                    data.PlayerCoin -= cost;
-                    cost += 100;
-                    menu.Updatedata();
-                    chestImg.SetActive(true);
-                    reward.SetActive(false);
-                    count[0] = false;
-                    count[1] = false;
-                    NoShowChestPanel();
-                    chestText.text = "點擊寶箱開啟";
-                }
+                chestText.text = "";
+                ani.SetTrigger("點寶箱晃動");
+                count[0] = true;
+                chestBtn_in.interactable = false;
+                yield return new WaitForSeconds(0.8f);
+                chestText.text = "再次點擊寶箱";
+                chestBtn_in.interactable = true;
             }
-            else if (data.ownWeapons[iindex].owned)  // 假如 已經有同一把武器 抽碎片
+            else if (count[0] && !count[1]) // 第二階段 抽東西
             {
+                chestText.text = "";
+                ani.SetTrigger("點寶箱開啟");
+                count[1] = true;
+                chestBtn_in.interactable = false;
+                yield return new WaitForSeconds(2f);
+                chestImg.SetActive(false);
+                rewardSP.sprite = allImg[iindex];
+                yield return new WaitForSeconds(0.4f);
+                reward.SetActive(true);
+                chestText.text = "恭喜你抽到   " + data.ownWeapons[iindex].name;
+                data.ownWeapons[iindex].owned = true;
+                menu.weaponBtn[iindex].interactable = true;
+                menu.weaponUse_Img[iindex].sprite = menu.weaponBtn_allimg[iindex];
+                yield return new WaitForSeconds(1.5f);
+                chestText.text = "點擊任意處離開";
+                chestBtn_in.interactable = true;
+            }
+            else if (count[0] && count[1])  // 第三階段 關閉畫面
+            {
+                ani.SetTrigger("寶箱重製");
+                data.PlayerCoin -= cost;
+                menu.Updatedata();
+                chestImg.SetActive(true);
+                reward.SetActive(false);
+                count[0] = false;
+                count[1] = false;
+                NoShowChestPanel();
+                chestText.text = "點擊寶箱開啟";
+            }
+        }
+        else if (data.ownWeapons[iindex].owned)  // 假如 已經有同一把武器 抽碎片
+        {
+
+            if (!count[0] && !count[1])    // 第一階段 寶箱晃動動畫 
+            {
+                chestText.text = "";
+                ani.SetTrigger("點寶箱晃動");
+                count[0] = true;
+                chestBtn_in.interactable = false;
+                yield return new WaitForSeconds(0.8f);
+                chestText.text = "再次點擊寶箱";
+                chestBtn_in.interactable = true;
+            }
+            else if (count[0] && !count[1]) // 第二階段 寶箱開啟動畫
+            {
+                chestText.text = "";
+                ani.SetTrigger("點寶箱開啟");
+                count[1] = true;
+                chestBtn_in.interactable = false;
+                yield return new WaitForSeconds(1.0f);
+                chestImg.SetActive(false);
+                rewardSP.sprite = allImg[iindex];
+                yield return new WaitForSeconds(0.4f);
+                reward.SetActive(true);
+                chestText.text = "恭喜你抽到   " + data.ownWeapons[iindex].name;
+                yield return new WaitForSeconds(1.0f);
+                chestText.text = "由於您已擁有同樣武器";
+                yield return new WaitForSeconds(1.0f);
+                chestText.text = "已經自動把武器換成 10個碎片";
                 data.weaponChips[iindex].count += 10;
-                if (!count[0] && !count[1])    // 第一階段 寶箱晃動動畫 
-                {
-                    chestText.text = "";
-                    ani.SetTrigger("點寶箱晃動");
-                    count[0] = true;
-                    chestBtn_in.interactable = false;
-                    yield return new WaitForSeconds(0.6f);
-                    chestText.text = "再次點擊寶箱";
-                    chestBtn_in.interactable = true;
-                }
-                else if (count[0] && !count[1]) // 第二階段 寶箱開啟動畫
-                {
-                    chestText.text = "";
-                    ani.SetTrigger("點寶箱開啟");
-                    count[1] = true;
-                    chestBtn_in.interactable = false;
-                    yield return new WaitForSeconds(0.6f);
-                    chestImg.SetActive(false);
-                    rewardSP.sprite = allImg[iindex];
-                    yield return new WaitForSeconds(0.4f);
-                    reward.SetActive(true);
-                    chestText.text = "恭喜你抽到   " + data.ownWeapons[iindex].name;
-                    yield return new WaitForSeconds(1.0f);
-                    chestText.text = "由於您已擁有同樣武器";
-                    yield return new WaitForSeconds(1.0f);
-                    chestText.text = "已經自動把武器換成 10個碎片";
-                    rewardSP.sprite = allImg[iindex + 9];
-                    yield return new WaitForSeconds(1.5f);
-                    chestText.text = "點擊任意處離開";
-                    chestBtn_in.interactable = true;
-                }
-                else if (count[0] && count[1])  // 第三階段 關閉畫面
-                {
-                    ani.SetTrigger("寶箱重製");
-                    menu.Updatedata();
-                    data.PlayerCoin -= cost;
-                    cost += 100;
-                    chestImg.SetActive(true);
-                    reward.SetActive(false);
-                    count[0] = false;
-                    count[1] = false;
-                    NoShowChestPanel();
-                    chestText.text = "點擊寶箱開啟";
-                }
+                rewardSP.sprite = allImg[iindex + 9];
+                yield return new WaitForSeconds(1.5f);
+                chestText.text = "點擊任意處離開";
+                chestBtn_in.interactable = true;
             }
-            costText.text = "$" + cost.ToString("F0");
-            lowButton1.interactable = true;
-            lowButton2.interactable = true;
-            lowButton3.interactable = true;
-            lowButton4.interactable = true;
+            else if (count[0] && count[1])  // 第三階段 關閉畫面
+            {
+                ani.SetTrigger("寶箱重製");
+                menu.Updatedata();
+                data.PlayerCoin -= cost;
+                chestImg.SetActive(true);
+                reward.SetActive(false);
+                count[0] = false;
+                count[1] = false;
+                NoShowChestPanel();
+                chestText.text = "點擊寶箱開啟";
+            }
+        }
+        costText.text = "$" + cost.ToString("F0");
+        lowButton1.interactable = true;
+        lowButton2.interactable = true;
+        lowButton3.interactable = true;
+        lowButton4.interactable = true;
     }
 
     private void ShowChestPanel()      // 顯示寶箱

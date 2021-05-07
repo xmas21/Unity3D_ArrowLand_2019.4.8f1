@@ -16,6 +16,7 @@ public class DrawTalent : MonoBehaviour
     public int cost = 100;
     [Header("總共抽獎次數")]
     public int count = 0;
+
     [Header("天賦生命加成")]
     public float hpValue = 0;
     [Header("天賦攻擊加成")]
@@ -28,6 +29,7 @@ public class DrawTalent : MonoBehaviour
     public float armorValue = 0;
     [Header("天賦回血加成")]
     public float rehpValue = 0;
+
     [Header("關閉沒錢按鈕1")]
     public Button close1;
     [Header("關閉沒錢按鈕2")]
