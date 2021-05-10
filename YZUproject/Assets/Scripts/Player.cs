@@ -178,8 +178,8 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        float v = joystick.Vertical;              // Z軸 (左右) 垂直
-        float h = joystick.Horizontal;            // X軸 (前後) 水平
+        float h = joystick.Horizontal;            // X軸 (左右) 水平
+        float v = joystick.Vertical;              // Z軸 (前後) 垂直
 
         rig.AddForce(-h * speed, 0, -v * speed);  // 推力 (水平,0,垂直)
 

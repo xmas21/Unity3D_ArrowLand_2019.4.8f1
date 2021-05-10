@@ -93,15 +93,6 @@ public class DrawWeapon : MonoBehaviour
         ClickBtn();
     }
 
-    private void ClickBtn()            // 按按鈕
-    {
-        chestBtn_out.onClick.AddListener(ShowChestPanel);
-        chestBtn_in.onClick.AddListener(() => { StartCoroutine(ClickBtn_in()); });
-
-        close1.onClick.AddListener(NoShowNoMoney);
-        close2.onClick.AddListener(NoShowNoMoney);
-    }
-
     private IEnumerator ClickBtn_in()  // 點擊寶箱
     {
         RewardID();
@@ -208,6 +199,15 @@ public class DrawWeapon : MonoBehaviour
         lowButton4.interactable = true;
     }
 
+    private void ClickBtn()            // 按按鈕
+    {
+        chestBtn_out.onClick.AddListener(ShowChestPanel);
+        chestBtn_in.onClick.AddListener(() => { StartCoroutine(ClickBtn_in()); });
+
+        close1.onClick.AddListener(NoShowNoMoney);
+        close2.onClick.AddListener(NoShowNoMoney);
+    }
+
     private void ShowChestPanel()      // 顯示寶箱
     {
         if (data.PlayerCoin >= cost)
@@ -239,6 +239,7 @@ public class DrawWeapon : MonoBehaviour
     public void RewardID()             // 決定編號
     {
         index = Random.Range(0, 100);
+
         if (index <= 1 && index >= 0)
         {
             index = 8; // 武器 ID 008
@@ -275,6 +276,7 @@ public class DrawWeapon : MonoBehaviour
         {
             index = 0;
         }
+
         iindex = index;
     }
 }

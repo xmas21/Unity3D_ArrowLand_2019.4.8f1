@@ -177,7 +177,7 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < weaponUp_Bar.Length; i++)    // 裝備 武器 升級條更新
         {
             int index = i;
-            weaponUp_Bar[index].fillAmount = data.weaponChips[index].count / 30;
+            weaponUp_Bar[index].fillAmount = (float)data.weaponChips[index].count / 30;
         }
 
         for (int i = 0; i < weaponUp_Btn.Length; i++)    // 裝備 武器 升級按鈕控制
@@ -436,7 +436,7 @@ public class MenuManager : MonoBehaviour
 
     private void UseWeapon(int i)  // 選擇武器
     {
-        for (int j = 0; j < weaponBtn.Length; j++)
+        for (int j = 0; j < weaponUp_Btn.Length; j++)
         {
             if (data.ownWeapons[j].owned == true)
             {

@@ -16,14 +16,14 @@ MonoBehaviour:
   hp: 600
   attack: 60
   CriticalAttack: 20
-  cd: 0.7
+  cd: 1.34
   speed: 275
   armor: 0.099999994
   rehp: 9
   hpMax: 600
   power: 1200
-  WeaponAttack: 38
-  PlayerCoin: 4700
+  WeaponAttack: 100
+  PlayerCoin: 11000
   PlayerJewel: 0
   ownWeapons:
   - name: "\u5C0F\u5C0F\u5200"
@@ -37,12 +37,12 @@ MonoBehaviour:
     damage: 40
     cd: 0.8
   - name: "\u7834\u5929\u69CC"
-    owned: 0
+    owned: 1
     level: 1
     damage: 60
     cd: 1.4
   - name: "\u8ED2\u8F45\u528D"
-    owned: 0
+    owned: 1
     level: 1
     damage: 100
     cd: 1.34
@@ -62,7 +62,7 @@ MonoBehaviour:
     damage: 100
     cd: 1
   - name: "\u897F\u74DC\u528D"
-    owned: 0
+    owned: 1
     level: 1
     damage: 80
     cd: 0.75
@@ -73,11 +73,11 @@ MonoBehaviour:
     cd: 0.8
   weaponChips:
   - name: "\u5C0F\u5C0F\u5200"
-    count: 0
+    count: 10
   - name: "\u523A\u9AA8\u528D"
-    count: 0
+    count: 20
   - name: "\u7834\u5929\u69CC"
-    count: 0
+    count: 10
   - name: "\u8ED2\u8F45\u528D"
     count: 0
   - name: "\u7389\u77F3\u528D"
@@ -87,7 +87,7 @@ MonoBehaviour:
   - name: "\u80FD\u91CF\u528D"
     count: 0
   - name: "\u897F\u74DC\u528D"
-    count: 0
+    count: 20
   - name: "\u5929\u9B54\u528D"
     count: 0
   ownPets:
