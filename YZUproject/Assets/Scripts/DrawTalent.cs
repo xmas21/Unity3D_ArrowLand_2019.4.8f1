@@ -89,7 +89,7 @@ public class DrawTalent : MonoBehaviour
 
             for (int j = 0; j < loop; j++)
             {
-                for (int i = 0; i < talentBtn.Length; i++)
+                for (int i = 0; i < talentBtn.Length; i++)         // 跳燈
                 {
                     talentBtn[i].color += new Color(0, 0, 0, 0.7f);
                     yield return new WaitForSeconds(0.2f);

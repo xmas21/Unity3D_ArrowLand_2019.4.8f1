@@ -121,7 +121,6 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(data.coin, transform.position + transform.up * 2, Quaternion.identity);
         }
-
     }
 
     private void OnTriggerEnter(Collider col)

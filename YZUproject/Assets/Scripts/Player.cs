@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
         // 攻速增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill7))
         {
-            cd -= 0.3f;
+            cd -= 0.2f;
         }
 
         // 爆擊增加

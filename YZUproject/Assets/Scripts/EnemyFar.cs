@@ -12,7 +12,6 @@ public class EnemyFar : Enemy
         Gizmos.DrawRay(transform.position + data.NearAttackPos, transform.forward * data.NearAttackLength);
     }
 
-
     /// <summary>
     /// 攻擊
     /// </summary>
@@ -31,8 +30,6 @@ public class EnemyFar : Enemy
         yield return new WaitForSeconds(data.NearAttackDelay);
 
         Vector3 pos = transform.position + new Vector3(data.NearAttackPos.x, data.NearAttackPos.y, 0);
-
-        //pos += transform.forward * data.NearAttackPos.z;
 
         GameObject temp = Instantiate(bullet, pos, transform.rotation);
         temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.farPower);
