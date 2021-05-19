@@ -99,7 +99,7 @@ public class DrawTalent : MonoBehaviour
 
             int index;
             index = Random.Range(0, talentBtn.Length);
-            talentBtn[index].transform.localScale = Vector3.one * 1.5f;
+            talentBtn[index].transform.localScale = Vector3.one * 1.3f;
             talentBtn[index].color = new Color(0, 0, 0, 1);
             yield return new WaitForSeconds(0.3f);
             talentBtn[index].color = new Color(1, 0, 0, 1);

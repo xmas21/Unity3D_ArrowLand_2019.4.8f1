@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "玩家血量", menuName = "Lobo/玩家資料")]
+[System.Serializable]
 public class PlayerDate : ScriptableObject
 {
     [Header("玩家名稱")]
-    public string name;
-
+    public string player_name;
     [Header("生命值"), Range(100, 30000)]
     public float hp = 300;
     [Header("攻擊傷害"), Range(1, 5000)]

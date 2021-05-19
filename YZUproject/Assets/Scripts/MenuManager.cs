@@ -101,7 +101,7 @@ public class MenuManager : MonoBehaviour
     private Image petBtn_img;       // 選擇寵物的按鈕的圖片
     private Text atkValue;          // 裝備 攻擊力數值
     private Text hpValue;           // 裝備 生命數值
-    private Text name;              // 玩家名稱
+    private Text player_name;       // 玩家名稱
     private bool isDetail;
 
     private void Start()
@@ -133,7 +133,7 @@ public class MenuManager : MonoBehaviour
         valueDetailBtn = GameObject.Find("詳細資訊按鈕").GetComponent<Button>();
         hpValue = GameObject.Find("生命值").GetComponent<Text>();
         atkValue = GameObject.Find("攻擊力").GetComponent<Text>();
-        name = GameObject.Find("玩家名稱").GetComponent<Text>();
+        player_name = GameObject.Find("玩家名稱").GetComponent<Text>();
         atkBtn_img = atkButton.GetComponent<Image>();
         petBtn_img = petButton.GetComponent<Image>();
         ps = GameObject.Find("選單粒子效果");
@@ -215,7 +215,7 @@ public class MenuManager : MonoBehaviour
         float atk = data.attack + data.WeaponAttack + data.CriticalAttack;
         atkValue.text = atk.ToString();
         hpValue.text = data.hp.ToString("F0");
-        name.text = data.name + "の裝備";
+        player_name.text = data.player_name + "の裝備";
 
         Player.hp = player.data.hp;
         Player.hpMax = player.data.hpMax;

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.UIElements;
 
+[System.Serializable]
 public class Player : MonoBehaviour
 {
     [Header("玩家資料")]
@@ -178,21 +179,21 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        float h = joystick.Horizontal;            // X軸 (左右) 水平
-        float v = joystick.Vertical;              // Z軸 (前後) 垂直
+        float h = joystick.Horizontal;                // X軸 (左右) 水平
+        float v = joystick.Vertical;                  // Z軸 (前後) 垂直
 
-        rig.AddForce(-h * speed, 0, -v * speed);  // 推力 (水平,0,垂直)
+        rig.AddForce(-h * speed, 0, -v * speed);      // 推力 (水平,0,垂直)
 
         ani.SetBool("跑步觸發", v != 0 || h != 0);
 
-        Vector3 posPlayer = transform.position;   // 玩家.座標
+        Vector3 posPlayer = transform.position;       // 玩家.座標
         Vector3 posTarget = new Vector3(posPlayer.x - h, 0.28f, posPlayer.z - v);  //設定目標跟玩家的相對位置
 
         target.position = posTarget;
 
         posTarget.y = posPlayer.y;
 
-        transform.LookAt(posTarget);              // 視野跟蹤的 API
+        transform.LookAt(posTarget);                   // 視野跟蹤的 API
 
         if (v == 0 && h == 0) Attack();
     }
@@ -213,15 +214,15 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Attack()
     {
-        if (timer < cd) timer += Time.deltaTime;
+        if (timer < cd) timer += Time.deltaTime;    
         else
         {
             timer = 0;
 
-            enemys = FindObjectsOfType<Enemy>();
+            enemys = FindObjectsOfType<Enemy>();        // 找尋腳本物件<敵人>
             enemyDistanse = new float[enemys.Length];
 
-            if (enemys.Length == 0)
+            if (enemys.Length == 0)                     // 假如 敵人數量 = 0 通關
             {
                 levelManager.Pass();
                 return;
@@ -229,24 +230,24 @@ public class Player : MonoBehaviour
 
             for (int i = 0; i < enemys.Length; i++)
             {
-                enemyDistanse[i] = Vector3.Distance(transform.position, enemys[i].transform.position);
+                enemyDistanse[i] = Vector3.Distance(transform.position, enemys[i].transform.position);  // 計算每個敵人與玩家之間的距離
             }
 
-            float min = enemyDistanse.Min();
+            float min = enemyDistanse.Min();                      // 取得距離最近的敵人
 
             int index = enemyDistanse.ToList().IndexOf(min);
 
             Vector3 posEnemy = enemys[index].transform.position;
             posEnemy.y = transform.position.y;
-            transform.LookAt(posEnemy);
+            transform.LookAt(posEnemy);                           // 鎖定敵人
 
-            ani.SetTrigger("攻擊觸發");
+            ani.SetTrigger("攻擊觸發");                           // 動畫觸發器
 
-            Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f; // 生成位置
+            Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f;   // 武器生成位置
 
-            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z); // 生成角度
+            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z); // 武器生成角度
 
-            GameObject temp = Instantiate(bullet, pos, qua);
+            GameObject temp = Instantiate(bullet, pos, qua);       // 生成(物件,位置,角度)
             temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
             temp.AddComponent<Bullet>();
             temp.GetComponent<Bullet>().damage = attack + criticalAttack + attack_WP;
@@ -254,7 +255,7 @@ public class Player : MonoBehaviour
 
             AttackAbility();
 
-            Destroy(temp, 5f);
+            Destroy(temp, 5f);                                     // 刪除沒有攻擊到敵人殘留的武器 => 省效能
         }
     }
 

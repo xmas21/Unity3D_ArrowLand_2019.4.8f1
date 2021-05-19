@@ -73,28 +73,28 @@ public class LevelManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name.Contains("魔王1"))
         {
-            async = SceneManager.LoadSceneAsync(0);
+            async = SceneManager.LoadSceneAsync(2);               // 切換場景到 主選單(關卡編號0)
             bl_6 = true;
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王2"))
         {
-            async = SceneManager.LoadSceneAsync(0);
+            async = SceneManager.LoadSceneAsync(2);
             bl_11 = true;
         }
         else if (SceneManager.GetActiveScene().name.Contains("魔王3"))
         {
-            async = SceneManager.LoadSceneAsync(0);
+            async = SceneManager.LoadSceneAsync(2);
             bl_16 = true;
         }
         else
         {
             int index = SceneManager.GetActiveScene().buildIndex;
-            async = SceneManager.LoadSceneAsync(index + 1);
+            async = SceneManager.LoadSceneAsync(index + 1);        // 切換場景到下一關(關卡編號+1)
         }
 
         async.allowSceneActivation = false;
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 100; i++)                              // 過場動畫
         {
             imgCross.color += new Color(1, 1, 1, 0.01f);
             yield return new WaitForSeconds(0.001f);
@@ -155,7 +155,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
         Time.timeScale = 1;
     }
 
