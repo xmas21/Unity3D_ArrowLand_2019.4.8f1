@@ -2,7 +2,6 @@
 
 public class CameraControl : MonoBehaviour
 {
-    #region 欄位
     private Transform player;
 
     [Header("跟蹤速度"), Range(0, 10)]
@@ -12,9 +11,6 @@ public class CameraControl : MonoBehaviour
     [Header("下方限制")]
     public float bottom = 5;
 
-    #endregion
-
-    #region 
     /// <summary>
     /// 遊戲開始執行
     /// </summary>
@@ -31,10 +27,6 @@ public class CameraControl : MonoBehaviour
         Track();
     }
 
-    #endregion
-
-    #region 
-
     /// <summary>
     /// 追蹤玩家座標方法
     /// </summary>
@@ -49,5 +41,4 @@ public class CameraControl : MonoBehaviour
 
         transform.position = Vector3.Lerp(posCamera, posplayer, 0.5f);   // camera 往 player 前進 0.5f
     }
-    #endregion
 }

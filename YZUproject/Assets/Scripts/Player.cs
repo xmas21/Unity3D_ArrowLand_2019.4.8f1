@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using UnityEngine.UIElements;
 
 [System.Serializable]
 public class Player : MonoBehaviour
@@ -51,13 +50,20 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody>();                                 // 取得元件 (rigidbody) 存入 rig (相同屬性面板)
         ani = GetComponent<Animator>();
         hpMpManager = GetComponentInChildren<HpMpManager>();
-
         hpText = transform.GetChild(3).GetChild(3).GetComponent<Text>();
         joystick = GameObject.Find("固態搖桿").GetComponent<Joystick>(); // 取得指定元件 (Joystick中的固態搖桿)
         target = GameObject.Find("目標").transform;                      // 短版的指定元件
-
         levelManager = FindObjectOfType<LevelManager>();
         skillData = FindObjectOfType<SkillData>();
+
+        hp = data.hp;
+        hpMax = data.hpMax;
+        attack = data.attack;
+        attack_WP = data.WeaponAttack;
+        criticalAttack = data.CriticalAttack;
+        cd = data.cd;
+        speed = data.speed;
+        rehp = data.rehp;
 
         bullet = test_bullet; // 設定預設子彈
         pet1 = test_pet;      // 設定預設寵物
@@ -140,7 +146,6 @@ public class Player : MonoBehaviour
 
             Bullet(0.5f, -transform.right, transform.eulerAngles.x + 180, transform.eulerAngles.y - 90, transform.eulerAngles.z, -transform.right, 1);
         }
-
     }
 
     /// <summary>
@@ -203,6 +208,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Dead()
     {
+        hp = 0;
         ani.SetBool("死亡觸發", true);
         enabled = false;
 
@@ -214,7 +220,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Attack()
     {
-        if (timer < cd) timer += Time.deltaTime;    
+        if (timer < cd) timer += Time.deltaTime;
         else
         {
             timer = 0;
@@ -222,40 +228,41 @@ public class Player : MonoBehaviour
             enemys = FindObjectsOfType<Enemy>();        // 找尋腳本物件<敵人>
             enemyDistanse = new float[enemys.Length];
 
-            if (enemys.Length == 0)                     // 假如 敵人數量 = 0 通關
-            {
-                levelManager.Pass();
-                return;
-            }
-
             for (int i = 0; i < enemys.Length; i++)
             {
                 enemyDistanse[i] = Vector3.Distance(transform.position, enemys[i].transform.position);  // 計算每個敵人與玩家之間的距離
             }
 
-            float min = enemyDistanse.Min();                      // 取得距離最近的敵人
+            if (enemys.Length == 0)
+            {
+                return;
+            }
+            else
+            {
+                float min = enemyDistanse.Min();                      // 取得距離最近的敵人
 
-            int index = enemyDistanse.ToList().IndexOf(min);
+                int index = enemyDistanse.ToList().IndexOf(min);
 
-            Vector3 posEnemy = enemys[index].transform.position;
-            posEnemy.y = transform.position.y;
-            transform.LookAt(posEnemy);                           // 鎖定敵人
+                Vector3 posEnemy = enemys[index].transform.position;
+                posEnemy.y = transform.position.y;
+                transform.LookAt(posEnemy);                           // 鎖定敵人
 
-            ani.SetTrigger("攻擊觸發");                           // 動畫觸發器
+                ani.SetTrigger("攻擊觸發");                           // 動畫觸發器
 
-            Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f;   // 武器生成位置
+                Vector3 pos = transform.position + transform.up * 1 + transform.forward * 1.5f;   // 武器生成位置
 
-            Quaternion qua = Quaternion.Euler(transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z); // 武器生成角度
+                Quaternion qua = Quaternion.Euler(transform.eulerAngles.x + 180, transform.eulerAngles.y, transform.eulerAngles.z); // 武器生成角度
 
-            GameObject temp = Instantiate(bullet, pos, qua);       // 生成(物件,位置,角度)
-            temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
-            temp.AddComponent<Bullet>();
-            temp.GetComponent<Bullet>().damage = attack + criticalAttack + attack_WP;
-            temp.GetComponent<Bullet>().playerBullet = true;
+                GameObject temp = Instantiate(bullet, pos, qua);       // 生成(物件,位置,角度)
+                temp.GetComponent<Rigidbody>().AddForce(transform.forward * data.power);
+                temp.AddComponent<Bullet>();
+                temp.GetComponent<Bullet>().damage = attack + criticalAttack + attack_WP;
+                temp.GetComponent<Bullet>().playerBullet = true;
 
-            AttackAbility();
+                AttackAbility();
 
-            Destroy(temp, 5f);                                     // 刪除沒有攻擊到敵人殘留的武器 => 省效能
+                Destroy(temp, 5f);                                     // 刪除沒有攻擊到敵人殘留的武器 => 省效能
+            }
         }
     }
 

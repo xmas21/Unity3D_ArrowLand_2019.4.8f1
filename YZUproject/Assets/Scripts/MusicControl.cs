@@ -18,7 +18,7 @@ public class MusicControl : MonoBehaviour
     private void Start()
     {
         aud = GetComponent<AudioSource>();
-        aud.volume = 0.02f;
+        aud.volume = 0.1f;
         isMute = false;
         preVolume = aud.volume;
         for (int i = 0; i < bgMuteBtn.Length; i++)

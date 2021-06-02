@@ -10,15 +10,6 @@ public class DataSave : MonoBehaviour
     [SerializeField]
     private PlayerDate data;
 
-    public Text ui_text;
-    public Button saveBtn;
-    public Button loadBtn;
-
-    private void Start()
-    {
-        saveBtn.onClick.AddListener(SaveData);
-        loadBtn.onClick.AddListener(LoadData);
-    }
 
     /*
     private void SaveData() // by Xml
@@ -42,13 +33,13 @@ public class DataSave : MonoBehaviour
     /*
     private void SaveData() // by Json
     {
-        PlayerPrefs.SetString("jsondata", JsonUtility.ToJson(data));
+       string json = JsonUtility.ToJson(data));
         ui_text.text = "儲存成功" ;
     }
 
     private void LoadData()
     {
-        data = JsonUtility.FromJson<PlayerDate>(PlayerPrefs.GetString("jsondata"));
+        data = JsonUtility.FromJson<PlayerDate>(json);
     }
     */
 
@@ -70,12 +61,14 @@ public class DataSave : MonoBehaviour
         sw.WriteLine(data.WeaponAttack = 28f);
         sw.WriteLine(data.PlayerCoin = 100f);
         sw.WriteLine(data.PlayerJewel = 0f);
+        sw.WriteLine(data.weapon_Count = 1);
+        sw.WriteLine(data.ifinite_round = 0);
 
         for (int i = 0; i < data.ownWeapons.Length; i++)
         {
             sw.WriteLine(data.ownWeapons[i].name);
             sw.WriteLine(data.ownWeapons[i].owned);
-            sw.WriteLine(data.ownWeapons[i].level);
+            sw.WriteLine(data.ownWeapons[i].level = 1);
             sw.WriteLine(data.ownWeapons[i].damage);
             sw.WriteLine(data.ownWeapons[i].cd);
         }
@@ -90,7 +83,14 @@ public class DataSave : MonoBehaviour
         {
             sw.WriteLine(data.ownPets[i].name);
             sw.WriteLine(data.ownPets[i].owned = false);
-            sw.WriteLine(data.ownPets[i].level = 0);
+            sw.WriteLine(data.ownPets[i].level = 1);
+            sw.WriteLine(data.ownPets[i].damage);
+        }
+
+        for (int i = 0; i < data.petChips.Length; i++)
+        {
+            sw.WriteLine(data.petChips[i].name);
+            sw.WriteLine(data.petChips[i].count);
         }
 
         for (int i = 0; i < data.talents.Length; i++)
@@ -102,7 +102,6 @@ public class DataSave : MonoBehaviour
         #endregion
         sw.Close();
         fs.Close();
-        print("儲存成功");
     }
 
     public void LoadData()  // 載入資料
@@ -122,6 +121,8 @@ public class DataSave : MonoBehaviour
         data.WeaponAttack = float.Parse(sr.ReadLine());
         data.PlayerCoin = float.Parse(sr.ReadLine());
         data.PlayerJewel = float.Parse(sr.ReadLine());
+        data.weapon_Count = int.Parse(sr.ReadLine());
+        data.ifinite_round = int.Parse(sr.ReadLine());
 
         for (int i = 0; i < data.ownWeapons.Length; i++)
         {
@@ -143,6 +144,13 @@ public class DataSave : MonoBehaviour
             data.ownPets[i].name = sr.ReadLine();
             data.ownPets[i].owned = bool.Parse(sr.ReadLine());
             data.ownPets[i].level = int.Parse(sr.ReadLine());
+            data.ownPets[i].damage = int.Parse(sr.ReadLine());
+        }
+
+        for (int i = 0; i < data.petChips.Length; i++)
+        {
+            data.petChips[i].name = sr.ReadLine();
+            data.petChips[i].count = int.Parse(sr.ReadLine());
         }
 
         for (int i = 0; i < data.talents.Length; i++)
@@ -150,7 +158,5 @@ public class DataSave : MonoBehaviour
             data.talents[i].name = sr.ReadLine();
             data.talents[i].level = int.Parse(sr.ReadLine());
         }
-
-        print("載入成功");
     }
 }

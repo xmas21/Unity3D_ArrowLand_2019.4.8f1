@@ -14,17 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_name: "\u863F\u8514"
   hp: 600
-  attack: 60
-  CriticalAttack: 20
-  cd: 0.7
+  attack: 600
+  CriticalAttack: 40
+  cd: 1.1
   speed: 275
   armor: 0.01
-  rehp: 9
+  rehp: 3
   hpMax: 600
   power: 1200
-  WeaponAttack: 28
-  PlayerCoin: 11000
+  WeaponAttack: 80
+  PlayerCoin: 8431
   PlayerJewel: 0
+  weapon_Count: 0
+  ifinite_round: 0
   ownWeapons:
   - name: "\u5C0F\u5C0F\u5200"
     owned: 1
@@ -47,7 +49,7 @@ MonoBehaviour:
     damage: 100
     cd: 1.34
   - name: "\u7389\u77F3\u528D"
-    owned: 0
+    owned: 1
     level: 1
     damage: 80
     cd: 1.1
@@ -94,9 +96,16 @@ MonoBehaviour:
   - name: "Q\u840C\u72AC"
     owned: 0
     level: 0
+    damage: 120
   - name: "\u562F\u5929\u864E"
     owned: 0
     level: 0
+    damage: 90
+  petChips:
+  - name: "Q\u840C\u72AC"
+    count: 0
+  - name: "\u562F\u5929\u864E"
+    count: 0
   talents:
   - name: "\u751F\u547D"
     level: 0

@@ -33,12 +33,19 @@ public class PlayerDate : ScriptableObject
     [Header("鑽石數量")]
     public float PlayerJewel = 0;
 
+    [Header("擁有武器數量")]
+    public int weapon_Count;
+    [Header("噩夢遠征最高回合數")]
+    public int ifinite_round;
+
     [Header("武器庫")]
     public OwnWeapon[] ownWeapons;
     [Header("武器碎片")]
     public WeaponChip[] weaponChips;
     [Header("寵物庫")]
     public OwnPet[] ownPets;
+    [Header("寵物碎片")]
+    public PetChip[] petChips;
     [Header("角色天賦")]
     public Talent[] talents;
 }
@@ -76,6 +83,17 @@ public class OwnPet
     public bool owned;
     [Header("寵物等級")]
     public int level;
+    [Header("寵物傷害")]
+    public float damage;
+}
+
+[System.Serializable]
+public class PetChip
+{
+    [Header("寵物碎片名稱")]
+    public string name;
+    [Header("寵物碎片數量")]
+    public int count;
 }
 
 [System.Serializable]

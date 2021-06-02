@@ -80,7 +80,7 @@ public class StartManager : MonoBehaviour
         {
             date.player_name = player_name.text;
             ds.SaveData();
-            SceneManager.LoadScene("選單0");
+            SceneManager.LoadScene("2遊戲主選單");
             yield return null;
         }
         else

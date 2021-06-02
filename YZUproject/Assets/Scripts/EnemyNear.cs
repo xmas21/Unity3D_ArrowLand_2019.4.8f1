@@ -6,7 +6,7 @@ public class EnemyNear : Enemy
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position + data.NearAttackPos, transform.forward*data.NearAttackLength);
+        Gizmos.DrawRay(transform.position + data.NearAttackPos, transform.forward * data.NearAttackLength);
     }
 
     /// <summary>
@@ -34,6 +34,6 @@ public class EnemyNear : Enemy
         if (Physics.Raycast(transform.position + data.NearAttackPos, transform.forward, out hit, data.NearAttackLength))
         {
             hit.collider.GetComponent<Player>().Hit(data.attack);
-        }       
+        }
     }
 }

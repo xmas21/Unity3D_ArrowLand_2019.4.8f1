@@ -141,21 +141,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 選單按鈕
-    /// </summary>
-    public void ShowMenu()
+    public void ShowMenu()// 選單按鈕
     {
         Time.timeScale = 0;
         mainMenu.SetActive(true);
     }
 
-    /// <summary>
-    /// 回主選單
-    /// </summary>
-    public void MainMenu()
+    public void MainMenu()// 回主選單
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
         Time.timeScale = 1;
     }
 

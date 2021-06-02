@@ -37,6 +37,7 @@ public class RandomSkill : MonoBehaviour
         player = FindObjectOfType<Player>();
         textName = transform.GetChild(0).GetComponent<Text>(); // 取得子物件
         skillPanel = GameObject.Find("隨機技能");
+        nameskill = "empty";
 
         btn.onClick.AddListener(chooseSkill);
 
@@ -47,7 +48,7 @@ public class RandomSkill : MonoBehaviour
     /// <summary>
     /// 選取技能後的動作
     /// </summary>
-    private void chooseSkill()
+    public void chooseSkill()
     {
         skillPanel.SetActive(false);
         nameskill = nameSkill[index];

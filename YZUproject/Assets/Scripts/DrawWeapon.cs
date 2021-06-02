@@ -12,16 +12,14 @@ public class DrawWeapon : MonoBehaviour
     public Button close1;
     [Header("關閉沒錢按鈕2")]
     public Button close2;
-    [Header("武器寶箱")]
-    public GameObject chestWeapon;
-    [Header("抽寶箱畫面")]
-    public GameObject chestPanel;
+    [Header("抽武器寶箱畫面")]
+    public GameObject weaponChest_Panel;
     [Header("寶箱按鈕_內")]
-    public Button chestBtn_in;
+    public Button weaponChest_in;
     [Header("抽寶箱提示文字")]
     public Text chestText;
     [Header("寶箱圖片")]
-    public GameObject chestImg;
+    public GameObject weaponChest_Img;
     [Header("獎賞畫面")]
     public GameObject reward;
     [Header("獎賞畫面圖片")]
@@ -36,55 +34,24 @@ public class DrawWeapon : MonoBehaviour
     [Header("武器圖片庫")]
     public Sprite[] allImg;
 
-    private Button chestBtn_out;       // 商城寶箱按鈕
-    private Button lowButton1; // 下方選單按鈕
+    private Button weaponChest_Btn_out;       // 商城寶箱按鈕
+    private Button lowButton1;                // 下方選單按鈕
     private Button lowButton2;
     private Button lowButton3;
     private Button lowButton4;
-    private Animator ani;              // 寶箱的動畫
+    private Animator ani;                      // 寶箱的動畫
     private MenuManager menu;
-    private int index;                 // 武器抽前編號
-    private int iindex;                // 武器抽後編號
+    private int index;                         // 武器抽前編號
+    private int iindex;                        // 武器抽後編號
 
     private void Start()
     {
-        //************************************************//
-        data.ownWeapons[0].owned = true;
-        data.ownWeapons[1].owned = false;
-        data.ownWeapons[2].owned = false;
-        data.ownWeapons[3].owned = false;
-        data.ownWeapons[4].owned = false;
-        data.ownWeapons[5].owned = false;
-        data.ownWeapons[6].owned = false;
-        data.ownWeapons[7].owned = false;
-        data.ownWeapons[8].owned = false;
-
-        data.weaponChips[0].count = 0;
-        data.weaponChips[1].count = 0;
-        data.weaponChips[2].count = 0;
-        data.weaponChips[3].count = 0;
-        data.weaponChips[4].count = 0;
-        data.weaponChips[5].count = 0;
-        data.weaponChips[6].count = 0;
-        data.weaponChips[7].count = 0;
-        data.weaponChips[8].count = 0;
-
         menu = FindObjectOfType<MenuManager>();
-        menu.weaponBtn[0].interactable = true;
-        menu.weaponBtn[1].interactable = false;
-        menu.weaponBtn[2].interactable = false;
-        menu.weaponBtn[3].interactable = false;
-        menu.weaponBtn[4].interactable = false;
-        menu.weaponBtn[5].interactable = false;
-        menu.weaponBtn[6].interactable = false;
-        menu.weaponBtn[7].interactable = false;
-        menu.weaponBtn[8].interactable = false;
-        //************************************************//
         lowButton1 = GameObject.Find("商城下方按鈕").GetComponent<Button>();
         lowButton2 = GameObject.Find("裝備下方按鈕").GetComponent<Button>();
         lowButton3 = GameObject.Find("關卡下方按鈕").GetComponent<Button>();
         lowButton4 = GameObject.Find("天賦下方按鈕").GetComponent<Button>();
-        chestBtn_out = GameObject.Find("抽寶箱按鈕外").GetComponent<Button>();
+        weaponChest_Btn_out = GameObject.Find("抽寶箱按鈕外").GetComponent<Button>();
         ani = GameObject.Find("武器寶箱").GetComponent<Animator>();
         rewardSP = reward.GetComponent<Image>();
 
@@ -107,19 +74,19 @@ public class DrawWeapon : MonoBehaviour
                 chestText.text = "";
                 ani.SetTrigger("點寶箱晃動");
                 count[0] = true;
-                chestBtn_in.interactable = false;
+                weaponChest_in.interactable = false;
                 yield return new WaitForSeconds(0.8f);
                 chestText.text = "再次點擊寶箱";
-                chestBtn_in.interactable = true;
+                weaponChest_in.interactable = true;
             }
             else if (count[0] && !count[1]) // 第二階段 抽東西
             {
                 chestText.text = "";
                 ani.SetTrigger("點寶箱開啟");
                 count[1] = true;
-                chestBtn_in.interactable = false;
+                weaponChest_in.interactable = false;
                 yield return new WaitForSeconds(2f);
-                chestImg.SetActive(false);
+                weaponChest_Img.SetActive(false);
                 rewardSP.sprite = allImg[iindex];
                 yield return new WaitForSeconds(0.4f);
                 reward.SetActive(true);
@@ -127,16 +94,17 @@ public class DrawWeapon : MonoBehaviour
                 data.ownWeapons[iindex].owned = true;
                 menu.weaponBtn[iindex].interactable = true;
                 menu.weaponUse_Img[iindex].sprite = menu.weaponBtn_allimg[iindex];
+                data.weapon_Count++;
                 yield return new WaitForSeconds(1.5f);
                 chestText.text = "點擊任意處離開";
-                chestBtn_in.interactable = true;
+                weaponChest_in.interactable = true;
             }
             else if (count[0] && count[1])  // 第三階段 關閉畫面
             {
                 ani.SetTrigger("寶箱重製");
                 data.PlayerCoin -= cost;
                 menu.Updatedata();
-                chestImg.SetActive(true);
+                weaponChest_Img.SetActive(true);
                 reward.SetActive(false);
                 count[0] = false;
                 count[1] = false;
@@ -152,19 +120,19 @@ public class DrawWeapon : MonoBehaviour
                 chestText.text = "";
                 ani.SetTrigger("點寶箱晃動");
                 count[0] = true;
-                chestBtn_in.interactable = false;
+                weaponChest_in.interactable = false;
                 yield return new WaitForSeconds(0.8f);
                 chestText.text = "再次點擊寶箱";
-                chestBtn_in.interactable = true;
+                weaponChest_in.interactable = true;
             }
             else if (count[0] && !count[1]) // 第二階段 寶箱開啟動畫
             {
                 chestText.text = "";
                 ani.SetTrigger("點寶箱開啟");
                 count[1] = true;
-                chestBtn_in.interactable = false;
+                weaponChest_in.interactable = false;
                 yield return new WaitForSeconds(1.0f);
-                chestImg.SetActive(false);
+                weaponChest_Img.SetActive(false);
                 rewardSP.sprite = allImg[iindex];
                 yield return new WaitForSeconds(0.4f);
                 reward.SetActive(true);
@@ -177,14 +145,14 @@ public class DrawWeapon : MonoBehaviour
                 rewardSP.sprite = allImg[iindex + 9];
                 yield return new WaitForSeconds(1.5f);
                 chestText.text = "點擊任意處離開";
-                chestBtn_in.interactable = true;
+                weaponChest_in.interactable = true;
             }
             else if (count[0] && count[1])  // 第三階段 關閉畫面
             {
                 ani.SetTrigger("寶箱重製");
                 menu.Updatedata();
                 data.PlayerCoin -= cost;
-                chestImg.SetActive(true);
+                weaponChest_Img.SetActive(true);
                 reward.SetActive(false);
                 count[0] = false;
                 count[1] = false;
@@ -201,8 +169,8 @@ public class DrawWeapon : MonoBehaviour
 
     private void ClickBtn()            // 按按鈕
     {
-        chestBtn_out.onClick.AddListener(ShowChestPanel);
-        chestBtn_in.onClick.AddListener(() => { StartCoroutine(ClickBtn_in()); });
+        weaponChest_Btn_out.onClick.AddListener(ShowChestPanel);
+        weaponChest_in.onClick.AddListener(() => { StartCoroutine(ClickBtn_in()); });
 
         close1.onClick.AddListener(NoShowNoMoney);
         close2.onClick.AddListener(NoShowNoMoney);
@@ -213,7 +181,7 @@ public class DrawWeapon : MonoBehaviour
         if (data.PlayerCoin >= cost)
         {
 
-            chestPanel.SetActive(true);
+            weaponChest_Panel.SetActive(true);
         }
         else if (data.PlayerCoin < cost)
         {
@@ -223,7 +191,7 @@ public class DrawWeapon : MonoBehaviour
 
     private void NoShowChestPanel()    // 關閉寶箱
     {
-        chestPanel.SetActive(false);
+        weaponChest_Panel.SetActive(false);
     }
 
     private void ShowNoMoney()         // 顯示沒錢畫面

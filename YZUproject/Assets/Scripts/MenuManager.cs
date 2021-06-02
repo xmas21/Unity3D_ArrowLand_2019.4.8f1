@@ -66,6 +66,33 @@ public class MenuManager : MonoBehaviour
     [Header("武器碎片文字")]
     public Text[] weaponChip_Text;
 
+    [Header("寵物按鈕")]
+    public Button[] petBtn;
+    [Header("寵物按鈕全部圖片")]
+    public Sprite[] petBtn_allimg;
+    [Header("寵物取消按鈕")]
+    public Button[] petExit;
+    [Header("寵物畫面")]
+    public GameObject[] petPanel;
+
+    [Header("寵物使用按鈕")]
+    public Button[] petUse_Btn;
+    [Header("寵物使用中全部照片")]
+    public Sprite[] petUse_allimg;
+    [Header("寵物使用中圖片")]
+    public Image[] petUse_img;
+
+    [Header("寵物等級文字")]
+    public Text[] petLevel_text;
+    [Header("寵物傷害文字")]
+    public Text[] petDamage_text;
+    [Header("寵物升級按鈕")]
+    public Button[] petUp_Btn;
+    [Header("寵物升級條")]
+    public Image[] petU_Bar;
+    [Header("寵物碎片文字")]
+    public Text[] petChip_Text;
+
     [Header("人員素材按鈕")]
     public Button[] soueceBtn;
     [Header("人員素材退出按鈕")]
@@ -80,7 +107,16 @@ public class MenuManager : MonoBehaviour
     [Header("天賦數值")]
     public Text[] talentValue;
 
-    private GameObject ps;          // 粒子
+    [Header("成就獎盃")]
+    public Image[] trophy;
+    [Header("成就畫面")]
+    public GameObject trophy_Panel;
+    [Header("成就獎盃照片")]
+    public Sprite trophy_Img;
+    [Header("成就提示")]
+    public GameObject red_dot;
+    [Header("關閉成就按鈕")]
+    public Button trophy_Exit;
 
     private Button valueDetailBtn;  // 詳細資訊按鈕
     private Button setButton1;      // 設定按鈕
@@ -93,7 +129,10 @@ public class MenuManager : MonoBehaviour
     private Button lowButton4;
     private Button atkButton;       // 選擇武器的按鈕
     private Button petButton;       // 選擇寵物的按鈕
+    private Button ifinite_Btn;     // 噩夢遠征按鈕
+    private Button achieve_Btn;     // 成就按鈕
 
+    private GameObject ps;          // 粒子
     private Player player;
     private DrawTalent draw;
 
@@ -106,20 +145,6 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        // *********************** //
-        data.WeaponAttack = data.ownWeapons[0].damage;
-        data.cd = data.ownWeapons[0].cd;
-        data.ownWeapons[0].level = 1;
-        data.ownWeapons[1].level = 1;
-        data.ownWeapons[2].level = 1;
-        data.ownWeapons[3].level = 1;
-        data.ownWeapons[4].level = 1;
-        data.ownWeapons[5].level = 1;
-        data.ownWeapons[6].level = 1;
-        data.ownWeapons[7].level = 1;
-        data.ownWeapons[8].level = 1;
-
-        // *********************** //
         setButton1 = GameObject.Find("設定按鈕0").GetComponent<Button>();
         setButton2 = GameObject.Find("設定按鈕1").GetComponent<Button>();
         setButton3 = GameObject.Find("設定按鈕2").GetComponent<Button>();
@@ -131,6 +156,8 @@ public class MenuManager : MonoBehaviour
         atkButton = GameObject.Find("武器按鈕").GetComponent<Button>();
         petButton = GameObject.Find("寵物按鈕").GetComponent<Button>();
         valueDetailBtn = GameObject.Find("詳細資訊按鈕").GetComponent<Button>();
+        ifinite_Btn = GameObject.Find("噩夢遠征按鈕").GetComponent<Button>();
+        achieve_Btn = GameObject.Find("成就系統按鈕").GetComponent<Button>();
         hpValue = GameObject.Find("生命值").GetComponent<Text>();
         atkValue = GameObject.Find("攻擊力").GetComponent<Text>();
         player_name = GameObject.Find("玩家名稱").GetComponent<Text>();
@@ -146,6 +173,11 @@ public class MenuManager : MonoBehaviour
         Updatedata();
         Allowbtn();
         ClickButton();
+    }
+
+    private void Update()
+    {
+        Achievement();
     }
 
     public void Updatedata() //更新數值
@@ -168,16 +200,34 @@ public class MenuManager : MonoBehaviour
             weaponUse_Img[index] = weaponBtn[index].GetComponent<Image>();
         }
 
+        for (int i = 0; i < petBtn.Length; i++)
+        {
+            int index = i;
+            petUse_img[index] = petBtn[index].GetComponent<Image>();
+        }
+
         for (int i = 0; i < weaponChip_Text.Length; i++) // 裝備 武器碎片數量更新
         {
             int index = i;
             weaponChip_Text[index].text = data.weaponChips[index].count + "/ 30";
         }
 
+        for (int i = 0; i < petChip_Text.Length; i++)    // 裝備 武器碎片數量更新
+        {
+            int index = i;
+            petChip_Text[index].text = data.petChips[index].count + "/ 30";
+        }
+
         for (int i = 0; i < weaponUp_Bar.Length; i++)    // 裝備 武器 升級條更新
         {
             int index = i;
             weaponUp_Bar[index].fillAmount = (float)data.weaponChips[index].count / 30;
+        }
+
+        for (int i = 0; i < petU_Bar.Length; i++)    // 裝備 武器 升級條更新
+        {
+            int index = i;
+            petU_Bar[index].fillAmount = (float)data.petChips[index].count / 30;
         }
 
         for (int i = 0; i < weaponUp_Btn.Length; i++)    // 裝備 武器 升級按鈕控制
@@ -193,16 +243,41 @@ public class MenuManager : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < petUp_Btn.Length; i++)    // 裝備 武器 升級按鈕控制
+        {
+            int index = i;
+            if (data.petChips[index].count >= 10)
+            {
+                petUp_Btn[index].interactable = true;
+            }
+            else if (data.petChips[index].count < 10)
+            {
+                petUp_Btn[index].interactable = false;
+            }
+        }
+
         for (int i = 0; i < weaponLevel_text.Length; i++)  // 裝備 武器 等級文字更新
         {
             int index = i;
             weaponLevel_text[index].text = "Lv." + data.ownWeapons[index].level;
         }
 
+        for (int i = 0; i < petLevel_text.Length; i++)  // 裝備 武器 等級文字更新
+        {
+            int index = i;
+            petLevel_text[index].text = "Lv." + data.ownPets[index].level;
+        }
+
         for (int i = 0; i < weaponDamage_text.Length; i++)
         {
             int index = i;
             weaponDamage_text[index].text = "傷害 : " + data.ownWeapons[i].damage;
+        }
+
+        for (int i = 0; i < petDamage_text.Length; i++)
+        {
+            int index = i;
+            petDamage_text[index].text = "傷害 : " + data.ownPets[i].damage;
         }
 
         talentValue[0].text = "天賦生命增加 + " + draw.hpValue.ToString("F0");
@@ -253,6 +328,10 @@ public class MenuManager : MonoBehaviour
         atkButton.onClick.AddListener(ShowWeaponArea);
         petButton.onClick.AddListener(ShowPetArea);
 
+        ifinite_Btn.onClick.AddListener(LoadIfinite);
+        achieve_Btn.onClick.AddListener(ShowAchieve);
+        trophy_Exit.onClick.AddListener(NoShowAchieve);
+
         setButton1.onClick.AddListener(() => { ShowSetPanel(0); });
         setButton2.onClick.AddListener(() => { ShowSetPanel(1); });
         setButton3.onClick.AddListener(() => { ShowSetPanel(2); });
@@ -272,6 +351,16 @@ public class MenuManager : MonoBehaviour
             weaponBtn[index].onClick.AddListener(() => { ShowWeaponPanel(index); });
             weaponExit[index].onClick.AddListener(() => { NoShowWeaponPanel(index); });
             weaponUse_Btn[index].onClick.AddListener(() => { UseWeapon(index); });
+            weaponUp_Btn[index].onClick.AddListener(() => { WeaponLevelUp(index); });
+        }
+
+        for (int i = 0; i < petBtn.Length; i++)  // 寵物按鈕
+        {
+            int index = i;
+            petBtn[index].onClick.AddListener(() => { ShowPetPanel(index); });
+            petExit[index].onClick.AddListener(() => { NoShowPetPanel(index); });
+            petUse_Btn[index].onClick.AddListener(() => { UsePet(index); });
+            petUp_Btn[index].onClick.AddListener(() => { PetLevelUp(index); });
         }
 
         for (int i = 0; i < soueceBtn.Length; i++)  // 人員素材按鈕
@@ -286,18 +375,16 @@ public class MenuManager : MonoBehaviour
             int index = i;
             talentBtn[index].onClick.AddListener(() => { ShowTalentPanel(index); });
         }
-
-        for (int i = 0; i < weaponUp_Btn.Length; i++)
-        {
-            int index = i;
-            weaponUp_Btn[index].onClick.AddListener(() => { WeaponLevelUp(index); });
-        }
     }
 
-    public void LoadLevel() // 切換場景
+    public void LoadLevel() // 切換場景 - 劇情
     {
-        data.hp = data.hpMax;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
+    }
+
+    private void LoadIfinite() // 噩夢遠征關卡
+    {
+        SceneManager.LoadScene(3);
     }
 
     /// <summary>
@@ -312,17 +399,17 @@ public class MenuManager : MonoBehaviour
 
     public void Level7() // 關卡7按鈕
     {
-        ButtonOfLevel(7);
+        ButtonOfLevel(10);
     }
 
     public void Level13() // 關卡13按鈕
     {
-        ButtonOfLevel(13);
+        ButtonOfLevel(16);
     }
 
     public void Level19() // 關卡19按鈕
     {
-        ButtonOfLevel(19);
+        ButtonOfLevel(22);
     }
 
     public void ShowLevelChoose() // 開啟選擇關卡畫面
@@ -404,6 +491,24 @@ public class MenuManager : MonoBehaviour
         lowButton4.interactable = true;
     }
 
+    private void ShowPetPanel(int i) // 顯示武器畫面
+    {
+        petPanel[i].SetActive(true);
+        lowButton1.interactable = false;
+        lowButton2.interactable = false;
+        lowButton3.interactable = false;
+        lowButton4.interactable = false;
+    }
+
+    private void NoShowPetPanel(int i) // 不顯示武器畫面
+    {
+        petPanel[i].SetActive(false);
+        lowButton1.interactable = true;
+        lowButton2.interactable = true;
+        lowButton3.interactable = true;
+        lowButton4.interactable = true;
+    }
+
     private void ShowTalentPanel(int i)  // 顯示天賦畫面
     {
         for (int j = 0; j < talentPanel.Length; j++)
@@ -456,6 +561,26 @@ public class MenuManager : MonoBehaviour
         lowButton4.interactable = true;
     }
 
+    private void UsePet(int i)  // 選擇武器
+    {
+        for (int j = 0; j < petUp_Btn.Length; j++)
+        {
+            if (data.ownPets[j].owned == true)
+            {
+                petUse_img[j].sprite = petBtn_allimg[j];
+            }
+        }
+        petBtn_img.sprite = petBtn_allimg[i];
+        petUse_img[i].sprite = petUse_allimg[i];
+        Player.pet1 = pet[i + 1];
+        Updatedata();
+        petPanel[i].SetActive(false);
+        lowButton1.interactable = true;
+        lowButton2.interactable = true;
+        lowButton3.interactable = true;
+        lowButton4.interactable = true;
+    }
+
     private void WeaponLevelUp(int i)  // 武器升級
     {
         data.weaponChips[i].count -= 10;
@@ -464,4 +589,51 @@ public class MenuManager : MonoBehaviour
         Updatedata();
     }
 
+    private void PetLevelUp(int i)  // 武器升級
+    {
+        data.petChips[i].count -= 10;
+        data.ownPets[i].level++;
+        data.ownPets[i].damage += 10;
+        Updatedata();
+    }
+
+    private void ShowAchieve() // 顯示成就畫面
+    {
+        trophy_Panel.SetActive(true);
+        lowButton1.interactable = false;
+        lowButton2.interactable = false;
+        lowButton3.interactable = false;
+        lowButton4.interactable = false;
+        ps.SetActive(false);
+        red_dot.SetActive(false);
+    }
+
+    private void NoShowAchieve() // 關閉成就畫面
+    {
+        trophy_Panel.SetActive(false);
+        ps.SetActive(true);
+        lowButton1.interactable = true;
+        lowButton2.interactable = true;
+        lowButton3.interactable = true;
+        lowButton4.interactable = true;
+    }
+
+    private void Achievement() // 成就判定
+    {
+        if (data.weapon_Count >= 2)
+        {
+            red_dot.SetActive(true);
+            trophy[0].sprite = trophy_Img;
+        }
+        else if (data.ifinite_round >= 5)
+        {
+            red_dot.SetActive(true);
+            trophy[1].sprite = trophy_Img;
+        }
+        else if (data.weapon_Count == 9)
+        {
+            red_dot.SetActive(true);
+            trophy[2].sprite = trophy_Img;
+        }
+    }
 }
