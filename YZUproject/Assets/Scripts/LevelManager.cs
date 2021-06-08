@@ -5,6 +5,8 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("玩家資料")]
+    public PlayerDate data;
     public GameObject objLight;
     public GameObject ramdomSkill;
     public Enemy[] enemys;
@@ -18,19 +20,18 @@ public class LevelManager : MonoBehaviour
     [Header("主選單")]
     public GameObject mainMenu;
 
-    [Header("關卡是否生大王")]
-    public  bool insBoss ;
-    [Header("關卡6是否通關")]
-    public static bool bl_6 = false;
-    [Header("關卡11是否通關")]
-    public static bool bl_11 = false;
-    [Header("關卡16是否通關")]
-    public static bool bl_16 = false;
+    [Header("古堡魔王一是否通關")]
+    public static bool lv_9;
+    [Header("古堡魔王二是否通關")]
+    public static bool lv_15;
+    [Header("希臘魔王一是否通關")]
+    public static bool lv_21;
+    [Header("希臘魔王二是否通關")]
+    public static bool lv_27;
 
     public Player player;
     public Animator door;
     public Image imgCross;
-
 
     protected virtual void Start()
     {
@@ -39,20 +40,20 @@ public class LevelManager : MonoBehaviour
 
         player = FindObjectOfType<Player>();
 
-        insBoss = false;
+        lv_9 = false;
+        lv_15 = false;
+        lv_21 = false;
+        lv_27 = false;
 
         if (autoShowSkill) ShowSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
     }
 
-    /// <summary>
-    /// 是否通關
-    /// </summary>
-    protected virtual void IsPass()
+    protected virtual void IsPass() // 是否通關
     {
         enemys = FindObjectsOfType<Enemy>();
 
-        if (enemys.Length == 0 && insBoss == false)
+        if (enemys.Length == 0)
         {
             Pass();
             return;
@@ -64,27 +65,33 @@ public class LevelManager : MonoBehaviour
         IsPass();
     }
 
-    /// <summary>
-    /// 下一關
-    /// </summary>
-    public IEnumerator NextLevel()
+    public IEnumerator NextLevel() // 下一關
     {
         AsyncOperation async;
 
-        if (SceneManager.GetActiveScene().name.Contains("魔王1"))
+        if (SceneManager.GetActiveScene().name.Contains("古堡魔王一"))
         {
             async = SceneManager.LoadSceneAsync(2);               // 切換場景到 主選單(關卡編號0)
-            bl_6 = true;
+            lv_9 = true;
+            data.areas[0].stage = 5;
         }
-        else if (SceneManager.GetActiveScene().name.Contains("魔王2"))
+        else if (SceneManager.GetActiveScene().name.Contains("古堡魔王二"))
         {
             async = SceneManager.LoadSceneAsync(2);
-            bl_11 = true;
+            lv_15= true;
+            data.areas[0].stage = 10;
         }
-        else if (SceneManager.GetActiveScene().name.Contains("魔王3"))
+        else if (SceneManager.GetActiveScene().name.Contains("希臘魔王一"))
         {
             async = SceneManager.LoadSceneAsync(2);
-            bl_16 = true;
+            lv_21 = true;
+            data.areas[1].stage = 5;
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("希臘魔王二"))
+        {
+            async = SceneManager.LoadSceneAsync(2);
+            lv_27 = true;
+            data.areas[1].stage = 10;
         }
         else
         {
@@ -103,10 +110,7 @@ public class LevelManager : MonoBehaviour
         async.allowSceneActivation = true;
     }
 
-    /// <summary>
-    /// 顯示復活
-    /// </summary>
-    public IEnumerator ShowRevival()
+    public IEnumerator ShowRevival() // 顯示復活
     {
         panelRevival.SetActive(true);
 
@@ -117,19 +121,13 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 關閉復活
-    /// </summary>
-    public void CloseRevival()
+    public void CloseRevival() // 關閉復活
     {
         StopCoroutine(ShowRevival());
         panelRevival.SetActive(false);
     }
-
-    /// <summary>
-    /// 過關
-    /// </summary>
-    public void Pass()
+ 
+    public void Pass()// 過關
     {
         Opendoor();
 
@@ -149,7 +147,7 @@ public class LevelManager : MonoBehaviour
 
     public void MainMenu()// 回主選單
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
         Time.timeScale = 1;
     }
 

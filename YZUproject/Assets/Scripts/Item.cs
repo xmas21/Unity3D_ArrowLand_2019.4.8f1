@@ -47,7 +47,7 @@ public class Item : MonoBehaviour
             if (Vector3.Distance(transform.position, player.position) < 1 && !aud.isPlaying)
             {
                 Destroy(gameObject, 0.2f);
-                aud.PlayOneShot(sound, 0.3f);
+                aud.PlayOneShot(sound, 0.05f);
             }
         }
     }

@@ -31,6 +31,11 @@ public class Bullet : MonoBehaviour
                 col.GetComponent<Enemy_IFI>().Hit(damage);
                 Destroy(gameObject);
             }
+            else if (col.GetComponent<Enemy>() && col.tag == "敵人")
+            {
+                col.GetComponent<Enemy>().Hit(damage);
+                Destroy(gameObject);
+            }
             else if (col.tag == "牆壁")
             {
                 Destroy(gameObject);

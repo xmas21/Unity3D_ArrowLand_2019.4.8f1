@@ -37,6 +37,8 @@ public class PlayerDate : ScriptableObject
     public int weapon_Count;
     [Header("噩夢遠征最高回合數")]
     public int ifinite_round;
+    [Header("各地區進度")]
+    public Area[] areas;
 
     [Header("武器庫")]
     public OwnWeapon[] ownWeapons;
@@ -105,6 +107,14 @@ public class Talent
     public int level;
 }
 
+[System.Serializable]
+public class Area
+{
+    [Header("地區名稱")]
+    public string name;
+    [Header("地區進度")]
+    public int stage;
+}
 
 
 

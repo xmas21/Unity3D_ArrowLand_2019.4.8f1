@@ -44,12 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39cd0baafc135e6489fe6d04a50145f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
   objLight: {fileID: 0}
   ramdomSkill: {fileID: 0}
+  enemys: []
   autoShowSkill: 0
   autoOpenDoor: 0
   panelRevival: {fileID: 0}
   mainMenu: {fileID: 0}
+  stage1: 0
+  stage2: 0
+  stage3: 0
+  player: {fileID: 0}
+  door: {fileID: 0}
+  imgCross: {fileID: 0}
 --- !u!114 &8414213142779679522
 MonoBehaviour:
   m_ObjectHideFlags: 0

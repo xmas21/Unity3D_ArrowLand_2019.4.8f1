@@ -5,6 +5,8 @@ using System.Collections;
 
 public class LevelManager_Boss : LevelManager
 {
+    public bool insBoss;
+
     protected override void Start()
     {
         door = GameObject.Find("木頭門").GetComponent<Animator>();

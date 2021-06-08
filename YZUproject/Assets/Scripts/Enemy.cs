@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     private float hp;
     private float timer;
 
-
     private void Start()
     {
         ani = GetComponent<Animator>();

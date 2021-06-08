@@ -64,6 +64,12 @@ public class DataSave : MonoBehaviour
         sw.WriteLine(data.weapon_Count = 1);
         sw.WriteLine(data.ifinite_round = 0);
 
+        for (int i = 0; i < data.areas.Length; i++)
+        {
+            sw.WriteLine(data.areas[i].name);
+            sw.WriteLine(data.areas[i].stage = 0);
+        }
+
         for (int i = 0; i < data.ownWeapons.Length; i++)
         {
             sw.WriteLine(data.ownWeapons[i].name);
@@ -123,6 +129,12 @@ public class DataSave : MonoBehaviour
         data.PlayerJewel = float.Parse(sr.ReadLine());
         data.weapon_Count = int.Parse(sr.ReadLine());
         data.ifinite_round = int.Parse(sr.ReadLine());
+
+        for (int i = 0; i < data.areas.Length; i++)
+        {
+            data.areas[i].name = sr.ReadLine();
+            data.areas[i].stage = int.Parse(sr.ReadLine());
+        }
 
         for (int i = 0; i < data.ownWeapons.Length; i++)
         {

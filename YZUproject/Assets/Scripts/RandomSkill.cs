@@ -67,7 +67,7 @@ public class RandomSkill : MonoBehaviour
         {
             for (int i = 0; i < spritesBlur.Length; i++)
             {
-                aud.PlayOneShot(soundScroll, 0.1f);
+                aud.PlayOneShot(soundScroll, 0.02f);
                 imgSkill.sprite = spritesBlur[i];
                 yield return new WaitForSeconds(speed);
             }
@@ -77,7 +77,7 @@ public class RandomSkill : MonoBehaviour
         btn.interactable = true;
         index = Random.Range(0, spritesSkill.Length);
         imgSkill.sprite = spritesSkill[index];
-        aud.PlayOneShot(soundSkill, 0.1f);
+        aud.PlayOneShot(soundSkill, 0.02f);
         textName.text = nameSkill[index];
     }
 }

@@ -116,10 +116,7 @@ public class Player : MonoBehaviour
         levelManager.CloseRevival();
     }
 
-    /// <summary>
-    /// 技能效果
-    /// </summary>
-    public void AttackAbility()
+    public void AttackAbility() // 技能效果
     {
         // 連續射擊 
         if (RandomSkill.nameskill.Equals(skillData.Skill1))
@@ -148,10 +145,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 技能Buff
-    /// </summary>
-    public void BuffAbility()
+    public void BuffAbility() // 技能Buff
     {
         // 血量增加
         if (RandomSkill.nameskill.Equals(skillData.Skill5))
@@ -179,10 +173,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 移動
-    /// </summary>
-    private void Move()
+    private void Move() // 移動
     {
         float h = joystick.Horizontal;                // X軸 (左右) 水平
         float v = joystick.Vertical;                  // Z軸 (前後) 垂直
@@ -203,10 +194,7 @@ public class Player : MonoBehaviour
         if (v == 0 && h == 0) Attack();
     }
 
-    /// <summary>
-    /// 死亡
-    /// </summary>
-    private void Dead()
+    private void Dead() // 死亡
     {
         hp = 0;
         ani.SetBool("死亡觸發", true);
@@ -215,10 +203,7 @@ public class Player : MonoBehaviour
         StartCoroutine(levelManager.ShowRevival());
     }
 
-    /// <summary>
-    /// 攻擊
-    /// </summary>
-    private void Attack()
+    private void Attack() // 攻擊
     {
         if (timer < cd) timer += Time.deltaTime;
         else
@@ -287,21 +272,16 @@ public class Player : MonoBehaviour
         temp.GetComponent<Bullet>().playerBullet = true;
     }
 
-    /// <summary>
-    /// 生命值更新
-    /// </summary>
-    private void UpdateValue()
+    private void UpdateValue()// 生命值更新
     {
         hpText.text = hp.ToString("f0");
     }
 
-    /// <summary>
-    /// 每秒回復生命
-    /// </summary>
-    private void RestoreHp()
+    private void RestoreHp() // 每秒回復生命
     {
         hp = Mathf.Clamp(hp, 0, hpMax);
         hp += rehp * Time.deltaTime;
         hpMpManager.UpdateHpBar(hp, hpMax);
     }
-}
+
+} 

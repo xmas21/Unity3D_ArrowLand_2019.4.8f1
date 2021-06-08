@@ -16,17 +16,24 @@ MonoBehaviour:
   hp: 600
   attack: 600
   CriticalAttack: 40
-  cd: 1.1
+  cd: 0.8
   speed: 275
   armor: 0.01
   rehp: 3
   hpMax: 600
   power: 1200
   WeaponAttack: 80
-  PlayerCoin: 8431
+  PlayerCoin: 8932
   PlayerJewel: 0
   weapon_Count: 0
   ifinite_round: 0
+  areas:
+  - name: "\u7687\u5BA4\u53E4\u5821"
+    stage: 0
+  - name: "\u5E0C\u81D8\u795E\u6BBF"
+    stage: 0
+  - name: "\u516B\u5E61\u9CE5\u5C45"
+    stage: 0
   ownWeapons:
   - name: "\u5C0F\u5C0F\u5200"
     owned: 1

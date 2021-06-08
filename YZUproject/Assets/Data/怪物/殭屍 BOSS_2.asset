@@ -17,10 +17,10 @@ MonoBehaviour:
   attack: 130
   cd: 1.8
   speed: 3
-  StopDistanse: 1.3
-  NearAttackLength: 2
+  StopDistanse: 2.5
+  NearAttackLength: 2.5
   NearAttackPos: {x: 0, y: 1, z: 1}
   NearAttackDelay: 0.5
   farPower: 1500
-  coinRandom: {x: 50, y: 50}
+  coinRandom: {x: 60, y: 80}
   coin: {fileID: 6064191670129767382, guid: b4265fe55c046fe4d982cfb82c80a011, type: 3}

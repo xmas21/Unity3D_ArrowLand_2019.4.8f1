@@ -7,14 +7,14 @@ public class MenuManager : MonoBehaviour
 {
     [Header("玩家資料")]
     public PlayerDate data;
-    [Header("選擇關卡畫面")]
-    public GameObject chooseLevel;
-    [Header("關卡6按鈕")]
-    public Button btn6;
-    [Header("關卡11按鈕")]
-    public Button btn11;
-    [Header("關卡16按鈕")]
-    public Button btn16;
+    [Header("選擇層數畫面")]
+    public GameObject chooseLevel_Panel;
+    [Header("關閉層數畫面按鈕")]
+    public Button chooseLevel_Exit;
+    [Header("階段一按鈕")]
+    public Button stage1_Btn;
+    [Header("階段二按鈕")]
+    public Button stage2_Btn;
     [Header("詳細資訊畫面")]
     public GameObject valueDetail;
     [Header("武器區塊")]
@@ -118,6 +118,19 @@ public class MenuManager : MonoBehaviour
     [Header("關閉成就按鈕")]
     public Button trophy_Exit;
 
+    [Header("全部地區圖片")]
+    public Sprite[] allArea_img;
+    [Header("地區畫面")]
+    public GameObject area_Panel;
+    [Header("關閉地區按鈕")]
+    public Button area_Exit;
+    [Header("地區按鈕")]
+    public Button[] area_Btn;
+    [Header("進入地區按鈕")]
+    public Button enteaArea_Btn;
+    [Header("關卡進度文字")]
+    public  Text schedule_Text;
+
     private Button valueDetailBtn;  // 詳細資訊按鈕
     private Button setButton1;      // 設定按鈕
     private Button setButton2;
@@ -125,12 +138,14 @@ public class MenuManager : MonoBehaviour
     private Button setButton4;
     private Button lowButton1;      // 下方選單按鈕
     private Button lowButton2;
-    private Button lowButton3;
+    private Button lowButton3; 
     private Button lowButton4;
     private Button atkButton;       // 選擇武器的按鈕
     private Button petButton;       // 選擇寵物的按鈕
     private Button ifinite_Btn;     // 噩夢遠征按鈕
     private Button achieve_Btn;     // 成就按鈕
+    private Button chooseArea_Btn;  // 選地區按鈕
+    private Button chooseLevel_Btn; // 選層數按鈕
 
     private GameObject ps;          // 粒子
     private Player player;
@@ -138,9 +153,13 @@ public class MenuManager : MonoBehaviour
 
     private Image atkBtn_img;       // 選擇武器的按鈕的圖片
     private Image petBtn_img;       // 選擇寵物的按鈕的圖片
+    private Image level_img;        // 關卡圖片
+    private Text level_Text;        // 關卡名稱
     private Text atkValue;          // 裝備 攻擊力數值
     private Text hpValue;           // 裝備 生命數值
     private Text player_name;       // 玩家名稱
+
+    private int area_Num;           // 地區編號
     private bool isDetail;
 
     private void Start()
@@ -158,17 +177,23 @@ public class MenuManager : MonoBehaviour
         valueDetailBtn = GameObject.Find("詳細資訊按鈕").GetComponent<Button>();
         ifinite_Btn = GameObject.Find("噩夢遠征按鈕").GetComponent<Button>();
         achieve_Btn = GameObject.Find("成就系統按鈕").GetComponent<Button>();
+        chooseArea_Btn = GameObject.Find("選地區按鈕").GetComponent<Button>();
+        chooseLevel_Btn = GameObject.Find("層數按鈕").GetComponent<Button>();
+        level_img = GameObject.Find("關卡圖片").GetComponent<Image>();
+        level_Text = GameObject.Find("關卡名稱").GetComponent<Text>();
         hpValue = GameObject.Find("生命值").GetComponent<Text>();
         atkValue = GameObject.Find("攻擊力").GetComponent<Text>();
         player_name = GameObject.Find("玩家名稱").GetComponent<Text>();
+        schedule_Text = GameObject.Find("關卡進度").GetComponent<Text>();
+        ps = GameObject.Find("選單粒子效果");
         atkBtn_img = atkButton.GetComponent<Image>();
         petBtn_img = petButton.GetComponent<Image>();
-        ps = GameObject.Find("選單粒子效果");
 
         player = FindObjectOfType<Player>();
         draw = FindObjectOfType<DrawTalent>();
 
         isDetail = false;
+        area_Num = 0;
 
         Updatedata();
         Allowbtn();
@@ -178,6 +203,7 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
         Achievement();
+        StageCount();
     }
 
     public void Updatedata() //更新數值
@@ -304,17 +330,21 @@ public class MenuManager : MonoBehaviour
 
     private void Allowbtn() // 激活按鈕
     {
-        if (LevelManager.bl_6 == true)
+        if (LevelManager.lv_9 == true)
         {
-            btn6.interactable = true;
+            stage2_Btn.interactable = true;
         }
-        if (LevelManager.bl_11 == true)
+        if (LevelManager.lv_15 == true)
         {
-            btn11.interactable = true;
+            area_Btn[1].interactable = true;
         }
-        if (LevelManager.bl_16 == true)
+        if (LevelManager.lv_21 == true)
         {
-            btn16.interactable = true;
+            stage2_Btn.interactable = true;
+        }
+        if (LevelManager.lv_27 == true)
+        {
+            area_Btn[2].interactable = true;
         }
     }
 
@@ -331,6 +361,11 @@ public class MenuManager : MonoBehaviour
         ifinite_Btn.onClick.AddListener(LoadIfinite);
         achieve_Btn.onClick.AddListener(ShowAchieve);
         trophy_Exit.onClick.AddListener(NoShowAchieve);
+        chooseArea_Btn.onClick.AddListener(ShowAreaPanel);
+        area_Exit.onClick.AddListener(NoShowAreaPanel);
+        enteaArea_Btn.onClick.AddListener(EnterArea);
+        chooseLevel_Btn.onClick.AddListener(ShowChooseLevel);
+        chooseLevel_Exit.onClick.AddListener(NoShowChooseLevel);
 
         setButton1.onClick.AddListener(() => { ShowSetPanel(0); });
         setButton2.onClick.AddListener(() => { ShowSetPanel(1); });
@@ -375,52 +410,69 @@ public class MenuManager : MonoBehaviour
             int index = i;
             talentBtn[index].onClick.AddListener(() => { ShowTalentPanel(index); });
         }
+
+        for (int i = 0; i < area_Btn.Length; i++)
+        {
+            int index = i;
+            area_Btn[index].onClick.AddListener(ActivateEnterArea_Btn);
+        }
     }
 
-    public void LoadLevel() // 切換場景 - 劇情
+    public void ChangeScene() // 切換場景1
     {
-        SceneManager.LoadScene(4);
+        if (area_Num == 0)
+        {
+            LoadLevel(4);
+        }
+        else if (area_Num == 1)
+        {
+            LoadLevel(16);
+        }
+        else if (area_Num == 2)
+        {
+            LoadLevel(28);
+        }
+    }
+
+    public void LoadScene() // 切換場景2
+    {
+        if (area_Num == 0)
+        {
+            LoadLevel(10);
+        }
+        else if (area_Num == 1)
+        {
+            LoadLevel(22);
+        }
+        else if (area_Num == 2)
+        {
+            LoadLevel(28);
+        }
+    }
+
+    public void SetNum0() // 編號0
+    {
+        area_Num = 0;
+    }
+
+    public void SetNum1() // 編號1
+    {
+        area_Num = 1;
+    }
+
+    public void SetNum2() // 編號2
+    {
+        area_Num = 2;
+    }
+
+    private void LoadLevel(int level) // 切換場景 - 劇情
+    {
+        SceneManager.LoadScene(level);
     }
 
     private void LoadIfinite() // 噩夢遠征關卡
     {
         SceneManager.LoadScene(3);
-    }
-
-    /// <summary>
-    /// 關卡按鈕
-    /// </summary>
-    /// <param name="i">關卡號碼</param>
-    private void ButtonOfLevel(int i)
-    {
-        SceneManager.LoadSceneAsync(i);
-        chooseLevel.SetActive(false);
-    }
-
-    public void Level7() // 關卡7按鈕
-    {
-        ButtonOfLevel(10);
-    }
-
-    public void Level13() // 關卡13按鈕
-    {
-        ButtonOfLevel(16);
-    }
-
-    public void Level19() // 關卡19按鈕
-    {
-        ButtonOfLevel(22);
-    }
-
-    public void ShowLevelChoose() // 開啟選擇關卡畫面
-    {
-
-        chooseLevel.SetActive(true);
-    }
-
-    public void NoShowLevelChoose() // 關閉選擇關卡畫面
-    {
-        chooseLevel.SetActive(false);
     }
 
     private void ShowWeaponArea() // 開啟武器區域畫面
@@ -634,6 +686,87 @@ public class MenuManager : MonoBehaviour
         {
             red_dot.SetActive(true);
             trophy[2].sprite = trophy_Img;
+        }
+    }
+
+    private void ShowAreaPanel() // 顯示地區畫面
+    {
+        enteaArea_Btn.interactable = false;
+        ps.SetActive(false);
+        area_Panel.SetActive(true);
+    }
+
+    private void NoShowAreaPanel() // 關閉地區畫面
+    {
+        ps.SetActive(true);
+        area_Panel.SetActive(false);
+    }
+
+    private void ActivateEnterArea_Btn() // 激活進入地區按鈕
+    {
+        enteaArea_Btn.interactable = true;
+    }
+
+    private void EnterArea() // 進入地區
+    {
+        if (area_Num == 0)
+        {
+            level_Text.text = "1.皇室古堡";
+            level_img.sprite = allArea_img[0];
+        }
+        else if (area_Num == 1)
+        {
+            level_Text.text = "2.希臘神殿";
+            level_img.sprite = allArea_img[1];
+        }
+        else if (area_Num == 2)
+        {
+            level_Text.text = "3.八幡鳥居";
+            level_img.sprite = allArea_img[2];
+        }
+        ps.SetActive(true);
+        area_Panel.SetActive(false);
+    }
+
+    private void ShowChooseLevel() // 顯示選擇層數
+    {
+        stage2_Btn.interactable = false;
+
+        if (area_Num == 0)
+        {
+            if (LevelManager.lv_9 == true)
+            {
+                stage2_Btn.interactable = true;
+            }
+        }
+        else if (area_Num == 1)
+        {
+            if (LevelManager.lv_21 == true)
+            {
+                stage2_Btn.interactable = true;
+            }
+        }
+        chooseLevel_Panel.SetActive(true);
+    }
+
+    private void NoShowChooseLevel() // 關閉選擇層數
+    {
+        chooseLevel_Panel.SetActive(false);
+    }
+
+    private void StageCount()
+    {
+        if (area_Num == 0)
+        {
+            schedule_Text.text = data.areas[0].stage + " / " + "10";
+        }
+        else if (area_Num == 1)
+        {
+            schedule_Text.text = data.areas[1].stage + " / " + "10";
+        }
+        else if (area_Num == 2)
+        {
+            schedule_Text.text = data.areas[2].stage + " / " + "10";
         }
     }
 }

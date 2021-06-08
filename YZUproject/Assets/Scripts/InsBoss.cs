@@ -6,11 +6,11 @@ public class InsBoss : MonoBehaviour
     public GameObject boss;
 
     private BoxCollider box;
-    private LevelManager level;
+    private LevelManager_Boss level;
 
     private void Start()
     {
-        level = FindObjectOfType<LevelManager>();
+        level = FindObjectOfType<LevelManager_Boss>();
         box = GetComponent<BoxCollider>();
     }
 
