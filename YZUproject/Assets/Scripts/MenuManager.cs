@@ -746,6 +746,13 @@ public class MenuManager : MonoBehaviour
                 stage2_Btn.interactable = true;
             }
         }
+        else if (area_Num == 2)
+        {
+            if (LevelManager.lv_33 == true)
+            {
+                stage2_Btn.interactable = true;
+            }
+        }
         chooseLevel_Panel.SetActive(true);
     }
 
@@ -754,7 +761,7 @@ public class MenuManager : MonoBehaviour
         chooseLevel_Panel.SetActive(false);
     }
 
-    private void StageCount()
+    private void StageCount() // 進度更新
     {
         if (area_Num == 0)
         {

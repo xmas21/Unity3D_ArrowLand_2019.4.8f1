@@ -144,6 +144,8 @@ public class Player_IFI : MonoBehaviour
     /// </summary>
     private void Dead()
     {
+        Time.timeScale = 0;
+        levelManager.end_Panel.SetActive(true);
         hp = 0;
         ani.SetBool("死亡觸發", true);
         enabled = false;
@@ -197,7 +199,6 @@ public class Player_IFI : MonoBehaviour
             }
         }
     }
-
 
     /// <summary>
     /// 生命值更新

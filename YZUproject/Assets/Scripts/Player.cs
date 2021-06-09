@@ -85,6 +85,10 @@ public class Player : MonoBehaviour
         {
             levelManager.StartCoroutine("NextLevel");
         }
+        else if (other.tag == "敵人")
+        {
+            Hit(30);
+        }
     }
 
     /// <summary>
@@ -104,10 +108,7 @@ public class Player : MonoBehaviour
         if (hp <= 0) Dead();
     }
 
-    /// <summary>
-    /// 復活
-    /// </summary>
-    public void Revival()
+    public void Revival() // 復活
     {
         enabled = true;
         ani.SetBool("死亡觸發", false);
@@ -284,4 +285,4 @@ public class Player : MonoBehaviour
         hpMpManager.UpdateHpBar(hp, hpMax);
     }
 
-} 
+}

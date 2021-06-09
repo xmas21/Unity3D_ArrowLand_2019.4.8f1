@@ -91,6 +91,7 @@ public class Enemy_IFI : MonoBehaviour
     private void Dead()
     {
         LM_I.kill_count++;
+        LM_I.allKill++;
         ani.SetBool("死亡觸發", true);
         agent.isStopped = true;
         Destroy(this);
@@ -103,6 +104,7 @@ public class Enemy_IFI : MonoBehaviour
         int r = (int)Random.Range(data.coinRandom.x, data.coinRandom.y);
 
         target.GetComponent<Player_IFI>().data.PlayerCoin += r;
+        LM_I.money_gain += r;
 
         for (int i = 0; i < r; i++)
         {

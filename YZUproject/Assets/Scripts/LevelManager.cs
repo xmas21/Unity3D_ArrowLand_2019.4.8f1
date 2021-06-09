@@ -28,6 +28,10 @@ public class LevelManager : MonoBehaviour
     public static bool lv_21;
     [Header("希臘魔王二是否通關")]
     public static bool lv_27;
+    [Header("鳥居魔王一是否通關")]
+    public static bool lv_33;
+    [Header("鳥居魔王二是否通關")]
+    public static bool lv_39;
 
     public Player player;
     public Animator door;
@@ -92,6 +96,18 @@ public class LevelManager : MonoBehaviour
             async = SceneManager.LoadSceneAsync(2);
             lv_27 = true;
             data.areas[1].stage = 10;
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("鳥居魔王一"))
+        {
+            async = SceneManager.LoadSceneAsync(2);
+            lv_33 = true;
+            data.areas[2].stage = 5;
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("鳥居魔王二"))
+        {
+            async = SceneManager.LoadSceneAsync(2);
+            lv_39 = true;
+            data.areas[2].stage = 10;
         }
         else
         {
@@ -167,5 +183,4 @@ public class LevelManager : MonoBehaviour
         objLight.SetActive(true);
         door.SetTrigger("開門觸發");
     }
-
 }

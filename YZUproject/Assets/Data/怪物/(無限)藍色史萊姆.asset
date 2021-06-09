@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 600
   hpMax: 600
-  attack: 50
+  attack: 40
   cd: 1.4
   speed: 2
   StopDistanse: 1.5
@@ -22,5 +22,5 @@ MonoBehaviour:
   NearAttackPos: {x: 0, y: 0.5, z: 0.5}
   NearAttackDelay: 0.5
   farPower: 1500
-  coinRandom: {x: 5, y: 10}
+  coinRandom: {x: 10, y: 15}
   coin: {fileID: 6064191670129767382, guid: fc64acd7e7855274393a44982a41e301, type: 3}

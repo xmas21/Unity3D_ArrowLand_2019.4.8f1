@@ -17,6 +17,32 @@ public class LevelManager_Ifinite : MonoBehaviour
     public ParticleSystem[] SP_Partical;
     [Header("設定畫面")]
     public GameObject set_Panel;
+    [Header("結算畫面")]
+    public GameObject end_Panel;
+
+    [Header("再來一局按鈕")]
+    public Button again_Btn;
+    [Header("回主選單按鈕")]
+    public Button menu_Btn;
+    [Header("繼續遊戲按鈕")]
+    public Button resume_Btn;
+    [Header("回主選單按鈕2")]
+    public Button menu_Btn2;
+    [Header("關閉選單按鈕")]
+    public Button setExit_Btn;
+
+    [Header("總殺敵數量")]
+    public int allKill;
+    [Header("總殺敵文字")]
+    public Text allKill_Text;
+    [Header("總回合數")]
+    public int allRound;
+    [Header("總回合文字")]
+    public Text allRound_Text;
+    [Header("獲得金錢數量")]
+    public int money_gain;
+    [Header("獲得金錢文字")]
+    public Text money_gain_Text;
 
     [Header("當前回合")]
     public int round;
@@ -76,6 +102,9 @@ public class LevelManager_Ifinite : MonoBehaviour
         kill_count = 0;
         count = 7;
         round_count = 1;
+        allKill = 0;
+        allRound = 1;
+        money_gain = 0;
 
         ClickBtn();
         StartCoroutine(SpawnEnemy());
@@ -86,6 +115,7 @@ public class LevelManager_Ifinite : MonoBehaviour
     {
         Physics.IgnoreLayerCollision(9, 9);
         UpdateData();
+        UpdateValue();
         IsPass();
     }
 
@@ -151,6 +181,7 @@ public class LevelManager_Ifinite : MonoBehaviour
         kill_count += count;
         round_count++;
         count += 3;
+        allRound++;
         LevelUp();
         StartCoroutine(SpawnEnemy());
         if (data.ifinite_round < round_count)
@@ -163,24 +194,29 @@ public class LevelManager_Ifinite : MonoBehaviour
         }
     }
 
-    public void MainMenu()    // 回主選單
+    public void MainMenu()     // 回主選單
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
         Time.timeScale = 1;
     }
 
-    public void ResumeGame()  // 繼續遊戲
+    public void ResumeGame()   // 繼續遊戲
     {
         set_Panel.SetActive(false);
         Time.timeScale = 1;
     }
 
-    private void ClickBtn()
+    private void ClickBtn()    // 按鈕觸發
     {
         set_Btn.onClick.AddListener(ShowSet);
+        setExit_Btn.onClick.AddListener(NoShowSet);
+        again_Btn.onClick.AddListener(PlayAgain);
+        menu_Btn.onClick.AddListener(MainMenu);
+        menu_Btn2.onClick.AddListener(MainMenu);
+        resume_Btn.onClick.AddListener(ResumeGame);
     }
 
-    private void UpdateData() // 更新資料
+    private void UpdateData()  // 更新資料
     {
         enemys = FindObjectsOfType<Enemy_IFI>();
         if (enemys.Length == 0)
@@ -195,13 +231,26 @@ public class LevelManager_Ifinite : MonoBehaviour
         }
     }
 
-    private void ShowSet()    // 設定畫面
+    private void UpdateValue() // 更新結算畫面
+    {
+        allKill_Text.text = allKill.ToString("F0");
+        allRound_Text.text = allRound.ToString("F0");
+        money_gain_Text.text = money_gain.ToString("F0");
+    }
+
+    private void ShowSet()     // 設定畫面
     {
         Time.timeScale = 0;
         set_Panel.SetActive(true);
     }
 
-    private void LevelUp()    // 敵人數值升級
+    private void NoShowSet()   // 不顯示設定畫面
+    {
+        Time.timeScale = 1;
+        set_Panel.SetActive(false);
+    }
+
+    private void LevelUp()     // 敵人數值升級
     {
         for (int i = 0; i < enemy_Data.Length; i++)
         {
@@ -213,5 +262,10 @@ public class LevelManager_Ifinite : MonoBehaviour
             enemys_coin[index].x += 5;
             enemys_coin[index].y += 10;
         }
+    }
+
+    private void PlayAgain()   // 在玩一次
+    {
+        SceneManager.LoadScene(3);
     }
 }
