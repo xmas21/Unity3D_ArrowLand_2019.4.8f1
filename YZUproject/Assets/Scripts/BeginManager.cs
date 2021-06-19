@@ -43,7 +43,7 @@ public class BeginManager : MonoBehaviour
         ClickBtn();
     }
 
-    private void ClickBtn()           // 點擊按鈕
+    private void ClickBtn()             // 點擊按鈕
     {
         begin_btn.onClick.AddListener(ShowChoosePanel);
         build_player.onClick.AddListener(() => { StartCoroutine(BuildPlayer()); });
@@ -55,17 +55,17 @@ public class BeginManager : MonoBehaviour
         back2_Btn.onClick.AddListener(Back);
     }
 
-    private void ActivateBtn()        // 激活按鈕
+    private void ActivateBtn()          // 激活按鈕
     {
         begin_btn.interactable = true;
     }
 
-    private void ShowChoosePanel()    // 顯示選擇畫面
+    private void ShowChoosePanel()      // 顯示選擇畫面
     {
         choose_Panel.SetActive(true);
     }
 
-    private IEnumerator BuildPlayer() // 創建角色
+    private IEnumerator BuildPlayer()   // 創建角色
     {
         if (File.Exists(filepath))
         {
@@ -88,10 +88,11 @@ public class BeginManager : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator LoadPlayer()  // 載入角色
+    private IEnumerator LoadPlayer()    // 載入角色
     {
-        if (File.Exists(filepath))
+        if (File.Exists(filepath))      // 先更新資料 在做載入(避免有新增欄位讀不到)
         {
+            ds.UpdateData();
             ds.LoadData();
             SceneManager.LoadScene(2);
         }
@@ -102,7 +103,7 @@ public class BeginManager : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator StillCreate() // 依舊創建
+    private IEnumerator StillCreate()   // 依舊創建
     {
         ds.SaveData();
         SceneManager.LoadScene(1);

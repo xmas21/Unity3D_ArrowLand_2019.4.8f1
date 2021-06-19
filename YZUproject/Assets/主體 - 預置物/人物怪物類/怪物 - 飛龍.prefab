@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9885ba78cfcca42b02ec31ad1094e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 4d17f899fe05e6848b3248cac8bdaaeb, type: 2}
+  data: {fileID: 0}
   bullet: {fileID: 2271299715603948194, guid: 588fb71a7ab40854f9edc72d508a1009, type: 3}
 --- !u!1 &295316672391678208
 GameObject:

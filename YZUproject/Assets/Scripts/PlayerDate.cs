@@ -4,6 +4,7 @@
 [System.Serializable]
 public class PlayerDate : ScriptableObject
 {
+    // 角色 基本數值
     [Header("玩家名稱")]
     public string player_name;
     [Header("生命值"), Range(100, 30000)]
@@ -20,8 +21,8 @@ public class PlayerDate : ScriptableObject
     public float armor = 0;
     [Header("回血"), Range(0.01f, 2000)]
     public float rehp;
-    //****************************************************//
 
+    //****************************************************//
     [Header("最大血量"), Range(100, 30000)]
     public float hpMax;
     [Header("武器速度"), Range(1000, 5000)]

@@ -2017,7 +2017,7 @@ GameObject:
   - component: {fileID: 1117525639}
   - component: {fileID: 1117525638}
   m_Layer: 0
-  m_Name: datasave
+  m_Name: "\u5132\u5B58\u8CC7\u6599\u7BA1\u7406\u5668"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

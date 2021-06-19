@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_name: "\u863F\u8514"
   hp: 600
-  attack: 600
-  CriticalAttack: 40
-  cd: 0.8
-  speed: 275
-  armor: 0.01
-  rehp: 3
+  attack: 150
+  CriticalAttack: 0
+  cd: 0.7
+  speed: 260
+  armor: 0.02
+  rehp: 0.5
   hpMax: 600
   power: 1200
-  WeaponAttack: 80
-  PlayerCoin: 8932
+  WeaponAttack: 84
+  PlayerCoin: 1000
   PlayerJewel: 0
-  weapon_Count: 0
+  weapon_Count: 1
   ifinite_round: 0
   areas:
-  - name: "\u7687\u5BA4\u53E4\u5821"
+  - name: "\u5C0F\u5C0F\u5200"
     stage: 0
   - name: "\u5E0C\u81D8\u795E\u6BBF"
     stage: 0
@@ -38,91 +38,91 @@ MonoBehaviour:
   - name: "\u5C0F\u5C0F\u5200"
     owned: 1
     level: 1
-    damage: 28
+    damage: 84
     cd: 0.7
   - name: "\u523A\u9AA8\u528D"
     owned: 0
     level: 1
-    damage: 40
+    damage: 120
     cd: 0.8
   - name: "\u7834\u5929\u69CC"
     owned: 0
     level: 1
-    damage: 60
+    damage: 210
     cd: 1.4
   - name: "\u8ED2\u8F45\u528D"
     owned: 0
     level: 1
-    damage: 100
+    damage: 268
     cd: 1.34
   - name: "\u7389\u77F3\u528D"
-    owned: 1
+    owned: 0
     level: 1
-    damage: 80
+    damage: 242
     cd: 1.1
   - name: "\u51B0\u68D2\u528D"
     owned: 0
     level: 1
-    damage: 50
+    damage: 156
     cd: 0.65
   - name: "\u80FD\u91CF\u528D"
     owned: 0
     level: 1
-    damage: 100
+    damage: 300
     cd: 1
   - name: "\u897F\u74DC\u528D"
     owned: 0
     level: 1
-    damage: 80
+    damage: 240
     cd: 0.75
   - name: "\u5929\u9B54\u528D"
     owned: 0
     level: 1
-    damage: 120
+    damage: 400
     cd: 0.8
   weaponChips:
-  - name: "\u5C0F\u5C0F\u5200"
+  - name: "\u5C0F\u5C0F\u5200\u788E\u7247"
     count: 0
-  - name: "\u523A\u9AA8\u528D"
+  - name: "\u523A\u9AA8\u528D\u788E\u7247"
     count: 0
-  - name: "\u7834\u5929\u69CC"
+  - name: "\u7834\u5929\u69CC\u788E\u7247"
     count: 0
-  - name: "\u8ED2\u8F45\u528D"
+  - name: "\u8ED2\u8F45\u528D\u788E\u7247"
     count: 0
-  - name: "\u7389\u77F3\u528D"
+  - name: "\u7389\u77F3\u528D\u788E\u7247"
     count: 0
-  - name: "\u51B0\u68D2\u528D"
+  - name: "\u51B0\u68D2\u528D\u788E\u7247"
     count: 0
-  - name: "\u80FD\u91CF\u528D"
+  - name: "\u80FD\u91CF\u528D\u788E\u7247"
     count: 0
-  - name: "\u897F\u74DC\u528D"
+  - name: "\u897F\u74DC\u528D\u788E\u7247"
     count: 0
-  - name: "\u5929\u9B54\u528D"
+  - name: "\u5929\u9B54\u528D\u788E\u7247"
     count: 0
   ownPets:
   - name: "Q\u840C\u72AC"
     owned: 0
     level: 0
-    damage: 120
+    damage: 250
   - name: "\u562F\u5929\u864E"
     owned: 0
     level: 0
-    damage: 90
+    damage: 270
   petChips:
-  - name: "Q\u840C\u72AC"
+  - name: "Q\u840C\u72AC\u788E\u7247"
     count: 0
-  - name: "\u562F\u5929\u864E"
+  - name: "\u562F\u5929\u864E\u788E\u7247"
     count: 0
   talents:
-  - name: "\u751F\u547D"
+  - name: "\u751F\u547D\u5929\u8CE6"
     level: 0
-  - name: "\u529B\u91CF"
+  - name: "\u529B\u91CF\u5929\u8CE6"
     level: 0
-  - name: "\u7206\u64CA"
+  - name: "\u7206\u64CA\u5929\u8CE6"
     level: 0
-  - name: "\u8DD1\u901F"
+  - name: "\u8DD1\u901F\u5929\u8CE6"
     level: 0
-  - name: "\u6E1B\u50B7"
+  - name: "\u6E1B\u50B7\u5929\u8CE6"
     level: 0
-  - name: "\u56DE\u8840"
+  - name: "\u56DE\u8840\u5929\u8CE6"
     level: 0

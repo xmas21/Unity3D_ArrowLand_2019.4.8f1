@@ -129,7 +129,7 @@ public class MenuManager : MonoBehaviour
     [Header("進入地區按鈕")]
     public Button enteaArea_Btn;
     [Header("關卡進度文字")]
-    public  Text schedule_Text;
+    public Text schedule_Text;
 
     private Button valueDetailBtn;  // 詳細資訊按鈕
     private Button setButton1;      // 設定按鈕
@@ -138,7 +138,7 @@ public class MenuManager : MonoBehaviour
     private Button setButton4;
     private Button lowButton1;      // 下方選單按鈕
     private Button lowButton2;
-    private Button lowButton3; 
+    private Button lowButton3;
     private Button lowButton4;
     private Button atkButton;       // 選擇武器的按鈕
     private Button petButton;       // 選擇寵物的按鈕
@@ -306,6 +306,15 @@ public class MenuManager : MonoBehaviour
             petDamage_text[index].text = "傷害 : " + data.ownPets[i].damage;
         }
 
+        for (int i = 0; i < weaponBtn.Length; i++)
+        {
+            int index = i;
+            if (data.ownWeapons[index].owned == true)
+            {
+                weaponUse_Img[index].sprite = weaponBtn_allimg[index];
+            }
+        }
+
         talentValue[0].text = "天賦生命增加 + " + draw.hpValue.ToString("F0");
         talentValue[1].text = "天賦攻擊增加 + " + draw.atkValue.ToString("F0");
         talentValue[2].text = "天賦爆擊增加 + " + draw.criticalValue.ToString("F0");
@@ -326,6 +335,53 @@ public class MenuManager : MonoBehaviour
         Player.criticalAttack = player.data.CriticalAttack;
         Player.speed = player.data.speed;
         Player.rehp = player.data.rehp;
+    }
+
+    public void SetNum0() // 編號0
+    {
+        area_Num = 0;
+    }
+
+    public void SetNum1() // 編號1
+    {
+        area_Num = 1;
+    }
+
+    public void SetNum2() // 編號2
+    {
+        area_Num = 2;
+    }
+
+    public void ChangeScene() // 切換場景1
+    {
+        if (area_Num == 0)
+        {
+            LoadLevel(4);
+        }
+        else if (area_Num == 1)
+        {
+            LoadLevel(16);
+        }
+        else if (area_Num == 2)
+        {
+            LoadLevel(28);
+        }
+    }
+
+    public void LoadScene() // 切換場景2
+    {
+        if (area_Num == 0)
+        {
+            LoadLevel(10);
+        }
+        else if (area_Num == 1)
+        {
+            LoadLevel(22);
+        }
+        else if (area_Num == 2)
+        {
+            LoadLevel(28);
+        }
     }
 
     private void Allowbtn() // 激活按鈕
@@ -416,53 +472,6 @@ public class MenuManager : MonoBehaviour
             int index = i;
             area_Btn[index].onClick.AddListener(ActivateEnterArea_Btn);
         }
-    }
-
-    public void ChangeScene() // 切換場景1
-    {
-        if (area_Num == 0)
-        {
-            LoadLevel(4);
-        }
-        else if (area_Num == 1)
-        {
-            LoadLevel(16);
-        }
-        else if (area_Num == 2)
-        {
-            LoadLevel(28);
-        }
-    }
-
-    public void LoadScene() // 切換場景2
-    {
-        if (area_Num == 0)
-        {
-            LoadLevel(10);
-        }
-        else if (area_Num == 1)
-        {
-            LoadLevel(22);
-        }
-        else if (area_Num == 2)
-        {
-            LoadLevel(28);
-        }
-    }
-
-    public void SetNum0() // 編號0
-    {
-        area_Num = 0;
-    }
-
-    public void SetNum1() // 編號1
-    {
-        area_Num = 1;
-    }
-
-    public void SetNum2() // 編號2
-    {
-        area_Num = 2;
     }
 
     private void LoadLevel(int level) // 切換場景 - 劇情
@@ -613,7 +622,7 @@ public class MenuManager : MonoBehaviour
         lowButton4.interactable = true;
     }
 
-    private void UsePet(int i)  // 選擇武器
+    private void UsePet(int i)  // 選擇寵物
     {
         for (int j = 0; j < petUp_Btn.Length; j++)
         {

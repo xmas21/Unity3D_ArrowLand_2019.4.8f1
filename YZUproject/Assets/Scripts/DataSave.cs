@@ -43,13 +43,79 @@ public class DataSave : MonoBehaviour
     }
     */
 
-    public void SaveData()  // 儲存資料 by fileSreeam txt
+    public void UpdateData() // 更新角色資料
     {
         FileStream fs = new FileStream(Application.dataPath + "/Save.txt", FileMode.Create);
         StreamWriter sw = new StreamWriter(fs);
-        #region 
+
         sw.WriteLine(data.player_name);
-        sw.WriteLine(data.hp = 600f);
+        sw.WriteLine(data.hp);
+        sw.WriteLine(data.attack);
+        sw.WriteLine(data.CriticalAttack);
+        sw.WriteLine(data.cd);
+        sw.WriteLine(data.speed);
+        sw.WriteLine(data.armor);
+        sw.WriteLine(data.rehp);
+        sw.WriteLine(data.hpMax);
+        sw.WriteLine(data.power);
+        sw.WriteLine(data.WeaponAttack);
+        sw.WriteLine(data.PlayerCoin);
+        sw.WriteLine(data.PlayerJewel);
+        sw.WriteLine(data.weapon_Count);
+        sw.WriteLine(data.ifinite_round);
+
+        for (int i = 0; i < data.areas.Length; i++)
+        {
+            sw.WriteLine(data.areas[i].name);
+            sw.WriteLine(data.areas[i].stage);
+        }
+
+        for (int i = 0; i < data.ownWeapons.Length; i++)
+        {
+            sw.WriteLine(data.ownWeapons[i].name);
+            sw.WriteLine(data.ownWeapons[i].owned);
+            sw.WriteLine(data.ownWeapons[i].level);
+            sw.WriteLine(data.ownWeapons[i].damage);
+            sw.WriteLine(data.ownWeapons[i].cd);
+        }
+
+        for (int i = 0; i < data.weaponChips.Length; i++)
+        {
+            sw.WriteLine(data.weaponChips[i].name);
+            sw.WriteLine(data.weaponChips[i].count);
+        }
+
+        for (int i = 0; i < data.ownPets.Length; i++)
+        {
+            sw.WriteLine(data.ownPets[i].name);
+            sw.WriteLine(data.ownPets[i].owned);
+            sw.WriteLine(data.ownPets[i].level);
+            sw.WriteLine(data.ownPets[i].damage);
+        }
+
+        for (int i = 0; i < data.petChips.Length; i++)
+        {
+            sw.WriteLine(data.petChips[i].name);
+            sw.WriteLine(data.petChips[i].count);
+        }
+
+        for (int i = 0; i < data.talents.Length; i++)
+        {
+            sw.WriteLine(data.talents[i].name);
+            sw.WriteLine(data.talents[i].level);
+        }
+
+        sw.Close();
+        fs.Close();
+    }
+
+    public void SaveData()   // 儲存資料 by fileSreeam txt
+    {
+        FileStream fs = new FileStream(Application.dataPath + "/Save.txt", FileMode.Create);
+        StreamWriter sw = new StreamWriter(fs);
+
+        sw.WriteLine(data.player_name);
+        sw.WriteLine(data.hp = 700f);
         sw.WriteLine(data.attack = 60f);
         sw.WriteLine(data.CriticalAttack = 0f);
         sw.WriteLine(data.cd = 1f);
@@ -105,12 +171,11 @@ public class DataSave : MonoBehaviour
             sw.WriteLine(data.talents[i].level = 0);
         }
 
-        #endregion
         sw.Close();
         fs.Close();
     }
 
-    public void LoadData()  // 載入資料
+    public void LoadData()   // 載入資料
     {
         FileStream fs = new FileStream(Application.dataPath + "/Save.txt", FileMode.Open);
         StreamReader sr = new StreamReader(fs);
