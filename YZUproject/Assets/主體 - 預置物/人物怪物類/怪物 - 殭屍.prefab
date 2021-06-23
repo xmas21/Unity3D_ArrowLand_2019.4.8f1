@@ -1099,6 +1099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5aa22e9511e1f944a9ce1b36597c3a4d, type: 2}
+  property: 
 --- !u!1001 &6629796099626311876
 PrefabInstance:
   m_ObjectHideFlags: 0

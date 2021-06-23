@@ -105,17 +105,6 @@ public class Player_IFI : MonoBehaviour
     }
 
     /// <summary>
-    /// 復活
-    /// </summary>
-    public void Revival()
-    {
-        enabled = true;
-        ani.SetBool("死亡觸發", false);
-        hp = data.hp;
-        hpMpManager.UpdateHpBar(hp, hpMax);
-    }
-
-    /// <summary>
     /// 移動
     /// </summary>
     private void Move()
@@ -148,7 +137,8 @@ public class Player_IFI : MonoBehaviour
         levelManager.end_Panel.SetActive(true);
         hp = 0;
         ani.SetBool("死亡觸發", true);
-        enabled = false;
+
+
     }
 
     /// <summary>

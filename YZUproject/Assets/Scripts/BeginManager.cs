@@ -35,7 +35,7 @@ public class BeginManager : MonoBehaviour
     private void Start()
     {
         ds = FindObjectOfType<DataSave>();
-        filepath = Application.dataPath + "/" + "Save.txt";
+        filepath = Application.persistentDataPath + "/" + "Save.txt";
         begin_btn = GameObject.Find("進入遊戲按鈕").GetComponent<Button>();
 
         Invoke("ActivateBtn", 4f);

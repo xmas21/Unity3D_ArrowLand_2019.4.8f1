@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 862c272ea917c87469dc44f26032d54a, type: 2}
+  property: 
 --- !u!1 &2815230268297549016
 GameObject:
   m_ObjectHideFlags: 0

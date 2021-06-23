@@ -3,6 +3,8 @@
 [CreateAssetMenu(fileName = "怪物資料", menuName = "HWC/怪物")]
 public class EnemyData : ScriptableObject
 {
+    [Header("怪物屬性")]
+    public Attributes attributes;
     [Header("血量"), Range(30, 10000)]
     public float hp;
     [Header("血量最大值"), Range(30, 10000)]
@@ -30,4 +32,9 @@ public class EnemyData : ScriptableObject
     [Header("金幣")]
     public GameObject coin;
 
+}
+
+public enum Attributes
+{
+    fire, water, wood, light, dark
 }

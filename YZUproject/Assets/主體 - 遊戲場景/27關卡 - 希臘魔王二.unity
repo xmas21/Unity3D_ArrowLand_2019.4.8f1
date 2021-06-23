@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 27a55c0bcb5f8604f92a34ea71d51d39, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6d6dff200c5b85e438da4716a2550cec, type: 2}
 --- !u!1 &162656925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1656,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 579589472, guid: 2669eeaaaaa9ea740815a99a5e301ae2, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681236985798118943, guid: 2669eeaaaaa9ea740815a99a5e301ae2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2984215086559458862, guid: 2669eeaaaaa9ea740815a99a5e301ae2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1833,6 +1842,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 871955164}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &871955169 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1426916424, guid: 2669eeaaaaa9ea740815a99a5e301ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 871955164}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &871955170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 579589473, guid: 2669eeaaaaa9ea740815a99a5e301ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 871955164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &900564331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1881,6 +1908,16 @@ PrefabInstance:
       propertyPath: imgCross
       value: 
       objectReference: {fileID: 871955167}
+    - target: {fileID: 6431130511585660918, guid: 53ce6b2dbde99ea4d94da060456b1eeb,
+        type: 3}
+      propertyPath: dead_Panel
+      value: 
+      objectReference: {fileID: 871955170}
+    - target: {fileID: 6431130511585660918, guid: 53ce6b2dbde99ea4d94da060456b1eeb,
+        type: 3}
+      propertyPath: dead_toMeny_Btn
+      value: 
+      objectReference: {fileID: 871955169}
     - target: {fileID: 8414213142779679525, guid: 53ce6b2dbde99ea4d94da060456b1eeb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4650,6 +4687,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: "\u602A\u7269 - \u85CD\u8272\u5C0F\u6CD5\u5E2B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369195509751067145, guid: e71bcf3f8e4bb3743b4b8fb101f7d26f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3369195510343761951, guid: e71bcf3f8e4bb3743b4b8fb101f7d26f,
         type: 3}

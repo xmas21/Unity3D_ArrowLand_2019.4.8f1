@@ -758,7 +758,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3817755408847094180}
   m_Material: {fileID: 13400000, guid: e2da018c7cd94bb47b530ab53fc475b6, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.8
   m_Height: 1.4908485
@@ -777,6 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
+  property: 
 --- !u!195 &3818254592629421220
 NavMeshAgent:
   m_ObjectHideFlags: 0

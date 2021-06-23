@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Advertisements;
 
+
 public class ADmanager : MonoBehaviour, IUnityAdsListener
 {
     private string googleID = "3854575";
@@ -9,13 +10,12 @@ public class ADmanager : MonoBehaviour, IUnityAdsListener
 
     private void Start()
     {
-        Advertisement.Initialize(googleID, true); // 廣告初始化
+        Advertisement.Initialize(googleID, false); // 廣告初始化
         Advertisement.AddListener(this);
 
         player = FindObjectOfType<Player>();
-
     }
-        
+
     /// <summary>
     /// 顯示廣告
     /// </summary>
@@ -23,6 +23,7 @@ public class ADmanager : MonoBehaviour, IUnityAdsListener
     {
         if (Advertisement.IsReady(placementRevival))
         {
+            player.revived = true;
             Advertisement.Show(placementRevival);
         }
     }
@@ -58,5 +59,4 @@ public class ADmanager : MonoBehaviour, IUnityAdsListener
             }
         }
     }
-
 }

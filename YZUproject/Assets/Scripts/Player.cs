@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [Header("預設寵物")]
     public GameObject test_pet;
 
+    [Header("玩家屬性")]
+    public static string property;
     [Header("生命"), Range(0, 1000)]
     public static float hp;
     [Header("最大生命"), Range(0, 1000)]
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
     [Header("每秒回血"), Range(0, 1000)]
     public static float rehp;
 
+    public bool revived;
     public static GameObject bullet;
     public static GameObject pet1;
 
@@ -110,7 +113,7 @@ public class Player : MonoBehaviour
 
     public void Revival() // 復活
     {
-        enabled = true;
+        Time.timeScale = 1;
         ani.SetBool("死亡觸發", false);
         hp = data.hp;
         hpMpManager.UpdateHpBar(hp, hpMax);
@@ -151,14 +154,14 @@ public class Player : MonoBehaviour
         // 血量增加
         if (RandomSkill.nameskill.Equals(skillData.Skill5))
         {
-            hp += 200;
-            hpMax += 200;
+            hp *= 1.75f;
+            hpMax *= 1.75f;
         }
 
         // 攻擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill6))
         {
-            attack += 30;
+            attack *= 1.75f;
         }
 
         // 攻速增加
@@ -170,7 +173,7 @@ public class Player : MonoBehaviour
         // 爆擊增加
         else if (RandomSkill.nameskill.Equals(skillData.Skill8))
         {
-            criticalAttack += 30;
+            criticalAttack += 200;
         }
     }
 
@@ -179,29 +182,41 @@ public class Player : MonoBehaviour
         float h = joystick.Horizontal;                // X軸 (左右) 水平
         float v = joystick.Vertical;                  // Z軸 (前後) 垂直
 
-        rig.AddForce(-h * speed, 0, -v * speed);      // 推力 (水平,0,垂直)
+        if (v != 0 | h != 0)
+        {
+            timer = cd * 0.6f;
+        }
+
+        if (v == 0 && h == 0)
+        {
+            rig.velocity = Vector3.zero;
+            Attack();
+        }
 
         ani.SetBool("跑步觸發", v != 0 || h != 0);
+        rig.AddForce(-h * speed, 0, -v * speed);      // 推力 (水平,0,垂直)
 
         Vector3 posPlayer = transform.position;       // 玩家.座標
         Vector3 posTarget = new Vector3(posPlayer.x - h, 0.28f, posPlayer.z - v);  //設定目標跟玩家的相對位置
-
         target.position = posTarget;
-
         posTarget.y = posPlayer.y;
-
         transform.LookAt(posTarget);                   // 視野跟蹤的 API
-
-        if (v == 0 && h == 0) Attack();
     }
 
     private void Dead() // 死亡
     {
         hp = 0;
         ani.SetBool("死亡觸發", true);
-        enabled = false;
+        Time.timeScale = 0;
 
-        StartCoroutine(levelManager.ShowRevival());
+        if (revived == false)
+        {
+            StartCoroutine(levelManager.ShowRevival());
+        }
+        else
+        {
+            levelManager.dead_Panel.SetActive(true);
+        }
     }
 
     private void Attack() // 攻擊

@@ -10,7 +10,6 @@ public class DataSave : MonoBehaviour
     [SerializeField]
     private PlayerDate data;
 
-
     /*
     private void SaveData() // by Xml
     {
@@ -45,7 +44,7 @@ public class DataSave : MonoBehaviour
 
     public void UpdateData() // 更新角色資料
     {
-        FileStream fs = new FileStream(Application.dataPath + "/Save.txt", FileMode.Create);
+        FileStream fs = new FileStream(Application.persistentDataPath + "/Save.txt", FileMode.Create);
         StreamWriter sw = new StreamWriter(fs);
 
         sw.WriteLine(data.player_name);
@@ -73,6 +72,7 @@ public class DataSave : MonoBehaviour
         for (int i = 0; i < data.ownWeapons.Length; i++)
         {
             sw.WriteLine(data.ownWeapons[i].name);
+            sw.WriteLine(data.ownWeapons[i].attributes);
             sw.WriteLine(data.ownWeapons[i].owned);
             sw.WriteLine(data.ownWeapons[i].level);
             sw.WriteLine(data.ownWeapons[i].damage);
@@ -105,27 +105,34 @@ public class DataSave : MonoBehaviour
             sw.WriteLine(data.talents[i].level);
         }
 
+        for (int i = 0; i < data.achievements.Length; i++)
+        {
+            sw.WriteLine(data.achievements[i].name);
+            sw.WriteLine(data.achievements[i].owned);
+            sw.WriteLine(data.achievements[i].rewarded);
+        }
+
         sw.Close();
         fs.Close();
     }
 
     public void SaveData()   // 儲存資料 by fileSreeam txt
     {
-        FileStream fs = new FileStream(Application.dataPath + "/Save.txt", FileMode.Create);
+        FileStream fs = new FileStream(Application.persistentDataPath + "/Save.txt", FileMode.Create);
         StreamWriter sw = new StreamWriter(fs);
 
         sw.WriteLine(data.player_name);
         sw.WriteLine(data.hp = 700f);
-        sw.WriteLine(data.attack = 60f);
+        sw.WriteLine(data.attack = 150f);
         sw.WriteLine(data.CriticalAttack = 0f);
-        sw.WriteLine(data.cd = 1f);
+        sw.WriteLine(data.cd = 0.7f);
         sw.WriteLine(data.speed = 260f);
         sw.WriteLine(data.armor = 0.02f);
         sw.WriteLine(data.rehp = 0.5f);
         sw.WriteLine(data.hpMax = 600f);
         sw.WriteLine(data.power = 1200f);
         sw.WriteLine(data.WeaponAttack = 28f);
-        sw.WriteLine(data.PlayerCoin = 100f);
+        sw.WriteLine(data.PlayerCoin = 300f);
         sw.WriteLine(data.PlayerJewel = 0f);
         sw.WriteLine(data.weapon_Count = 1);
         sw.WriteLine(data.ifinite_round = 0);
@@ -139,6 +146,7 @@ public class DataSave : MonoBehaviour
         for (int i = 0; i < data.ownWeapons.Length; i++)
         {
             sw.WriteLine(data.ownWeapons[i].name);
+            sw.WriteLine(data.ownWeapons[i].attributes);
             sw.WriteLine(data.ownWeapons[i].owned);
             sw.WriteLine(data.ownWeapons[i].level = 1);
             sw.WriteLine(data.ownWeapons[i].damage);
@@ -171,13 +179,20 @@ public class DataSave : MonoBehaviour
             sw.WriteLine(data.talents[i].level = 0);
         }
 
+        for (int i = 0; i < data.achievements.Length; i++)
+        {
+            sw.WriteLine(data.achievements[i].name);
+            sw.WriteLine(data.achievements[i].owned = false);
+            sw.WriteLine(data.achievements[i].rewarded = false);
+        }
+
         sw.Close();
         fs.Close();
     }
 
     public void LoadData()   // 載入資料
     {
-        FileStream fs = new FileStream(Application.dataPath + "/Save.txt", FileMode.Open);
+        FileStream fs = new FileStream(Application.persistentDataPath + "/Save.txt", FileMode.Open);
         StreamReader sr = new StreamReader(fs);
         data.player_name = sr.ReadLine();
         data.hp = float.Parse(sr.ReadLine());
@@ -204,6 +219,7 @@ public class DataSave : MonoBehaviour
         for (int i = 0; i < data.ownWeapons.Length; i++)
         {
             data.ownWeapons[i].name = sr.ReadLine();
+            data.ownWeapons[i].attributes = (Attributes)Enum.Parse(typeof(Attributes), sr.ReadLine());
             data.ownWeapons[i].owned = bool.Parse(sr.ReadLine());
             data.ownWeapons[i].level = int.Parse(sr.ReadLine());
             data.ownWeapons[i].damage = float.Parse(sr.ReadLine());
@@ -234,6 +250,13 @@ public class DataSave : MonoBehaviour
         {
             data.talents[i].name = sr.ReadLine();
             data.talents[i].level = int.Parse(sr.ReadLine());
+        }
+
+        for (int i = 0; i < data.achievements.Length; i++)
+        {
+            data.achievements[i].name = sr.ReadLine();
+            data.achievements[i].owned = bool.Parse(sr.ReadLine());
+            data.achievements[i].rewarded = bool.Parse(sr.ReadLine());
         }
     }
 }

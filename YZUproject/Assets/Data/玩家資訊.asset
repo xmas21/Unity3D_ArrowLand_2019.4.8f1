@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: "\u73A9\u5BB6\u8CC7\u8A0A"
   m_EditorClassIdentifier: 
   player_name: "\u863F\u8514"
-  hp: 600
+  hp: 100
   attack: 150
   CriticalAttack: 0
-  cd: 0.7
+  cd: 1.1
   speed: 260
   armor: 0.02
   rehp: 0.5
-  hpMax: 600
+  hpMax: 100
   power: 1200
-  WeaponAttack: 84
-  PlayerCoin: 1000
+  WeaponAttack: 242
+  PlayerCoin: 846
   PlayerJewel: 0
-  weapon_Count: 1
+  weapon_Count: 2
   ifinite_round: 0
   areas:
   - name: "\u5C0F\u5C0F\u5200"
@@ -36,53 +36,62 @@ MonoBehaviour:
     stage: 0
   ownWeapons:
   - name: "\u5C0F\u5C0F\u5200"
+    attributes: 2
     owned: 1
     level: 1
     damage: 84
     cd: 0.7
   - name: "\u523A\u9AA8\u528D"
+    attributes: 0
     owned: 0
     level: 1
     damage: 120
     cd: 0.8
   - name: "\u7834\u5929\u69CC"
+    attributes: 1
     owned: 0
     level: 1
     damage: 210
     cd: 1.4
   - name: "\u8ED2\u8F45\u528D"
+    attributes: 2
     owned: 0
     level: 1
     damage: 268
     cd: 1.34
   - name: "\u7389\u77F3\u528D"
-    owned: 0
+    attributes: 0
+    owned: 1
     level: 1
     damage: 242
     cd: 1.1
   - name: "\u51B0\u68D2\u528D"
+    attributes: 1
     owned: 0
     level: 1
     damage: 156
     cd: 0.65
   - name: "\u80FD\u91CF\u528D"
+    attributes: 4
     owned: 0
     level: 1
     damage: 300
     cd: 1
   - name: "\u897F\u74DC\u528D"
+    attributes: 3
     owned: 0
     level: 1
     damage: 240
     cd: 0.75
   - name: "\u5929\u9B54\u528D"
+    attributes: 4
     owned: 0
     level: 1
     damage: 400
     cd: 0.8
   weaponChips:
   - name: "\u5C0F\u5C0F\u5200\u788E\u7247"
-    count: 0
+    count: 10
   - name: "\u523A\u9AA8\u528D\u788E\u7247"
     count: 0
   - name: "\u7834\u5929\u69CC\u788E\u7247"
@@ -102,11 +111,11 @@ MonoBehaviour:
   ownPets:
   - name: "Q\u840C\u72AC"
     owned: 0
-    level: 0
+    level: 1
     damage: 250
   - name: "\u562F\u5929\u864E"
     owned: 0
-    level: 0
+    level: 1
     damage: 270
   petChips:
   - name: "Q\u840C\u72AC\u788E\u7247"
@@ -126,3 +135,28 @@ MonoBehaviour:
     level: 0
   - name: "\u56DE\u8840\u5929\u8CE6"
     level: 0
+  achievements:
+  - name: "\u64C1\u6709\u5169\u628A\u6B66\u5668"
+    owned: 1
+    rewarded: 1
+  - name: "\u64C1\u6709\u56DB\u628A\u6B66\u5668"
+    owned: 0
+    rewarded: 0
+  - name: "\u64C1\u6709\u516D\u628A\u6B66\u5668"
+    owned: 0
+    rewarded: 0
+  - name: "\u64C1\u6709\u516B\u628A\u6B66\u5668"
+    owned: 0
+    rewarded: 0
+  - name: "\u901A\u95DC\u9060\u5F81\u7B2C\u4E94\u95DC"
+    owned: 0
+    rewarded: 0
+  - name: "\u901A\u95DC\u9060\u5F81\u7B2C\u5341\u95DC"
+    owned: 0
+    rewarded: 0
+  - name: "\u901A\u95DC\u9060\u5F81\u7B2C\u5341\u4E94\u95DC"
+    owned: 0
+    rewarded: 0
+  - name: "\u96B1\u85CF\u6210\u5C31"
+    owned: 0
+    rewarded: 0

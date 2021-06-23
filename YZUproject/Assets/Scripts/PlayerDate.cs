@@ -51,6 +51,8 @@ public class PlayerDate : ScriptableObject
     public PetChip[] petChips;
     [Header("角色天賦")]
     public Talent[] talents;
+    [Header("玩家成就")]
+    public Achievement[] achievements;
 }
 
 [System.Serializable]
@@ -58,6 +60,8 @@ public class OwnWeapon
 {
     [Header("武器名稱")]
     public string name;
+    [Header("武器屬性")]
+    public Attributes attributes;
     [Header("是否擁有武器")]
     public bool owned;
     [Header("武器等級")]
@@ -117,5 +121,13 @@ public class Area
     public int stage;
 }
 
-
-
+[System.Serializable]
+public class Achievement
+{
+    [Header("成就名稱")]
+    public string name;
+    [Header("是否擁有")]
+    public bool owned;
+    [Header("是否領獎")]
+    public bool rewarded;
+}

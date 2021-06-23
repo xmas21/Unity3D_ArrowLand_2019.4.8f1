@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7301704232223281804}
   - component: {fileID: 999952435}
   - component: {fileID: 428261968}
+  - component: {fileID: 1797347028}
   m_Layer: 0
   m_Name: "\u4E3B\u9078\u55AE\u7BA1\u7406\u5668"
   m_TagString: Untagged
@@ -46,10 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
-  chooseLevel: {fileID: 0}
-  btn6: {fileID: 0}
-  btn11: {fileID: 0}
-  btn16: {fileID: 0}
+  chooseLevel_Panel: {fileID: 0}
+  chooseLevel_Exit: {fileID: 0}
+  stage1_Btn: {fileID: 0}
+  stage2_Btn: {fileID: 0}
   valueDetail: {fileID: 0}
   weaponArea: {fileID: 0}
   petArea: {fileID: 0}
@@ -104,6 +105,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  weaponBtn_allimg:
+  - {fileID: 21300000, guid: 093001277ed917740a2b19886bb35236, type: 3}
+  - {fileID: 21300000, guid: 68868fa222a5cc0468c1e374d1b1aa4b, type: 3}
+  - {fileID: 21300000, guid: 96479bd308ecce545b351522e838d4bd, type: 3}
+  - {fileID: 21300000, guid: 145a45a76640db14487f0adb17e9b2e1, type: 3}
+  - {fileID: 21300000, guid: 5c8b9e5e67745bc429b441fd2b800961, type: 3}
+  - {fileID: 21300000, guid: 38ff1e217b8ef9f40a0f6733575c3612, type: 3}
+  - {fileID: 21300000, guid: 264eb767c55494041977bf061a20ff5f, type: 3}
+  - {fileID: 21300000, guid: 67cd465edc8c93742b7c1179035a63b9, type: 3}
+  - {fileID: 21300000, guid: fab4d956981496942b4a1f12a8c800c4, type: 3}
   weaponExit:
   - {fileID: 0}
   - {fileID: 0}
@@ -122,6 +133,122 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponUse_Btn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponUse_allimg:
+  - {fileID: 21300000, guid: 46b39e2854f254a4c81e1a7e73ec0b28, type: 3}
+  - {fileID: 21300000, guid: 3bc209daccc61c540b8fc29b97b4c3e6, type: 3}
+  - {fileID: 21300000, guid: 948123f5bccf75148bcd54f871732b79, type: 3}
+  - {fileID: 21300000, guid: ec3879297dca7bb4288c7e1bf61a6f10, type: 3}
+  - {fileID: 21300000, guid: 6006f086b072c924c8f95b67660a2c19, type: 3}
+  - {fileID: 21300000, guid: 6b5795c8c444c3340b1ed00d79d95e5d, type: 3}
+  - {fileID: 21300000, guid: 5fd9d0d7ec567fa42b1a744a308d1e11, type: 3}
+  - {fileID: 21300000, guid: 37dce2c857d5b2249ae019862eb41ef1, type: 3}
+  - {fileID: 21300000, guid: a2c56394125465c4aadc295af93757cd, type: 3}
+  weaponUse_Img:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponLevel_text:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponDamage_text:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponUp_Btn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponUp_Bar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponChip_Text:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  petBtn:
+  - {fileID: 0}
+  - {fileID: 0}
+  petBtn_allimg:
+  - {fileID: 21300000, guid: 08e36fea2b331d94d98ebceb1ddd9130, type: 3}
+  - {fileID: 21300000, guid: db9b546f02026ec4c82030d081fee3ee, type: 3}
+  petExit:
+  - {fileID: 0}
+  - {fileID: 0}
+  petPanel:
+  - {fileID: 0}
+  - {fileID: 0}
+  petUse_Btn:
+  - {fileID: 0}
+  - {fileID: 0}
+  petUse_allimg:
+  - {fileID: 21300000, guid: 82eca7d1c1dd2734f984f747026366d0, type: 3}
+  - {fileID: 21300000, guid: ff589a889e7fbd247a7cd12a640d4a3c, type: 3}
+  petUse_img:
+  - {fileID: 0}
+  - {fileID: 0}
+  petLevel_text:
+  - {fileID: 0}
+  - {fileID: 0}
+  petDamage_text:
+  - {fileID: 0}
+  - {fileID: 0}
+  petUp_Btn:
+  - {fileID: 0}
+  - {fileID: 0}
+  petU_Bar:
+  - {fileID: 0}
+  - {fileID: 0}
+  petChip_Text:
   - {fileID: 0}
   - {fileID: 0}
   soueceBtn:
@@ -160,6 +287,40 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  trophy:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  trophy_reward_Btn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  trophy_Panel: {fileID: 0}
+  trophy_Img: {fileID: 21300000, guid: f23a836c56ccc304b842246bded75c67, type: 3}
+  red_dot: {fileID: 0}
+  trophy_Exit: {fileID: 0}
+  allArea_img:
+  - {fileID: 21300000, guid: 1c94a2806a7d2474ba73c3aba004deaa, type: 3}
+  - {fileID: 21300000, guid: ba2cca1489609774f96c6df51a9ab569, type: 3}
+  - {fileID: 21300000, guid: 278a37bab69a613438534a981a411c1a, type: 3}
+  area_Panel: {fileID: 0}
+  area_Exit: {fileID: 0}
+  area_Btn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enteaArea_Btn: {fileID: 0}
+  schedule_Text: {fileID: 0}
 --- !u!114 &999952435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,14 +369,13 @@ MonoBehaviour:
   noMoney: {fileID: 0}
   close1: {fileID: 0}
   close2: {fileID: 0}
-  chestWeapon: {fileID: 0}
-  chestPanel: {fileID: 0}
-  chestBtn_in: {fileID: 0}
+  weaponChest_Panel: {fileID: 0}
+  weaponChest_in: {fileID: 0}
   chestText: {fileID: 0}
-  chestImg: {fileID: 0}
+  weaponChest_Img: {fileID: 0}
   reward: {fileID: 0}
-  cost: 1
   costText: {fileID: 0}
+  cost: 300
   count: 0000
   allImg:
   - {fileID: 21300000, guid: 093001277ed917740a2b19886bb35236, type: 3}
@@ -227,3 +387,41 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 264eb767c55494041977bf061a20ff5f, type: 3}
   - {fileID: 21300000, guid: 67cd465edc8c93742b7c1179035a63b9, type: 3}
   - {fileID: 21300000, guid: fab4d956981496942b4a1f12a8c800c4, type: 3}
+  - {fileID: 21300000, guid: 2b40e566fbea73347a1c1fe7749cec47, type: 3}
+  - {fileID: 21300000, guid: 2b07da255b0f3784490022ee469214cd, type: 3}
+  - {fileID: 21300000, guid: 42264ac6d3f91d545bd65693120d21ce, type: 3}
+  - {fileID: 21300000, guid: 07fa8bb192f902b48a235401ace5b81b, type: 3}
+  - {fileID: 21300000, guid: 566dd0e52a6095540be963d41d8d71c4, type: 3}
+  - {fileID: 21300000, guid: 2fab48db932da10429a53205283c2f48, type: 3}
+  - {fileID: 21300000, guid: f8afd30951a6059468295c449654f5ac, type: 3}
+  - {fileID: 21300000, guid: e353ef05a6830964d8c2db20c0fa361b, type: 3}
+  - {fileID: 21300000, guid: 20ead2a196cae144bb8dd80b0a4d7261, type: 3}
+--- !u!114 &1797347028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301704232223281807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df18916e71001d7489c28e1db9954a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 739166fc517a5db4ab653e0f6dcfc38d, type: 2}
+  noMoney: {fileID: 0}
+  close1: {fileID: 0}
+  close2: {fileID: 0}
+  chest_Panel: {fileID: 0}
+  chest_Btn_in: {fileID: 0}
+  chestText: {fileID: 0}
+  chest_Img: {fileID: 0}
+  reward: {fileID: 0}
+  costText: {fileID: 0}
+  cost: 300
+  count: 0000
+  allImg:
+  - {fileID: 21300000, guid: 08e36fea2b331d94d98ebceb1ddd9130, type: 3}
+  - {fileID: 21300000, guid: db9b546f02026ec4c82030d081fee3ee, type: 3}
+  - {fileID: 21300000, guid: 9cccf1a7836c81e4b9acd3bd08af5e1c, type: 3}
+  - {fileID: 21300000, guid: 217ae2e41f3d89c4daafe6ce3b9f1602, type: 3}
