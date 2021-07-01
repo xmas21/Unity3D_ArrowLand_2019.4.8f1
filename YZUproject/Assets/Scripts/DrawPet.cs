@@ -46,9 +46,6 @@ public class DrawPet : MonoBehaviour
 
     private void Start()
     {
-        data.ownPets[0].owned = false;
-        data.ownPets[1].owned = false;
-
         menu = FindObjectOfType<MenuManager>();
         lowButton1 = GameObject.Find("商城下方按鈕").GetComponent<Button>();
         lowButton2 = GameObject.Find("裝備下方按鈕").GetComponent<Button>();

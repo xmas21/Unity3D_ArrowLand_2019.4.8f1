@@ -22,7 +22,9 @@ public class LevelManager : MonoBehaviour
     [Header("死亡區")]
     public GameObject dead_Panel;
     [Header("死亡區_回主選單按鈕")]
-    public Button dead_toMeny_Btn;
+    public Button dead_toMenu_Btn;
+    [Header("回主選單按鈕")]
+    public Button toMenu_Btn;
 
     [Header("古堡魔王一是否通關")]
     public static bool lv_9;
@@ -51,7 +53,8 @@ public class LevelManager : MonoBehaviour
         if (autoShowSkill) ShowSkill();
         if (autoOpenDoor) Invoke("Opendoor", 6);
 
-        dead_toMeny_Btn.onClick.AddListener(MainMenu);
+        dead_toMenu_Btn.onClick.AddListener(() => { StartCoroutine(MainMenu()); });
+        toMenu_Btn.onClick.AddListener(() => { Time.timeScale = 1; StartCoroutine(MainMenu()); });
     }
 
     protected virtual void IsPass() // 是否通關
@@ -138,10 +141,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void MainMenu()// 回主選單
+    public IEnumerator MainMenu()// 回主選單
     {
         SceneManager.LoadScene(2);
-        Time.timeScale = 1;
+        yield return null;
     }
 
     public void CloseRevival() // 關閉復活

@@ -7385,6 +7385,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1777183443}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1777183448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2984215086559458862, guid: 2669eeaaaaa9ea740815a99a5e301ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1777183443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1827386751
 GameObject:
   m_ObjectHideFlags: 0
@@ -8328,6 +8340,16 @@ PrefabInstance:
       propertyPath: dead_toMeny_Btn
       value: 
       objectReference: {fileID: 1777183446}
+    - target: {fileID: 8414213142779679524, guid: d2c77c1ab7a406747899e27998224f4c,
+        type: 3}
+      propertyPath: dead_toMenu_Btn
+      value: 
+      objectReference: {fileID: 1777183446}
+    - target: {fileID: 8414213142779679524, guid: d2c77c1ab7a406747899e27998224f4c,
+        type: 3}
+      propertyPath: toMenu_Btn
+      value: 
+      objectReference: {fileID: 1777183448}
     - target: {fileID: 8414213142779679525, guid: d2c77c1ab7a406747899e27998224f4c,
         type: 3}
       propertyPath: m_LocalPosition.x

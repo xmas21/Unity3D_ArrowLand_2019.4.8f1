@@ -37,7 +37,7 @@ public class StartManager : MonoBehaviour
     {
         ds = FindObjectOfType<DataSave>();
         start_1_Btn = GameObject.Find("開始按鈕_1").GetComponent<Button>();
-        Invoke("ShowTip", 18f);
+        Invoke("ShowTip", 4f);
 
         ClickBtn();
     }
@@ -70,7 +70,7 @@ public class StartManager : MonoBehaviour
         start_1_Text.SetActive(false);
         start_2_Text.SetActive(true);
         start_1_Btn.interactable = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         start_2_OBject.SetActive(true);
     }
 
@@ -86,7 +86,7 @@ public class StartManager : MonoBehaviour
         else
         {
             name_error.SetActive(true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             name_error.SetActive(false);
         }
     }

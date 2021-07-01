@@ -16,16 +16,16 @@ MonoBehaviour:
   hp: 100
   attack: 150
   CriticalAttack: 0
-  cd: 1.1
+  cd: 0.75
   speed: 260
   armor: 0.02
   rehp: 0.5
   hpMax: 100
   power: 1200
-  WeaponAttack: 242
-  PlayerCoin: 846
+  WeaponAttack: 240
+  PlayerCoin: 397
   PlayerJewel: 0
-  weapon_Count: 2
+  weapon_Count: 5
   ifinite_round: 0
   areas:
   - name: "\u5C0F\u5C0F\u5200"
@@ -61,7 +61,7 @@ MonoBehaviour:
     cd: 1.34
   - name: "\u7389\u77F3\u528D"
     attributes: 0
-    owned: 1
+    owned: 0
     level: 1
     damage: 242
     cd: 1.1
@@ -79,7 +79,7 @@ MonoBehaviour:
     cd: 1
   - name: "\u897F\u74DC\u528D"
     attributes: 3
-    owned: 0
+    owned: 1
     level: 1
     damage: 240
     cd: 0.75
@@ -110,7 +110,7 @@ MonoBehaviour:
     count: 0
   ownPets:
   - name: "Q\u840C\u72AC"
-    owned: 0
+    owned: 1
     level: 1
     damage: 250
   - name: "\u562F\u5929\u864E"

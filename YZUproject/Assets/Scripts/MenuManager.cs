@@ -194,12 +194,34 @@ public class MenuManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         draw = FindObjectOfType<DrawTalent>();
 
+        Player.bullet = weapon[0];
+        Player.pet1 = pet[0];
         isDetail = false;
         area_Num = 0;
 
         Updatedata();
         Allowbtn();
         ClickButton();
+
+        for (int i = 0; i < weaponBtn.Length; i++)          // 裝備 武器 按鈕照片更新
+        {
+            int index = i;
+            if (data.ownWeapons[index].owned == true)
+            {
+                weaponUse_Img[index].sprite = weaponBtn_allimg[index];
+                weaponBtn[index].interactable = true;
+            }
+        }
+
+        for (int i = 0; i < petBtn.Length; i++)             // 裝備 寵物 按鈕照片更新
+        {
+            int index = i;
+            if (data.ownPets[index].owned == true)
+            {
+                petUse_img[index].sprite = petBtn_allimg[index];
+                petBtn[index].interactable = true;
+            }
+        }
     }
 
     private void Update()
@@ -228,7 +250,7 @@ public class MenuManager : MonoBehaviour
             weaponUse_Img[index] = weaponBtn[index].GetComponent<Image>();
         }
 
-        for (int i = 0; i < petBtn.Length; i++)
+        for (int i = 0; i < petBtn.Length; i++)      // 裝備 寵物照片抓資料
         {
             int index = i;
             petUse_img[index] = petBtn[index].GetComponent<Image>();
@@ -240,7 +262,7 @@ public class MenuManager : MonoBehaviour
             weaponChip_Text[index].text = data.weaponChips[index].count + "/ 30";
         }
 
-        for (int i = 0; i < petChip_Text.Length; i++)    // 裝備 武器碎片數量更新
+        for (int i = 0; i < petChip_Text.Length; i++)    // 裝備 寵物碎片數量更新
         {
             int index = i;
             petChip_Text[index].text = data.petChips[index].count + "/ 30";
@@ -252,7 +274,7 @@ public class MenuManager : MonoBehaviour
             weaponUp_Bar[index].fillAmount = (float)data.weaponChips[index].count / 30;
         }
 
-        for (int i = 0; i < petU_Bar.Length; i++)    // 裝備 武器 升級條更新
+        for (int i = 0; i < petU_Bar.Length; i++)         // 裝備 寵物 升級條更新
         {
             int index = i;
             petU_Bar[index].fillAmount = (float)data.petChips[index].count / 30;
@@ -271,7 +293,7 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < petUp_Btn.Length; i++)    // 裝備 武器 升級按鈕控制
+        for (int i = 0; i < petUp_Btn.Length; i++)         // 裝備 寵物 升級按鈕控制
         {
             int index = i;
             if (data.petChips[index].count >= 10)
@@ -290,31 +312,22 @@ public class MenuManager : MonoBehaviour
             weaponLevel_text[index].text = "Lv." + data.ownWeapons[index].level;
         }
 
-        for (int i = 0; i < petLevel_text.Length; i++)  // 裝備 武器 等級文字更新
+        for (int i = 0; i < petLevel_text.Length; i++)     // 裝備 寵物 等級文字更新
         {
             int index = i;
             petLevel_text[index].text = "Lv." + data.ownPets[index].level;
         }
 
-        for (int i = 0; i < weaponDamage_text.Length; i++)
+        for (int i = 0; i < weaponDamage_text.Length; i++)  // 裝備 武器 傷害文字更新
         {
             int index = i;
             weaponDamage_text[index].text = "傷害 : " + data.ownWeapons[i].damage;
         }
 
-        for (int i = 0; i < petDamage_text.Length; i++)
+        for (int i = 0; i < petDamage_text.Length; i++)     // 裝備 寵物 傷害文字更新
         {
             int index = i;
             petDamage_text[index].text = "傷害 : " + data.ownPets[i].damage;
-        }
-
-        for (int i = 0; i < weaponBtn.Length; i++)
-        {
-            int index = i;
-            if (data.ownWeapons[index].owned == true)
-            {
-                weaponUse_Img[index].sprite = weaponBtn_allimg[index];
-            }
         }
 
         talentValue[0].text = "天賦生命增加 + " + draw.hpValue.ToString("F0");
@@ -638,13 +651,14 @@ public class MenuManager : MonoBehaviour
 
     private void UsePet(int i)  // 選擇寵物
     {
-        for (int j = 0; j < petUp_Btn.Length; j++)
+        for (int j = 0; j < data.ownPets.Length; j++)
         {
             if (data.ownPets[j].owned == true)
             {
                 petUse_img[j].sprite = petBtn_allimg[j];
             }
         }
+
         petBtn_img.sprite = petBtn_allimg[i];
         petUse_img[i].sprite = petUse_allimg[i];
         Player.pet1 = pet[i + 1];

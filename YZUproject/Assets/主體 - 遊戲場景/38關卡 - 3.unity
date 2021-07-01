@@ -12265,7 +12265,8 @@ MonoBehaviour:
   panelRevival: {fileID: 1932288774}
   mainMenu: {fileID: 1676960680611922731}
   dead_Panel: {fileID: 951047241773517889}
-  dead_toMeny_Btn: {fileID: 951047241773517888}
+  dead_toMenu_Btn: {fileID: 951047241773517888}
+  toMenu_Btn: {fileID: 951047241773517890}
   player: {fileID: 0}
   door: {fileID: 0}
   imgCross: {fileID: 0}
@@ -17082,6 +17083,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 951047241773517886}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &951047241773517890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2984215086559458862, guid: 2669eeaaaaa9ea740815a99a5e301ae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 951047241773517886}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1676960680611922731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1907009149924626197, guid: 2669eeaaaaa9ea740815a99a5e301ae2,

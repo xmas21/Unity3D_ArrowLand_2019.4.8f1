@@ -42,6 +42,8 @@ public class PetFar : MonoBehaviour
     /// </summary>
     private void Move()
     {
+        enemys = FindObjectsOfType<Enemy>();
+
         if (enemys.Length == 0)
         {
             Idle();
@@ -129,10 +131,6 @@ public class PetFar : MonoBehaviour
 
         for (int i = 0; i < enemys.Length; i++)
         {
-            if (enemys[i] == null)
-            {
-                continue;
-            }
             enemyDistanse[i] = Vector3.Distance(transform.position, enemys[i].transform.position);
         }
 

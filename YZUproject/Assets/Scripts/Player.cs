@@ -7,10 +7,6 @@ public class Player : MonoBehaviour
 {
     [Header("玩家資料")]
     public PlayerDate data;
-    [Header("預設武器")]
-    public GameObject test_bullet;
-    [Header("預設寵物")]
-    public GameObject test_pet;
 
     [Header("玩家屬性")]
     public static string property;
@@ -68,8 +64,6 @@ public class Player : MonoBehaviour
         speed = data.speed;
         rehp = data.rehp;
 
-        bullet = test_bullet; // 設定預設子彈
-        pet1 = test_pet;      // 設定預設寵物
         data.hp = data.hpMax; // 設定生命力
 
         Instantiate(pet1);
@@ -114,6 +108,7 @@ public class Player : MonoBehaviour
     public void Revival() // 復活
     {
         Time.timeScale = 1;
+        ani = GetComponent<Animator>();
         ani.SetBool("死亡觸發", false);
         hp = data.hp;
         hpMpManager.UpdateHpBar(hp, hpMax);
@@ -207,7 +202,7 @@ public class Player : MonoBehaviour
     {
         hp = 0;
         ani.SetBool("死亡觸發", true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
 
         if (revived == false)
         {

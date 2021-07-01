@@ -26,7 +26,7 @@ public class TextAnimation : MonoBehaviour
             "導致星球上的生物多數已經突變成怪物了。" +
             "在你18歲的那年，你父親在前往山上劈柴的途中被火龍襲擊而身亡，為此你悲痛欲絕。" +
             "在經過了2天的意志消沉之後你決定拿起父親遺留在現場的武器，誓言要打倒世上所有的怪物。" +
-            "為了不希望再有家庭體驗到這種切身之痛，於是你踏上了旅程。", 0.1f, false);
-        yield return new WaitForSeconds(0.1f);
+            "為了不希望再有家庭體驗到這種切身之痛，於是你踏上了旅程。", 0.02f, false);
+        yield return null;
     }
 }
