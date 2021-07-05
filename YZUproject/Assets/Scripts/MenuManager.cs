@@ -222,6 +222,15 @@ public class MenuManager : MonoBehaviour
                 petBtn[index].interactable = true;
             }
         }
+
+        for (int i = 0; i < trophy_reward_Btn.Length; i++)  // 關卡 成就 獎盃照片更新
+        {
+            int index = i;
+            if (data.achievements[index].owned == true & data.achievements[index].rewarded == true)
+            {
+                trophy[index].sprite = trophy_Img;
+            }
+        }
     }
 
     private void Update()
@@ -401,6 +410,17 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void BuyHp_1000() // 儲值買生命
+    {
+        data.hpMax += 1000;
+        data.hp += 1000;
+    }
+
+    public void BuyAtk_300() // 儲值買攻擊
+    {
+        data.attack += 300;
+    }
+
     private void Allowbtn() // 激活按鈕
     {
         if (LevelManager.lv_9 == true)
@@ -500,11 +520,6 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void LoadLevel(int level) // 切換場景 - 劇情
-    {
-        SceneManager.LoadScene(level);
-    }
-
     private void LoadIfinite() // 噩夢遠征關卡
     {
         SceneManager.LoadScene(3);
@@ -530,6 +545,11 @@ public class MenuManager : MonoBehaviour
     private void NoShowParticle() // 關閉粒子系統
     {
         ps.SetActive(false);
+    }
+
+    private void LoadLevel(int level) // 切換場景 - 劇情
+    {
+        SceneManager.LoadScene(level);
     }
 
     private void ShowSetPanel(int i) // 顯示設定畫面
@@ -709,77 +729,53 @@ public class MenuManager : MonoBehaviour
 
     private void Achievement() // 成就判定
     {
-        if (data.weapon_Count >= 2)
+        if (data.weapon_Count >= 2 && data.achievements[0].rewarded == false)
         {
             data.achievements[0].owned = true;
             trophy_reward_Btn[0].interactable = true;
-            if (data.achievements[0].rewarded == false)
-            {
-                red_dot.SetActive(true);
-            }
+            red_dot.SetActive(true);
         }
-        else if (data.weapon_Count >= 4)
+        else if (data.weapon_Count >= 4 && data.achievements[1].rewarded == false)
         {
             data.achievements[1].owned = true;
             trophy_reward_Btn[1].interactable = true;
-            if (data.achievements[1].rewarded == false)
-            {
-                red_dot.SetActive(true);
-            }
+            red_dot.SetActive(true);
         }
-        else if (data.weapon_Count >= 6)
+        else if (data.weapon_Count >= 6 && data.achievements[2].rewarded == false)
         {
             data.achievements[2].owned = true;
             trophy_reward_Btn[2].interactable = true;
-            if (data.achievements[2].rewarded == false)
-            {
-                red_dot.SetActive(true);
-            }
+            red_dot.SetActive(true);
         }
-        else if (data.weapon_Count >= 8)
+        else if (data.weapon_Count >= 8 && data.achievements[3].rewarded == false)
         {
             data.achievements[3].owned = true;
             trophy_reward_Btn[3].interactable = true;
-            if (data.achievements[3].rewarded == false)
-            {
-                red_dot.SetActive(true);
-            }
+            red_dot.SetActive(true);
         }
-        else if (data.ifinite_round >= 5)
+        else if (data.ifinite_round >= 5 && data.achievements[4].rewarded == false)
         {
             data.achievements[4].owned = true;
             trophy_reward_Btn[4].interactable = true;
-            if (data.achievements[4].rewarded == false)
-            {
-                red_dot.SetActive(true);
-            }
+            red_dot.SetActive(true);
         }
-        else if (data.ifinite_round >= 10)
+        else if (data.ifinite_round >= 10 && data.achievements[5].rewarded == false)
         {
             data.achievements[5].owned = true;
             trophy_reward_Btn[5].interactable = true;
-            if (data.achievements[5].rewarded == false)
-            {
-                red_dot.SetActive(true);
-            }
+            red_dot.SetActive(true);
         }
-        else if (data.ifinite_round >= 15)
+        else if (data.ifinite_round >= 15 && data.achievements[6].rewarded == false)
         {
             data.achievements[6].owned = true;
             trophy_reward_Btn[6].interactable = true;
-            if (data.achievements[6].rewarded == false)
-            {
-                red_dot.SetActive(true);
-            }
+            red_dot.SetActive(true);
         }
-        else if (data.ifinite_round >= 20)
+        else if (data.ifinite_round >= 20 && data.achievements[7].rewarded == false)
         {
             data.achievements[7].owned = true;
             trophy_reward_Btn[7].interactable = true;
-            if (data.achievements[7].rewarded == false)
-            {
-                red_dot.SetActive(true);
-            }
+            red_dot.SetActive(true);
         }
     }
 
@@ -787,8 +783,8 @@ public class MenuManager : MonoBehaviour
     {
         data.PlayerCoin += money;
         trophy[number].sprite = trophy_Img;
-        trophy_reward_Btn[number].interactable = false;
         data.achievements[number].rewarded = true;
+        trophy_reward_Btn[number].interactable = false;
         red_dot.SetActive(false);
         Updatedata();
     }

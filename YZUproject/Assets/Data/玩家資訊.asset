@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: "\u73A9\u5BB6\u8CC7\u8A0A"
   m_EditorClassIdentifier: 
   player_name: "\u863F\u8514"
-  hp: 100
+  hp: 1100
   attack: 150
   CriticalAttack: 0
   cd: 0.75
   speed: 260
   armor: 0.02
   rehp: 0.5
-  hpMax: 100
+  hpMax: 1100
   power: 1200
   WeaponAttack: 240
-  PlayerCoin: 397
+  PlayerCoin: 5297
   PlayerJewel: 0
   weapon_Count: 5
   ifinite_round: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
     owned: 1
     rewarded: 1
   - name: "\u64C1\u6709\u56DB\u628A\u6B66\u5668"
-    owned: 0
-    rewarded: 0
+    owned: 1
+    rewarded: 1
   - name: "\u64C1\u6709\u516D\u628A\u6B66\u5668"
     owned: 0
     rewarded: 0
